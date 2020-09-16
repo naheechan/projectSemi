@@ -1,0 +1,228 @@
+@import url(reset.css);
+body {
+  height: 100vh;
+}
+#header_nav > ul {
+  padding-left: 0px;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+}
+#header_nav > ul > li {
+  position: relative;
+  margin-left: 20px;
+  font-size: 13px;
+  padding: 15px 0px 15px 0px;
+}
+#header_nav > ul > li > a {
+  padding-bottom: 15px;
+}
+#header_nav {
+  position: relative;
+  border-bottom: 1px solid #cfd8dc;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+header {
+  /* background-color: #f7f2e7; */
+  background-color: #ffffff;
+}
+#search_menu {
+  background-color: #ffffff;
+  /* background-color: #ffffff; */
+  height: 20vh;
+}
+#search_container {
+  padding-top: 50px;
+  width: 90%;
+  margin: 0 auto;
+  border-bottom: 1px solid black;
+}
+#searchfrom {
+  visibility: hidden;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+}
+#foottext{
+	position: relative;
+}
+#mainimage {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;;
+
+}
+#search_input {
+  border: none;
+  border-bottom: 1px solid #34404b;
+  text-align: center;
+  display: inline-block;
+  outline: none;
+}
+#search_input:focus {
+  border-bottom: #3498db;
+}
+#search_input::placeholder {
+  opacity: 0.5;
+}
+
+#main_logo {
+  height: 10vh;
+  text-align: center;
+}
+#nav_menu > ul {
+  height: 50px;
+  width: 90%;
+  margin: 0 auto;
+  justify-content: space-around;
+  display: flex;
+
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+#nav_menu li a {
+  font-weight: bold;
+  font-size: 15px;
+  margin-right: 10px;
+  color: black;
+  padding: 0px 10px 0px 10px;
+  position: relative;
+  text-shadow: 0px 1px #ffffff, 4px 4px 0px #bdbdbd;
+}
+/* 메뉴에 마우스 올렸을때 밑줄치는효과주기 */
+#nav_menu ul li a::before {
+  content: "";
+  height: 3px;
+  width: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  transition: 0.2s;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+}
+
+#nav_menu ul li a:hover::before {
+  width: 100%;
+  background-color: #212121;
+}
+#input_inbt {
+  width: 350px;
+  height: 30px;
+  margin: 0 auto;
+}
+input:focus {
+  outline: none;
+}
+input[type="text"] {
+  width: 90%;
+  height: 100%;
+  padding: 0px;
+}
+input[type="submit"] {
+  font-family: FontAwesome;
+  border: none;
+  background-color: white;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: bottom;
+}
+#img_slider {
+  height: 55vh;
+  background-color: #d8d3cd;
+  position: relative;
+  width: 600px;
+  margin: 0 auto;
+}
+#footer_container {
+position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  background-color: #797a7e;
+  text-align: center;
+
+  /* footer바닥에 고정 */
+  /* position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; */
+}
+#section_text {
+  height: 20vh;
+  /* background-color: #f7f2e7; */
+  background-color: #ffffff;
+}
+#header_logo {
+  font-size: 2em;
+  position: relative;
+  top: 20px;
+  font-family: "배달의민족 도현";
+  text-shadow: 0px 1px #ffffff, 6px 6px 0px #dad7d7;
+}
+#header_img {
+  position: relative;
+  top: 30px;
+}
+
+.slides_wrapper {
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  height: 300px;
+  overflow: hidden;
+  top: 30px;
+  border: 1px solid #767676;
+}
+
+.slides {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: left 0.5s ease-out;
+}
+.slides li:not(:last-child) {
+  float: left;
+  margin-right: 30px;
+}
+.controls {
+  text-align: center;
+  margin-top: 50px;
+}
+.controls span {
+  background: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+.slide {
+  height: 150px;
+  overflow: hidden;
+}
+
+.slide ul {
+  height: 100%;
+}
+
+.slide li {
+  height: 100%;
+}
+
+.slide li:nth-child(1) {
+  background: #faa;
+}
+
+.slide li:nth-child(2) {
+  background: #afa;
+}
+
+.slide li:nth-child(3) {
+  background: #aaf;
+}
+
+.slide li:nth-child(4) {
+  background: #faf;
+}
