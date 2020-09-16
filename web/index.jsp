@@ -6,6 +6,7 @@
 	<div id="mainimage">
 		<img src="http://placehold.it/1150x500" alt="">
 	</div>
+	<!--깃허브 브런치 테스트  -->
 	<div class="slides_wrapper">
 		<ul class="slides">
 			<li><img src="http://placehold.it/300x300" alt="">1</li>
