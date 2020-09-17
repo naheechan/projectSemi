@@ -9,19 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EnrollerMemebrServlet
+ * Servlet implementation class FindPwServlet
  */
-
-/* 회원가입 서블릿 */
-
-@WebServlet("/enrollMember")
-public class EnrollMemberServlet extends HttpServlet {
+@WebServlet("/findPw")
+public class FindPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnrollMemberServlet() {
+    public FindPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,10 +27,11 @@ public class EnrollMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원가입 페이지로 전환
-		RequestDispatcher rd=request.getRequestDispatcher("/views/member/enrollMember.jsp");
+		// 패스워드 찾기 페이지로 전환
+		RequestDispatcher rd=request.getRequestDispatcher("/views/member/findPw.jsp");
 		rd.forward(request,response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
