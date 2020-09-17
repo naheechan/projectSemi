@@ -9,19 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EnrollerMemebrServlet
+ * Servlet implementation class FindIdServlet
  */
-
-/* 회원가입 서블릿 */
-
-@WebServlet("/enrollMember")
-public class EnrollMemberServlet extends HttpServlet {
+@WebServlet("/findId")
+public class FindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnrollMemberServlet() {
+    public FindIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,10 +27,12 @@ public class EnrollMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원가입 페이지로 전환
-		RequestDispatcher rd=request.getRequestDispatcher("/views/member/enrollMember.jsp");
-		rd.forward(request,response);
+		// TODO Auto-generated method stub
+		// 아이디 찾기 페이지로 전환
+			RequestDispatcher rd=request.getRequestDispatcher("/views/member/findId.jsp");
+			rd.forward(request,response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

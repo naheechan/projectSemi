@@ -1,6 +1,7 @@
 package com.semi.common.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -10,10 +11,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import com.semi.common.filter.EncyptorWrapper;
+
 /**
  * Servlet Filter implementation class EncyptorFilter
  */
-@WebFilter(servletNames = { "enrollMember","login" })
+@WebFilter(servletNames = { "enrollMember","login","updatePw" })
 public class EncyptorFilter implements Filter {
 
     /**
@@ -36,8 +39,8 @@ public class EncyptorFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("필터확인");
 		EncyptorWrapper ew=new EncyptorWrapper((HttpServletRequest)request);
+		// pass the request along the filter chain
 		chain.doFilter(ew, response);
 	}
 
