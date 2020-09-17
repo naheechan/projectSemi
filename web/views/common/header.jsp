@@ -21,6 +21,7 @@
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css"/>
+  <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.min.js"></script>
     <title>Main</title>
   </head>
   <body>
