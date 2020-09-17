@@ -16,8 +16,7 @@
       crossorigin="anonymous"
     ></script>
     <script defer src="<%=request.getContextPath()%>/js/main.js"></script>
-    <script defer src="<%=request.getContextPath()%>/js/enroll.js"></script>
-
+	<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script> 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css"/>
@@ -38,7 +37,7 @@
             <li class="searchbtn"><i class="fas fa-search"></i></li>
                
               <li>
-                <a href="<%=request.getContextPath()%>/loginmove"><i class="fas fa-user"></i>Login</a>
+                <a href="<%=request.getContextPath()%>/login"><i class="fas fa-user"></i>Login</a>
               </li>
               <li>
                 <a href="<%=request.getContextPath()%>/enrollMember"><i class="fas fa-user-plus"></i>Sing Up</a>

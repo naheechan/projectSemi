@@ -2,10 +2,9 @@ package com.semi.member.controller;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +17,7 @@ import com.semi.member.model.vo.Member;
 /**
  * Servlet implementation class EnrollMemberEndServlet
  */
-@WebServlet(name="enrollMember",urlPatterns="/enrollMemberEnd")
+@WebServlet(name="enrollMember", urlPatterns = "/memberEnrollEnd")
 public class EnrollMemberEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,37 +33,63 @@ public class EnrollMemberEndServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("가입 버튼눌림");
+		//인코딩 처리
+		request.setCharacterEncoding("UTF-8");
+		
+		//관심분야 다중값을 전달함
+		/* 	인문사회 100
+			자연과학 200
+			정보통신 300
+			자기계발 400
+			문학 500 */
+		String[] interest=request.getParameterValues("interest");
+		
+		//오라클 DB에는 배열자료형을 문자형으로 변환해줘야함.
+		String interested=String.join(",",interest);
+		
+		String memberId=request.getParameter("id");
+		//회원가입정보(데이터)를 받아옴 (Member)
 		Member m=new Member();
-		m.setMemberId(request.getParameter("userId"));
-		m.setMemberPwd(request.getParameter("password"));
-		m.setMemberName(request.getParameter("username"));
-		Date btemp=Date.valueOf(request.getParameter("birth"));//문자열로 받은 값을 java.sql.date타입으로 형변환
-		m.setBirth(btemp);
-		m.setPostCode(Integer.parseInt(request.getParameter("postcode")));
+		m.setMemberId(request.getParameter("id"));
+		m.setMemberPwd(request.getParameter("pw"));
+		m.setMemberName(request.getParameter("name"));
+		
+		//날짜
+		String birthParameter=request.getParameter("birth"); // 형식을 지켜야 함
+		Date date = Date.valueOf(birthParameter);
+		m.setBirth(date);
+		m.setGender(request.getParameter("gender"));
+		m.setPostcode(Integer.parseInt(request.getParameter("postcode")));
 		m.setAddress(request.getParameter("address"));
 		m.setExtraAddress(request.getParameter("extraAddress"));
-		m.setDetailaddress(request.getParameter("detailAddress"));
-		m.setGender(request.getParameter("gender"));
+		m.setDetailAddress(request.getParameter("detailAddress"));
 		m.setEmail(request.getParameter("email"));
 		m.setAgency(request.getParameter("telecom"));
 		m.setPhone(request.getParameter("phone"));
 	
-		System.out.println(m);
 		int result=new MemberService().insertMember(m);
+		Member seq=new MemberService().getseq(memberId);
+		
+		System.out.println(seq);
+		int memberSeq=seq.getMemberNo();
+		System.out.println(memberSeq);
+		
+		int interestResult=new MemberService().insertInterest(memberSeq, interested);
 		
 		String msg="";
 		String loc="/";
-		if(result>0) {
-			msg="회원가입 성공";
+		if(result>0&&interestResult>0) {
+			msg="회원가입성공";
+		}else {
+			msg="회원가입실패";
+			loc="/enrollMember";
 		}
-		else {
-			msg="회원가입 실패";
-		}
-		request.setAttribute("msg", msg);
+		
+		request.setAttribute("msg",msg);
 		request.setAttribute("loc", loc);
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-
+		
+		request.getRequestDispatcher("/views/common/msg.jsp")
+		.forward(request, response);
 	}
 
 	/**
