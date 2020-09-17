@@ -4,6 +4,7 @@ pageEncoding="UTF-8"%> <%@page
 import="java.util.List,com.semi.product.model.vo.Books"%> <% List<Books>
   book = (List) request.getAttribute("list"); %> <%@ include
   file="/views/common/header.jsp"%>
+ 
   <style>
     div>.product_list {
       display: flex;
@@ -13,10 +14,7 @@ import="java.util.List,com.semi.product.model.vo.Books"%> <% List<Books>
       margin: 0 auto;
       align-content: center;
     }
-    #push{
-       position: absolute;
-       
-    }
+  
     .content {
       overflow: scroll;
     }
@@ -110,6 +108,14 @@ import="java.util.List,com.semi.product.model.vo.Books"%> <% List<Books>
   </style>
   <section>
     <div class="content">
+       <ul>
+        <li>인문사화</li>
+        <li>자연과학</li>
+        <li>정보통신</li>
+        <li>문학</li>
+        <li>자기계발</li>
+      </ul>
+    
       <ul class="product_list">
         <% for (Books bk : book) { %>
         <li>
@@ -137,6 +143,7 @@ import="java.util.List,com.semi.product.model.vo.Books"%> <% List<Books>
               <span
                 >
                 <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다-->
+                <!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
 
                 <button onclick="cart(<%=bk.getBookNo()%>,<%=logginedMember.getMemberNo()%>)">장바구니
                 </button></span
