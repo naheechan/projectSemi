@@ -16,8 +16,7 @@
       crossorigin="anonymous"
     ></script>
     <script defer src="<%=request.getContextPath()%>/js/main.js"></script>
-    <script defer src="<%=request.getContextPath()%>/js/enroll.js"></script>
-
+	<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script> 
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css"/>
@@ -29,7 +28,7 @@
     <div id="main_container">
       <header id="main_logo">
        <!--  <span id="header_img"><img src="/image/logo.png" height="40" /></span> -->
-        <span id="header_logo">GP BOOK STORE</span>
+        <span id="header_logo"><a href="<%=request.getContextPath()%>/index.jsp">GP BOOK STORE</a></span>
       </header>
       <nav id="search_menu">
         <div id="search_container">
@@ -39,12 +38,12 @@
             <li class="searchbtn"><i class="fas fa-search"></i></li>
                
               <li>
-                <a href="<%=request.getContextPath()%>/loginmove"><i class="fas fa-user"></i>Login</a>
+                <a href="<%=request.getContextPath()%>/login"><i class="fas fa-user"></i>Login</a>
               </li>
               <li>
                 <a href="<%=request.getContextPath()%>/enrollMember"><i class="fas fa-user-plus"></i>Sing Up</a>
               </li>
-              <li><a href="#"><i class="fas fa-shopping-cart"></i></i>
+              <li><a href="<%=request.getContextPath()%>/views/cart/cart.jsp"><i class="fas fa-shopping-cart"></i>
                 Cart</a></li>
             </ul>
           </div>
@@ -62,7 +61,7 @@
               <li>
                 <a href="<%=request.getContextPath()%>/logout"><i class="fas fa-user"></i>LogOut</a>
               </li>
-              <li><a href="#"><i class="fas fa-shopping-cart"></i>
+              <li><a href="<%=request.getContextPath()%>/views/cart/cart.jsp"><i class="fas fa-shopping-cart"></i>
                 Cart</a></li>
             </ul>
           </div>

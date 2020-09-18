@@ -9,6 +9,7 @@ pageEncoding="UTF-8"%> <%@ include file="/views/common/header.jsp"%>
         */
   body {
     background-color: rgb(247, 242, 231);
+    
   }
 
   #login_text {
