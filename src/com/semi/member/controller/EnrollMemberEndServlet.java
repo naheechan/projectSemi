@@ -42,7 +42,6 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		m.setMemberId(request.getParameter("id"));
 		m.setMemberPwd(request.getParameter("pw"));
 		m.setMemberName(request.getParameter("name"));
-		
 		//날짜
 		String birthParameter=request.getParameter("birth"); // 형식을 지켜야 함
 		Date date = Date.valueOf(birthParameter);

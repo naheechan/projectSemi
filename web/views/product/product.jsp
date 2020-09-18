@@ -190,7 +190,6 @@ a {
 						</div>
 						<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다-->
 							<!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
-
 							<button
 								onclick="cart(<%=bk.getBookNo()%>,<%=logginedMember.getMemberNo()%>)">장바구니
 							</button></span>
@@ -215,6 +214,7 @@ a {
       const subtitle = "checkcart";
       var popupWidth = "550";
       var popupHeight = "200";
+      console.log(userno);
       // 듀얼 모니터 고려한 윈도우 띄우기
       var left = (screen.availWidth - popupWidth) / 2;
       if (window.screenLeft < 0) {
