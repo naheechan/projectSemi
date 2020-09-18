@@ -36,17 +36,6 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		//인코딩 처리
 		request.setCharacterEncoding("UTF-8");
 		
-		//관심분야 다중값을 전달함
-		/* 	인문사회 100
-			자연과학 200
-			정보통신 300
-			자기계발 400
-			문학 500 */
-		String[] interest=request.getParameterValues("interest");
-		
-		//오라클 DB에는 배열자료형을 문자형으로 변환해줘야함.
-		String interested=String.join(",",interest);
-		
 		String memberId=request.getParameter("id");
 		//회원가입정보(데이터)를 받아옴 (Member)
 		Member m=new Member();
@@ -66,7 +55,8 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		m.setEmail(request.getParameter("email"));
 		m.setAgency(request.getParameter("telecom"));
 		m.setPhone(request.getParameter("phone"));
-	
+		
+		// 회원번호 시퀀스 가져오기!
 		int result=new MemberService().insertMember(m);
 		Member seq=new MemberService().getseq(memberId);
 		
@@ -74,10 +64,33 @@ public class EnrollMemberEndServlet extends HttpServlet {
 		int memberSeq=seq.getMemberNo();
 		System.out.println(memberSeq);
 		
-		int interestResult=new MemberService().insertInterest(memberSeq, interested);
+		
+	
+		//관심분야 다중값을 전달함
+		/* 	인문사회 100
+			자연과학 200
+			정보통신 300
+			자기계발 400
+			문학 500 */
+		
+		//interest 테이블에 값넣기!!
+	
+		
+		String[] interest=request.getParameterValues("interest");
+		int interestResult=0;
+		for(int i=0;i<interest.length;i++) { 
+			 String interested=interest[i]; 
+			 interestResult=new MemberService().insertInterest(memberSeq, interested); 
+			 }		
+			 
+			/*오라클 DB에는 배열자료형을 문자형으로 변환해줘야함.
+			String interested=String.join(",",interest);*/
+				
+		
 		
 		String msg="";
 		String loc="/";
+		/*if(result>0&&interestResult>0) {*/
 		if(result>0&&interestResult>0) {
 			msg="회원가입성공";
 		}else {
