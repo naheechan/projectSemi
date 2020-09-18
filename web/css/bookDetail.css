@@ -60,7 +60,7 @@ hr{
     display: inline-block;
     /* background-color: yellow; */
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
 }
 .starAvg div{
     margin: 30px;
@@ -74,14 +74,14 @@ hr{
     /* background-color: violet; */
     display: block;
     margin-left: 30%;
-    font-size: 25px;
+    font-size: 20px;
 }
 .star div{
     display: inline-block;
 }
 
 #bookDetail-container{
-    font-size: 23px;
+    font-size: 18px;
 }
 #bookText td:first-child{
     /* background-color: turquoise; */
@@ -116,7 +116,7 @@ hr{
 
   display: inline-block;
 
-  font-size: 20px;
+  font-size: 17px;
 
   margin: 4px 2px;
 
@@ -165,7 +165,7 @@ hr{
     display: inline-block;
     /* background-color: yellow; */
     text-align: center;
-    font-size: 40px;
+    font-size: 33px;
 }
 .buyer div{
     display: inline-block;
@@ -180,7 +180,7 @@ hr{
     text-align: center;
     padding-right: 10px;
     padding-bottom: 5px;
-    font-size: 23px;
+    font-size: 20px;
 }
 .buyerStatement .buyerFText{
     text-align: right;
@@ -244,7 +244,10 @@ hr{
 }
 .writeComments .writeBtn{
     background-color: blue;
-    font-size: 25px;
+    font-size: 16px;
+    padding: 15px 30px;
+    
+     
 }
 
 .writeComments hr{
