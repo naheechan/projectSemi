@@ -26,7 +26,7 @@
 	<script>
 	function movecart()
 	{
-		window.open('<%=request.getContextPath()%>/views/cart/cart.jsp');
+		location.replace('<%=request.getContextPath()%>/views/cart/cart.jsp');
 		window.close();
 	}
 	function selfclose() {
