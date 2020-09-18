@@ -82,7 +82,9 @@ header {
   align-items: center;
   border-bottom: 1px solid black;
 }
-
+hr{
+	width:960px;
+}
 #nav_menu li a {
   font-weight: bold;
   font-size: 15px;
