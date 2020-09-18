@@ -224,6 +224,7 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Member m=null;
+		
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberOne"));
 			pstmt.setString(1, memberId);
