@@ -39,6 +39,7 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				m=new Member();
+				m.setMemberNo(rs.getInt("member_no"));
 				m.setMemberId(rs.getString("member_id"));
 				m.setMemberPwd(rs.getString("member_pwd"));
 				m.setMemberName(rs.getString("member_name"));

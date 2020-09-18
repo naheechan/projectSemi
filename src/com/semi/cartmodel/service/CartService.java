@@ -19,8 +19,6 @@ public class CartService {
 		else rollback(conn);
 		close(conn);
 		return result;
-		
-		
 	}
 	
 
