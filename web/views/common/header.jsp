@@ -35,7 +35,6 @@
 				<div id="header_nav">
 					<ul>
 						<li class="searchbtn"><i class="fas fa-search"></i></li>
->>>>>>> branch 'semidev' of https://github.com/DK2554/Semiproject.git
 
 						<li><a href="<%=request.getContextPath()%>/login"><i
 								class="fas fa-user"></i>Login</a></li>
