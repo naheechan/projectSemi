@@ -56,6 +56,8 @@ public class MemberService {
 	public int updatePw(String memberPw, String memberId, String memberName) {
 		Connection conn=getConnection();
 		int result=dao.updatePw(conn,memberPw,memberId,memberName);
+		if(result>0) commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result; 
 	}
@@ -70,6 +72,8 @@ public class MemberService {
 	public int insertInterest(int memberSeq, String interested) {
 		Connection conn=getConnection();
 		int result=dao.insertInterest(conn,memberSeq,interested);
+		if(result>0) commit(conn);
+		else rollback(conn);
 		close(conn);
 		return result;
 	}
