@@ -69,7 +69,6 @@ public class MemberDao {
 		try {
 			System.out.println("dao m:"+m);
 			pstmt=conn.prepareStatement(prop.getProperty("insertMember"));
-			
 			pstmt.setString(1, m.getMemberId());
 			pstmt.setString(2, m.getMemberPwd());
 			pstmt.setString(3, m.getMemberName());
@@ -82,7 +81,6 @@ public class MemberDao {
 			pstmt.setString(10, m.getAddress());
 			pstmt.setString(11, m.getExtraAddress());
 			pstmt.setString(12, m.getDetailAddress());
-			
 			result=pstmt.executeUpdate();
 
 		}catch(SQLException e) {

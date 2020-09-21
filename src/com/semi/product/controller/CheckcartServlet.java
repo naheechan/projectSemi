@@ -42,20 +42,16 @@ public class CheckcartServlet extends HttpServlet {
 		//제품번호화 사용자 번호를 가져와서 장바구니 테이블에 담기
 		int no=Integer.parseInt(request.getParameter("cproductno"));
 		int userno=Integer.parseInt(request.getParameter("memberno"));
-		Books bk=new BookService().addcartselect(no);
+		Books bk=new BookService().addcartselect(no);	
 		System.out.println(userno);
 		System.out.println(bk);
 		int result=new CartService().insertnumber(no,userno);
 		if(result>0) {
 			System.out.println("장바구니에 값이 추가");
 		}
-		HttpSession session=request.getSession();
-		List<Books> clist=null;
-		if(session.getAttribute("productList")==null) {
-			 clist=new ArrayList<Books>();
-		}
-		clist.add(bk);
-		session.setAttribute("clist", clist);
+		
+		request.setAttribute("userno", userno);
+//		session.setAttribute("productList", clist);
 		request.getRequestDispatcher("/views/cart/cartck.jsp").forward(request, response);
 		
 		

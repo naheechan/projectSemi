@@ -21,7 +21,7 @@
 <title>Main</title>
 </head>
 <body>
-	<div id="foottext">
+	<div >
 		<div id="main_container">
 			<header id="main_logo"> <!--  <span id="header_img"><img src="/image/logo.png" height="40" /></span> -->
 			<span id="header_logo"><a
@@ -40,7 +40,7 @@
 						<li><a href="<%=request.getContextPath()%>/enrollMember"><i
 								class="fas fa-user-plus"></i>Sing Up</a></li>
 						<li><a
-							href="<%=request.getContextPath()%>/views/cart/cart.jsp"><i
+							href="<%=request.getContextPath()%>/cart/cartmove"><i
 								class="fas fa-shopping-cart"></i> Cart</a></li>
 					</ul>
 				</div>
@@ -62,7 +62,7 @@
 					<li><a href="<%=request.getContextPath()%>/logout"><i
 							class="fas fa-user"></i>LogOut</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/views/cart/cart.jsp"><i
+						href="<%=request.getContextPath()%>/cart/cartmove?userno=<%=logginedMember.getMemberNo()%>"><i
 							class="fas fa-shopping-cart"></i> Cart</a></li>
 				</ul>
 			</div>
