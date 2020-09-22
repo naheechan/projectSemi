@@ -2,13 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoardWrite.css">
+<script src="<%=request.getContextPath()%>/js/wordingBoardWrite.js"></script>
+
 <section>
 
 	
     <div id="wordingWrite-container">
     	<div class="announceTitle">글귀 작성하기</div>
-        <form action="" method="post">
-        	<input type="hidden" id="writer" name="writer" value="">
+        <form action="<%=request.getContextPath()%>/wording/wordingWriteEnd" method="post">
+        	<input type="hidden" id="writerNo" name="writerNo" value="100">
             <table>
                 <tr>
                     <td rowspan="8" class="backPicTd">
@@ -38,7 +40,7 @@
                 </tr>
                 <tr>
                     <th>글자색</th>
-                    <td><input type="color" id="textColor" id="textColor"></td>
+                    <td><input type="color" id="textColor" name="textColor"></td>
                 </tr>
                	<tr>
 					<th>글자 x좌표</th>
@@ -62,37 +64,5 @@
 
 </section>
 
-<script>
-	$(function() {
-		$("#picDarkness").on('input',function(e) {
-			console.log($(this).val());
-			$(".imgAndText").children('img').css("filter","brightness("+$(this).val()+"%)");
-		});
-		
-		$("#wordingText").keyup(function(e) {
-			console.log($(this).val());
-			$(".img-text").children().html($(this).val());
-		});
-		
-		$("#textSize").on('input',function(e) {
-			console.log($(this).val());
-			$(".img-text").css("font-size",$(this).val()+"px");
-		});
-		$("#textX").on('input', function(e) {
-			console.log($(this).val());
-			$(".img-text").css("left",$(this).val()+"%");
-		});
-		$("#textY").on('input', function(e) {
-			console.log($(this).val());
-			$(".img-text").css("top",$(this).val()+"%");
-		});
-		$("#textColor").on('input', function(e) {
-			console.log($(this).val());
-			$(".img-text").css("color",$(this).val());
-		})
-	})
-	
-	
-</script>
 
 <%@ include file="/views/common/footer.jsp"%>

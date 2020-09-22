@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoard.css">
+<script src="<%=request.getContextPath()%>/js/wordingBoard.js"></script>
 <section>
 
 	
@@ -84,7 +85,7 @@
     </div>
     
     <div class="makeWording">
-		<button class="btn makeWordingBtn">글귀 작성하기</button>
+		<button class="btn makeWordingBtn" onclick="location.href='<%=request.getContextPath()%>/wording/wordingWrite'">글귀 작성하기</button>
 		<div></div>
 	</div>
 
