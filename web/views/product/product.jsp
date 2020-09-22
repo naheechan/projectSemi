@@ -4,8 +4,15 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<Books> book = (List) request.getAttribute("list");
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
+<%if(logginedMember==null){
+		request.setAttribute("msg", "로그인이 이후 사용가능합니다");
+		request.setAttribute("loc", "/");
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+}%>
+
 
 <style>
 div>.product_list {
@@ -14,6 +21,7 @@ div>.product_list {
 	flex-flow: wrap;
 	width: 960px;
 	margin: 0 auto;
+	height: 100%;
 	align-content: space-around;
 }
 
@@ -23,6 +31,10 @@ div>.product_list {
 
 .product_list>li {
 	align-items: center;
+}
+
+hr {
+	margin-bottom: 100px;
 }
 
 .content {
@@ -38,6 +50,7 @@ div>.product_list {
 	border: 1px solid #d9d9d9;
 	/* float: left;
     margin: 0 20px 20px 0; */
+	margin-bottom: 50px;
 }
 
 .product_list li:hover {
@@ -142,6 +155,16 @@ a {
 	border-radius: 15px;
 	padding: 10px;
 }
+
+#pageBar {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	
+}
 </style>
 <section>
 	<div class="content">
@@ -149,21 +172,18 @@ a {
 			<li class="item all"><input type="radio" name="item" value="all"
 				id="all" checked /><label for="all">전체보기</label></li>
 			<li class="item Social"><input type="radio" name="item"
-				id="social" value="social" /><label for="social">인문사회</label>
-			</li>
+				id="social" value="social" /><label for="social">인문사회</label></li>
 			<li class="item Science"><input type="radio" name="item"
-				id="science" value="science" /><label for="science">자연과학</label>
-			</li>
+				id="science" value="science" /><label for="science">자연과학</label></li>
 			<li class="item it"><input type="radio" name="item" id="it"
 				value="it" /><label for="it">정보통신</label></li>
 			<li class="item literature"><input type="radio" name="item"
-				id="literature" value="literature" /><label
-				for="literature">문학</label></li>
+				id="literature" value="literature" /><label for="literature">문학</label></li>
 			<li class="item Self-development"><input type="radio"
 				name="item" id="development" value="development" /><label
 				for="development">자기계발</label></li>
 		</ul>
-	<hr>
+		<hr>
 		<ul class="product_list">
 			<%
 				for (Books bk : book) {
@@ -174,8 +194,7 @@ a {
 						<a href=""><%=bk.getTitle()%></a>
 					</dt>
 					<dd class="img" name="img">
-						<a href=""><img id="img" width="200"
-							height="250"
+						<a href=""><img id="img" width="200" height="250"
 							src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"
 							alt="" /></a>
 					</dd>
@@ -188,8 +207,7 @@ a {
 						<div>
 							<a href=""><img src="" alt="" /> 찜 21</a>
 						</div>
-						<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다-->
-							<!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
+						<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다--> <!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
 							<button
 								onclick="cart(<%=bk.getBookNo()%>,<%=logginedMember.getMemberNo()%>)">장바구니
 							</button></span>
@@ -201,7 +219,21 @@ a {
 			%>
 		</ul>
 	</div>
-	<div id="push">페이지처리하기</div>
+	<div id="pageBar">
+		<%=request.getAttribute("pageBar")%>
+	</div>
+	<!-- 페이징처리 부분 스타일 -->
+	<style>
+span.page-btn {
+	border:1px solid black;
+	border-radius:15px;
+}
+.pageno{
+border:1px solid black;
+	border-radius:15px;
+}
+</style>
+	<div id="push"></div>
 	<form action="" name="checkcart">
 		<input type="hidden" name="cproductno" /> <input type="hidden"
 			name="memberno" />
