@@ -11,9 +11,9 @@ import com.semi.product.model.vo.Books;
 public class BookService {
 	private BookDao dao=new BookDao();
 
-	public List<Books> selectBook() {
+	public List<Books> selectBook(int cPage, int numPerPage) {
 		Connection conn=getConnection();
-		List<Books>list=dao.selectBook(conn);
+		List<Books>list=dao.selectBook(conn,cPage,numPerPage);
 		close(conn);
 		return list;
 	}
@@ -25,6 +25,13 @@ public class BookService {
 		return bk;
 		
 		
+	}
+
+	public int selectBookCount() {
+		Connection conn=getConnection();
+		int count=dao.selectBookCount(conn);
+		close(conn);
+		return count;
 	}
 
 }
