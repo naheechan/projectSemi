@@ -46,6 +46,7 @@ public class BookDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
 				list.add(bk);		
 			}
 		}catch(SQLException e) {
@@ -73,6 +74,8 @@ public class BookDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
+				
 				
 			}
 		}catch(SQLException e) {

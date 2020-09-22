@@ -90,9 +90,11 @@ public class CartDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_Publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
 				bk.setCartno(rs.getInt("cart_no"));
 				bk.setBookno(rs.getInt("book_no"));
 				bk.setMemberno(rs.getInt("member_no"));
+				
 				list.add(bk);
 			}
 		} catch (SQLException e) {

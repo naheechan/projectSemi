@@ -13,17 +13,9 @@ public class BooksJoin {
 	private int cartno;
 	private int memberno;
 	private int bookno;
-	public BooksJoin() {
-		// TODO Auto-generated constructor stub
-	}
-	@Override
-	public String toString() {
-		return "BooksJoin [bookNo=" + bookNo + ", title=" + title + ", author=" + author + ", price=" + price
-				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate
-				+ ", cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + "]";
-	}
+	private int categoryno;
 	public BooksJoin(int bookNo, String title, String author, int price, String publisher, String bookimg,
-			Date publicationdate, int cartno, int memberno, int bookno2) {
+			Date publicationdate, int cartno, int memberno, int bookno2, int categoryno) {
 		super();
 		this.bookNo = bookNo;
 		this.title = title;
@@ -35,6 +27,14 @@ public class BooksJoin {
 		this.cartno = cartno;
 		this.memberno = memberno;
 		bookno = bookno2;
+		this.categoryno = categoryno;
+	}
+	@Override
+	public String toString() {
+		return "BooksJoin [bookNo=" + bookNo + ", title=" + title + ", author=" + author + ", price=" + price
+				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate
+				+ ", cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + ", categoryno=" + categoryno
+				+ "]";
 	}
 	public int getBookNo() {
 		return bookNo;
@@ -96,4 +96,14 @@ public class BooksJoin {
 	public void setBookno(int bookno) {
 		this.bookno = bookno;
 	}
+	public int getCategoryno() {
+		return categoryno;
+	}
+	public void setCategoryno(int categoryno) {
+		this.categoryno = categoryno;
+	}
+	public BooksJoin() {
+		// TODO Auto-generated constructor stub
+	}
+	
 }

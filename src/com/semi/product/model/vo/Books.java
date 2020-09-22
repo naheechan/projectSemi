@@ -10,6 +10,13 @@ public class Books {
 	private String publisher;//출판사
 	private String bookimg;
 	private Date publicationdate;//출판일
+	private int categoryno;
+	public int getCategoryno() {
+		return categoryno;
+	}
+	public void setCategoryno(int categoryno) {
+		this.categoryno = categoryno;
+	}
 	public Books() {
 		// TODO Auto-generated constructor stub
 	}
@@ -58,10 +65,10 @@ public class Books {
 	@Override
 	public String toString() {
 		return "Books [bookNo=" + bookNo + ", title=" + title + ", author=" + author + ", price=" + price
-				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate + "]";
+				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate + ", categoryno="+categoryno+"]";
 	}
 	public Books(int bookNo, String title, String author, int price, String publisher, String bookimg,
-			Date publicationdate) {
+			Date publicationdate,int categoryno) {
 		super();
 		this.bookNo = bookNo;
 		this.title = title;
@@ -70,6 +77,7 @@ public class Books {
 		this.publisher = publisher;
 		this.bookimg = bookimg;
 		this.publicationdate = publicationdate;
+		this.categoryno=categoryno;
 	}
 	
 	
