@@ -12,6 +12,9 @@ import java.util.Properties;
 
 import com.semi.cartmodel.vo.Cart;
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BooksJoin;
+
+import oracle.net.aso.p;
 
 import static com.semi.common.JDBCTemplate.close;
 
@@ -69,17 +72,17 @@ public class CartDao {
 		return list;
 	}
 
-	public List<Books> selectbook(Connection conn, int userno) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<Books>list=new ArrayList<Books>();
-		Books bk=null;
+	public List<BooksJoin> selectbook(Connection conn, int userno) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BooksJoin> list = new ArrayList<BooksJoin>();
+		BooksJoin bk = null;
 		try {
-			pstmt=conn.prepareStatement(prop.getProperty("selectbooklist"));
+			pstmt = conn.prepareStatement(prop.getProperty("selectbooklist"));
 			pstmt.setInt(1, userno);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				bk=new Books();
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bk = new BooksJoin();
 				bk.setBookNo(rs.getInt("book_no"));
 				bk.setTitle(rs.getString("book_title"));
 				bk.setAuthor(rs.getString("book_author"));
@@ -87,15 +90,35 @@ public class CartDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_Publicationdate"));
+				bk.setCartno(rs.getInt("cart_no"));
+				bk.setBookno(rs.getInt("book_no"));
+				bk.setMemberno(rs.getInt("member_no"));
 				list.add(bk);
 			}
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
 		return list;
+	}
+
+	public int cartdelet(Connection conn, int[] check) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			for (int i = 0; i < check.length; i++) {
+				pstmt = conn.prepareStatement(prop.getProperty("deletecart"));
+				pstmt.setInt(1, check[i]);
+				result = pstmt.executeUpdate();
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return result;
 	}
 
 }

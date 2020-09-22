@@ -15,6 +15,7 @@ import javax.websocket.Session;
 import com.semi.cartmodel.service.CartService;
 import com.semi.cartmodel.vo.Cart;
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BooksJoin;
 
 import oracle.net.aso.s;
 
@@ -43,7 +44,7 @@ public class Cartmove extends HttpServlet {
 		System.out.println("장바구니로이동하기");
 		int userno=Integer.parseInt(request.getParameter("userno"));
 		List<Cart>cartlist=new CartService().selectno(userno);
-		List<Books>booklist=new CartService().selectbook(userno);
+		List<BooksJoin>booklist=new CartService().selectbook(userno);
 	
 		//로그인한 아이디번호로 장바구니에 담은 책 번호를 가져온다
 		//가져온 책번호 분기문 처리 만약 책 번호가 동일 하다가면 수량을 1증가시켜라

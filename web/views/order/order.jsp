@@ -78,7 +78,7 @@ for(Books bk:list){
       </tr>
       <tr>
         <tr>
-        <td><img src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
+        <td><img  name="img"src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
         <td><%=bk.getTitle() %></td>
        	<td><%=bk.getPrice()%>원</td>
         <td><input type="text" readonly="readonly"></td>

@@ -4,8 +4,15 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<Books> book = (List) request.getAttribute("list");
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
+<%if(logginedMember==null){
+		request.setAttribute("msg", "로그인이 이후 사용가능합니다");
+		request.setAttribute("loc", "/");
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
+}%>
+
 
 <style>
 div>.product_list {
