@@ -1,1 +1,4 @@
-# Semiproject
+# 세미프로젝트
+## jsp를 이용한 도서구매 대여 서비스를 제공하는 웹페이지
+## 사용언어 java ,html ,css ,js ,jqeury,jsp
+## 쇼핑몰 기반의 프로젝트를 구성해보왔다
