@@ -7,19 +7,19 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script
-    src="https://kit.fontawesome.com/464965a728.js"
-    crossorigin="anonymous"
-  ></script>
-  <script defer src="<%=request.getContextPath()%>/js/main.js"></script>
-<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.min.js"></script> 
-  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-  <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css"/>
-  <title>Main</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://kit.fontawesome.com/464965a728.js"
+	crossorigin="anonymous"></script>
+<script defer src="<%=request.getContextPath()%>/js/main.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery-3.5.1.min.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
+<title>Main</title>
 </head>
 <body>
 	<div id="foottext">
@@ -77,8 +77,8 @@
 				<li><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/product/productmain">BOOK</a></li>
 				<li><a href="#">STUDYROOM</a></li>
-				<li><a href="<%=request.getContextPath()%>/wording/wordingList">글귀게시판</a></li>
 				<li><a href="#">공지사항</a></li>
+				<li><a href="<%=request.getContextPath()%>/wording/wordingList">글귀게시판</a></li>
 				<li><a href="#">북클럽</a></li>
 			</ul>
 		</div>
