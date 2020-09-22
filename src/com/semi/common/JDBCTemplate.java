@@ -10,9 +10,6 @@ import java.sql.Statement;
 import java.util.Properties;
 
 
-
-
-
 public class JDBCTemplate {
 	public static Connection getConnection() {
 		//jdbc를 이용하기위해 getconnection메소드를 선언

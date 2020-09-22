@@ -39,6 +39,7 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				m=new Member();
+				m.setMemberNo(rs.getInt("member_no"));
 				m.setMemberId(rs.getString("member_id"));
 				m.setMemberPwd(rs.getString("member_pwd"));
 				m.setMemberName(rs.getString("member_name"));
@@ -223,6 +224,7 @@ public class MemberDao {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Member m=null;
+		
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectMemberOne"));
 			pstmt.setString(1, memberId);
