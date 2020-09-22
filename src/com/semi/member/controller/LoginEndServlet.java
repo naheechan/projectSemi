@@ -58,7 +58,6 @@ public class LoginEndServlet extends HttpServlet {
 					//session객체에 보관을 함.
 					HttpSession session=request.getSession();
 					session.setAttribute("logginedMember",m);//유지할 값을 session에 넣기!
-					
 					response.sendRedirect(request.getContextPath());
 				}else {
 					//로그인 실패

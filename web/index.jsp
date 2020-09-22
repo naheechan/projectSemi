@@ -9,9 +9,9 @@
 	<!--깃허브 브런치 테스트  -->
 	<div class="slides_wrapper">
 		<ul class="slides">
-			<li><img src="http://placehold.it/300x300" alt="">1</li>
-			<li><img src="http://placehold.it/300x300" alt="">2</li>
-			<li><img src="http://placehold.it/300x300" alt="">3</li>
+			<li><img src="http://placehold.it/300x300" alt=""></li>
+			<li><img src="http://placehold.it/300x300" alt=""></li>
+			<li><img src="http://placehold.it/300x300" alt=""></li>
 			<li><img src="http://placehold.it/300x300" alt=""></li>
 			<li><img src="http://placehold.it/300x300" alt=""></li>
 			<li><img src="http://placehold.it/300x300" alt=""></li>

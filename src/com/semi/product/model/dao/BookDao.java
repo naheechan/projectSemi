@@ -28,12 +28,14 @@ public class BookDao {
 	}
 	
 	private Properties prop=new Properties();
-	public List<Books> selectBook(Connection conn) {
+	public List<Books> selectBook(Connection conn, int cPage, int numPerPage) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Books> list=new ArrayList<Books>();
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectbook"));
+			pstmt.setInt(1, (cPage-1)*numPerPage+1);
+			pstmt.setInt(2, cPage*numPerPage);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				Books bk=new Books();
@@ -44,6 +46,7 @@ public class BookDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
 				list.add(bk);		
 			}
 		}catch(SQLException e) {
@@ -71,6 +74,8 @@ public class BookDao {
 				bk.setBookimg(rs.getString("book_img"));
 				bk.setPublisher(rs.getString("book_publisher"));
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
+				
 				
 			}
 		}catch(SQLException e) {
@@ -80,6 +85,25 @@ public class BookDao {
 			close(pstmt);
 		}
 		return bk;
+	}
+	public int selectBookCount(Connection conn) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectcount"));
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
