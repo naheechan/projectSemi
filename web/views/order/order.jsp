@@ -103,14 +103,19 @@ td {
 				%>
 			</table>
 			<hr>
+			<form action="<%=request.getContextPath()%>/cart/orderend" method="post"> 
+		
 			<div id="addresstxt">
 				<div id="totaltxt">
-					총금액 :<%=totalprice%>원
+				<input type="hidden" name="totalprice" value="<%=totalprice%>"/>
+					총금 액 :<%=totalprice%>원
 				</div>
 				<table>
 					<tr>
 						<td>주문인</td>
+						<input  type="hidden" name="userno" value="<%=logginedMember.getMemberNo()%>"/>
 						<td><%=logginedMember.getMemberName()%></td>
+						
 					</tr>
 					<tr>
 						<td>받는사람</td>
@@ -118,31 +123,30 @@ td {
 					</tr>
 					<tr>
 						<td>주소</td>
-						<td><input type="text" id="sample6_postcode"
+						<td><input type="text" id="sample6_postcode" name="postcode"
 							placeholder="우편번호" /> <input type="button"
 							onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
-							<input type="text" id="sample6_address" placeholder="주소" /><br />
-							<input type="text" id="sample6_detailAddress" placeholder="상세주소" /><br />
-							<input type="text" id="sample6_extraAddress" placeholder="참고항목" />
+							<input type="text" name="address"id="sample6_address" placeholder="주소" /><br />
+							<input type="text" name="extraaddress"id="sample6_detailAddress" placeholder="상세주소" /><br />
+							<input type="text" name="detailaddress" id="sample6_extraAddress" placeholder="참고항목" />
 						</td>
 					</tr>
 					<tr>
 						<td>휴대폰 번호</td>
-						<td><input type="tel" name="" id="" placeholder="-없이 입력해주세요" />
+						<td><input type="tel" name="tel" id="" placeholder="-없이 입력해주세요" />
 						</td>
 					</tr>
 					<tr>
 						<td>배송시 요청사항</td>
-						<td><textarea name="" id="" cols="20" rows="10"></textarea><br /></td>
+						<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
 					</tr>
 				</table>
-				<!--주문하기 누르면 아임포트api이용하기-->
 				<div id="button-box">
-					<button
-						onclick="location.href='<%=request.getContextPath()%>/cart/order'">주문하기</button>
+					<button type="submit"
+						<%-- onclick="location.href='<%=request.getContextPath()%>/cart/orderend'" --%>>주문하기</button>
 				</div>
-
-			</div>
+			</form>
+				<!--주문하기 누르면 아임포트api이용하기-->
 		</div>
 
 		<div class="push"></div>

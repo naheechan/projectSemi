@@ -183,7 +183,7 @@ a {
 				<input type="hidden" name="numPerPage"
 					value='<%=numPerPage == null ? "4" : numPerPage%>'> <input
 					type="text" name="searchkey"  id="searchinput"
-					placeholder="searchbook" /> <input type="submit" value="&#xf002" />
+					placeholder="searchbook" /> <input id="search"type="submit" value="&#xf002" />
 
 			</div>
 		</form>
