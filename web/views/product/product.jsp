@@ -5,7 +5,7 @@
 <%
 	List<Books> book = (List) request.getAttribute("list");
 	String type = request.getParameter("searchType");
-	String keyword = request.getParameter("searchkeyword");
+	String keyword = request.getParameter("searchkey");
 	String numPerPage = request.getParameter("numPerPage");
 %>
 <%@ include file="/views/common/header.jsp"%>

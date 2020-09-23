@@ -61,7 +61,7 @@ public class SearchTypeServlet extends HttpServlet {
 			pageBar="<span class='page-btn'>이전</span>";
 		}else {
 			pageBar="<a href='"+request.getContextPath()
-			+"/product/searchtype?cPage="+(pageNo-1)+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>이전</a>";
+			+"/product/searchtype?cPage="+(pageNo-1)+"&searchType="+type+"&searchkey="+keyword+"&numPerPage="+numPerPage+"'>이전</a>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -69,7 +69,7 @@ public class SearchTypeServlet extends HttpServlet {
 				pageBar+="<span class='pageno'>"+pageNo+"</span>";
 			}else {
 				pageBar+="<a href='"+request.getContextPath()
-				+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
+				+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkey="+keyword+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -78,7 +78,7 @@ public class SearchTypeServlet extends HttpServlet {
 				pageBar+="<span class='page-btn'>다음</span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()
-			+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>다음</a>";
+			+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkey="+keyword+"&numPerPage="+numPerPage+"'>다음</a>";
 		}
 		
 //		검색한 결과를 가져오는 부분
