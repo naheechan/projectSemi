@@ -138,7 +138,7 @@
         }
         .next{width:100%}
         
-        .seat-info-hidden{
+        .seat-info_hidden{
         	display:none
         }
         
@@ -214,7 +214,7 @@
 
         <div class="next">
           <form action="<%=request.getContextPath() %>/seatSend" method="post">
-            <div class="seat-info hidden"><!--개발 후 숨김처리-->
+            <div class="seat-info_hidden"><!--개발 후 숨김처리-->
                 <input type="text" name="memberNo" id="memberNo" class="seatInfo" value="<%=logginedMember.getMemberNo()%>">
                 <input type="text" name="seatDate" id="seatDate" class="seatInfo" value="<%=seatDate%>">
                 <input type="text" name="seatTime" id="seatTime" class="seatInfo" value="<%=seatTime%>">
