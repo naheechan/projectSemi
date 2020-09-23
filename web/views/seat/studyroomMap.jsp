@@ -49,9 +49,13 @@
         }
         .R1{
             width:25%;float:left; overflow:hidden;
+
         }
         .R2{
             width:25%;float:left; overflow:hidden;
+        }
+        #Room1, #Room3{
+        	margin-bottom:5px;
         }
         .seat:hover, .seat:focus {
           background-color: rgb(203, 230, 212); 
@@ -61,6 +65,7 @@
         }
         .room{
           border-radius: 10px;
+   		  
         }
         #room2, #room4{margin-top:15px}
 		.seats{

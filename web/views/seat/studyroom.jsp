@@ -43,7 +43,7 @@
           border-radius:10px;
         }
         
-        .datebtn:hover, .datebtn:focus {
+        .datebtn:hover, .datebtn:active,.datebtn:focus {
           background-color: rgb(79, 80, 82); 
         }
 
