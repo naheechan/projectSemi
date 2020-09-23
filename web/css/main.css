@@ -127,14 +127,14 @@ input[type="text"] {
   height: 100%;
   padding: 0px;
 }
-input[type="submit"] {
+/* input[type="submit"] {
   font-family: FontAwesome;
   border: none;
   background-color: white;
   font-size: 20px;
   display: inline-block;
   vertical-align: bottom;
-}
+} */
 #img_slider {
   height: 55vh;
   background-color: #d8d3cd;
