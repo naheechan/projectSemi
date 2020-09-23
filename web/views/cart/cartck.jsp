@@ -26,8 +26,10 @@
 	<script>
 	function movecart()
 	{
-		window.open('<%=request.getContextPath()%>/cart/cartmove?userno=<%=userno%>');
-		window.close();
+		opener.document.location.href='<%=request.getContextPath()%>/cart/cartmove?userno=<%=userno%>'
+		<%-- window.open('<%=request.getContextPath()%>/cart/cartmove?userno=<%=userno%>'); --%>
+		self.close();
+		/* window.close(); */
 	}
 	function selfclose() {
 		self.close();

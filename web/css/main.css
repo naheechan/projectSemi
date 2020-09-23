@@ -54,17 +54,17 @@ header {
   justify-content: center;;
 
 }
-#search_input {
+#searchinput {
   border: none;
   border-bottom: 1px solid #34404b;
   text-align: center;
   display: inline-block;
   outline: none;
 }
-#search_input:focus {
+#searchinput:focus {
   border-bottom: #3498db;
 }
-#search_input::placeholder {
+#searchinput::placeholder {
   opacity: 0.5;
 }
 
@@ -115,9 +115,10 @@ hr{
   background-color: #212121;
 }
 #input_inbt {
-  width: 350px;
+  width: 400px;
   height: 30px;
   margin: 0 auto;
+  display:flex;
 }
 input:focus {
   outline: none;
@@ -127,7 +128,12 @@ input[type="text"] {
   height: 100%;
   padding: 0px;
 }
+<<<<<<< HEAD
 /* input[type="submit"] {
+=======
+/* input[type="submit"] */ 
+#search{
+>>>>>>> donguk_dev
   font-family: FontAwesome;
   border: none;
   background-color: white;

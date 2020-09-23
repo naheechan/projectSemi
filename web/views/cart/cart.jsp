@@ -4,9 +4,12 @@ pageEncoding="UTF-8"%> <%@page
 import="java.util.List,com.semi.product.model.vo.Books" %> <% List<BooksJoin
   >list=(List)session.getAttribute("booklist");
 int totalprice=0;
-for(BooksJoin bk:list){
-	totalprice+=bk.getPrice();
+if(!list.isEmpty()){
+	for(BooksJoin bk:list){
+		totalprice+=bk.getPrice();
+	}	
 }
+
 %>
 <%@ include
   file="/views/common/header.jsp"%>
@@ -105,16 +108,11 @@ for(BooksJoin bk:list){
 		let check1=document.querySelector("#carttable>tbody");
 		if(check1==null){
 			alert("주문할 상품을 담아주세요. ");
-			location.href="<%=request.getContextPath()%>/"
+			location.href='<%=request.getContextPath()%>/index.jsp'
 			retrun;
 		}
 		location.href='<%=request.getContextPath()%>/cart/order'
 	}
-	
-	
-		
-
-	
 	</script>
   </section>
   <%@ include file="/views/common/footer.jsp"%>

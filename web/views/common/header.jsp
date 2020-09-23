@@ -63,7 +63,7 @@
 					<li><a href="<%=request.getContextPath()%>/logout"><i
 							class="fas fa-user"></i>LogOut</a></li>
 					<li><a
-						href="<%=request.getContextPath()%>/views/cart/cart.jsp"><i
+						href="<%=request.getContextPath()%>/cart/cartmove?userno=<%=logginedMember.getMemberNo()%>"><i
 							class="fas fa-shopping-cart"></i> Cart</a></li>
 				</ul>
 			</div>
@@ -83,9 +83,8 @@
 			</ul>
 		</div>
 		</nav>
-		<form action="" id="searchfrom">
-			<div id="input_inbt">
-				<input type="text" id="search_input" placeholder="search book" /><input
-					type="submit" onclick="test();" value="&#xf002" />
-			</div>
-		</form>
+
+		
+		<script>
+		
+		</script>
