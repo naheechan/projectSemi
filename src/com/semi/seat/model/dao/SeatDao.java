@@ -22,7 +22,7 @@ public class SeatDao {
 	
 	public SeatDao() {
 		try {
-			String fileName=SeatDao.class.getResource("/seat_sql.properties").getPath();
+			String fileName=SeatDao.class.getResource("/sql/seat/seat_sql.properties").getPath();
 			prop.load(new FileReader(fileName));		
 		}catch(IOException e) {
 			e.printStackTrace();

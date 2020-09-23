@@ -125,7 +125,7 @@
         }
 		
 		.seat-info-hidden{
-        	/* display:none */
+        	display:none
         }
 </style>
 	<!-- 날짜 선택 --> 
