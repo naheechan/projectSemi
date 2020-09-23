@@ -76,7 +76,7 @@
 			<ul>
 				<li><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 				<li><a href="<%=request.getContextPath()%>/product/productmain">BOOK</a></li>
-				<li><a href="#">STUDYROOM</a></li>
+				<li><a href="<%=request.getContextPath()%>/seatMove">STUDYROOM</a></li>
 				<li><a href="#">공지사항</a></li>
 				<li><a href="#">글귀게시판</a></li>
 				<li><a href="#">북클럽</a></li>
