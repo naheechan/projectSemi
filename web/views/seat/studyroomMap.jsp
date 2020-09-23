@@ -137,8 +137,10 @@
           background-color:rgb(121,122,126);
         }
         .next{width:100%}
-        /*.hidden{display:none} 개발 후 주석 풀기*/
         
+        .seat-info-hidden{
+        	display:none
+        }
         @media all and (max-width:1200px){
         .seat-wrap{width:80%}
         }
