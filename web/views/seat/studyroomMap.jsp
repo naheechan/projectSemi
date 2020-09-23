@@ -141,6 +141,7 @@
         .seat-info-hidden{
         	display:none
         }
+        
         @media all and (max-width:1200px){
         .seat-wrap{width:80%}
         }

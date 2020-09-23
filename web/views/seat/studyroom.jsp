@@ -125,6 +125,7 @@
         }
 		
 		.seat-info-hidden{
+		
         	display:none
         }
 </style>
