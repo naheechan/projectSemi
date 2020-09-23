@@ -128,12 +128,12 @@ input[type="text"] {
   height: 100%;
   padding: 0px;
 }
-<<<<<<< HEAD
+
 /* input[type="submit"] {
-=======
+
 /* input[type="submit"] */ 
 #search{
->>>>>>> donguk_dev
+
   font-family: FontAwesome;
   border: none;
   background-color: white;
