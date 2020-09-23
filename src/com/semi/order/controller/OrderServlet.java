@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BooksJoin;
 
 /**
  * Servlet implementation class OrderServlet
@@ -34,9 +35,10 @@ public class OrderServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		System.out.println("주문하기버튼눌림");
 		HttpSession session=request.getSession();
-		List<Books>list=(List)session.getAttribute("booklist");
+		System.out.println();
+		List<BooksJoin>list=(List)session.getAttribute("booklist");
 		request.setAttribute("booklist", list);
-		request.getRequestDispatcher("/views/order/order.jsp").forward(request, response);;
+		request.getRequestDispatcher("/views/order/order.jsp").forward(request, response);
 	}
 
 	/**

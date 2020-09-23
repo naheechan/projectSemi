@@ -1,13 +1,18 @@
 package com.semi.order.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.semi.cartmodel.service.CartService;
+import com.semi.member.model.vo.Member;
+import com.semi.product.model.vo.BooksJoin;
 
 /**
  * Servlet implementation class OrderDeleteServlet
@@ -40,10 +45,16 @@ public class OrderDeleteServlet extends HttpServlet {
 			System.out.println(check[i]);
 		}
 		int result=new CartService().deletecart(check);
+		
 		if(result>0) {
 			msg="정상적으로 삭제 되었습니다";
 			loc="/";
 		}
+		HttpSession session =request.getSession();
+		session.removeAttribute("booklist");
+		Member m=(Member)session.getAttribute("logginedMember");
+		List<BooksJoin>booklist=new CartService().selectbook(m.getMemberNo());
+		session.setAttribute("booklist", booklist);
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);

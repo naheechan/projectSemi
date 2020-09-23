@@ -1,7 +1,6 @@
 package com.semi.product.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.member.model.vo.interest;
 import com.semi.product.model.service.BookService;
 import com.semi.product.model.vo.Books;
 
 /**
- * Servlet implementation class ProductMainServlet
+ * Servlet implementation class SearchTypeServlet
  */
-@WebServlet("/product/productmain")
-public class ProductMainServlet extends HttpServlet {
+@WebServlet("/product/searchtype")
+public class SearchTypeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductMainServlet() {
+    public SearchTypeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +32,8 @@ public class ProductMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		String type=request.getParameter("searchType");
+		String keyword = (request.getParameter("searchkey") == null) ? "" : request.getParameter("searchkey");
 		int cPage;//페이징처리하기 초기값을 설정
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
@@ -45,13 +44,15 @@ public class ProductMainServlet extends HttpServlet {
 		//페이지당 데이터 수:numPerPage->한개 페이지당 보여주는 데이터 수
 		int numPerPage;
 		try {
-			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));	
+			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 			System.out.println(numPerPage);
 		}catch(NumberFormatException e) {
 			numPerPage=4;
 		}
-		int pageBarSize=5;
-		int totlaData=new BookService().selectBookCount();
+		List<Books> list =new BookService().searchkey(cPage,numPerPage,type,keyword);
+		int pageBarSize=4;
+		int totlaData=new BookService().selectBooksearchCount(type,keyword);
+		System.out.println(totlaData);
 		int totalPage=(int)(Math.ceil((double)totlaData/numPerPage));
 		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd=pageNo+pageBarSize-1;
@@ -60,7 +61,7 @@ public class ProductMainServlet extends HttpServlet {
 			pageBar="<span class='page-btn'>이전</span>";
 		}else {
 			pageBar="<a href='"+request.getContextPath()
-			+"/product/productmain?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'>이전</a>";
+			+"/product/searchtype?cPage="+(pageNo-1)+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>이전</a>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -68,7 +69,7 @@ public class ProductMainServlet extends HttpServlet {
 				pageBar+="<span class='pageno'>"+pageNo+"</span>";
 			}else {
 				pageBar+="<a href='"+request.getContextPath()
-				+"/product/productmain?cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
+				+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -77,19 +78,17 @@ public class ProductMainServlet extends HttpServlet {
 				pageBar+="<span class='page-btn'>다음</span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()
-			+"/product/productmain?cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>다음</a>";
+			+"/product/searchtype?cPage="+pageNo+"&searchType="+type+"&searchkeyword="+keyword+"&numPerPage="+numPerPage+"'>다음</a>";
 		}
-		List<Books> list=new BookService().selectBook(cPage,numPerPage);
-		if(!list.isEmpty()) {
-			System.out.println("값이 있음");
-			request.setAttribute("list", list);
-			request.setAttribute("pageBar", pageBar);
-			request.getRequestDispatcher("/views/product/product.jsp").forward(request, response);
-		}else{
-			System.out.println("값이 없음");
-		}
+		
+//		검색한 결과를 가져오는 부분
+		
+		request.setAttribute("list", list);
+		request.setAttribute("pageBar", pageBar);
+		request.getRequestDispatcher("/views/product/product.jsp").forward(request, response);
+		
 	}
-
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -4,20 +4,24 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<Books> book = (List) request.getAttribute("list");
-	
+	String type = request.getParameter("searchType");
+	String keyword = request.getParameter("searchkeyword");
+	String numPerPage = request.getParameter("numPerPage");
 %>
 <%@ include file="/views/common/header.jsp"%>
-<%if(logginedMember==null){
+<%
+	if (logginedMember == null) {
 		request.setAttribute("msg", "로그인이 이후 사용가능합니다");
 		request.setAttribute("loc", "/");
-		request.getRequestDispatcher("/views/common/msg.jsp").forward(request,response);
-}%>
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	}
+%>
 
 
 <style>
 div>.product_list {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	flex-flow: wrap;
 	width: 960px;
 	margin: 0 auto;
@@ -163,27 +167,61 @@ a {
 	text-align: center;
 	display: flex;
 	justify-content: space-between;
-	
 }
 </style>
 <section>
 	<div class="content">
-		<ul class="maincategory">
-			<li class="item all"><input type="radio" name="item" value="all"
-				id="all" checked /><label for="all">전체보기</label></li>
-			<li class="item Social"><input type="radio" name="item"
-				id="social" value="social" /><label for="social">인문사회</label></li>
-			<li class="item Science"><input type="radio" name="item"
-				id="science" value="science" /><label for="science">자연과학</label></li>
-			<li class="item it"><input type="radio" name="item" id="it"
-				value="it" /><label for="it">정보통신</label></li>
-			<li class="item literature"><input type="radio" name="item"
-				id="literature" value="literature" /><label for="literature">문학</label></li>
-			<li class="item Self-development"><input type="radio"
-				name="item" id="development" value="development" /><label
-				for="development">자기계발</label></li>
-		</ul>
+		<form action="<%=request.getContextPath()%>/product/searchtype"
+			id="searchfrom">
+
+			<div id="input_inbt">
+				<select id="searchType" name="searchType">
+					<option value="book_title">제목</option>
+					<option value="book_author">지은이</option>
+				</select>
+				<!--name에 공백이 있으면 값이 안넘어간다-->
+				<input type="hidden" name="numPerPage"
+					value='<%=numPerPage == null ? "4" : numPerPage%>'> <input
+					type="text" name="searchkey"  id="searchinput"
+					placeholder="searchbook" /> <input type="submit" value="&#xf002" />
+
+			</div>
+		</form>
+		<form name="categoryfrm" id="categoryfrm"
+			action="<%=request.getContextPath()%>/product/radioproduct">
+			<ul class="maincategory">
+				<li class="item all"><input class="radiov" type="radio"
+					name="item" value="all" id="all"  /><label for="all">전체보기</label></li>
+				<li class="item Social"><input class="radiov" type="radio"
+					name="item" id="social" value="social" /><label for="social">인문사회</label></li>
+				<li class="item Science"><input class="radiov" type="radio"
+					name="item" id="science" value="science" /><label for="science">자연과학</label></li>
+				<li class="item it"><input class="radiov" type="radio"
+					name="item" id="it" value="it" /><label for="it">정보통신</label></li>
+				<li class="item literature"><input class="radiov" type="radio"
+					name="item" id="literature" value="literature" /><label
+					for="literature">문학</label></li>
+				<li class="item Self-development"><input type="radio"
+					name="item" id="development" class="radiov" value="development" /><label
+					for="development">자기계발</label></li>
+			</ul>
+			<input type="hidden" name="numPerPage"
+				value='<%=numPerPage == null ? "4" : numPerPage%>'>
+		</form>
 		<hr>
+		<div id="numPerpage-container">
+			<form id="numperPageFrm" name="numPerPagetFrm"
+				action="<%=request.getContextPath()%>/product/productmain">
+				<input type="hidden" name="cPage"
+					value='<%=request.getParameter("cPage")%>'><select
+					name="numPerPage" id="numPerPage">
+					<option value="8"
+						<%=numPerPage != null && numPerPage.equals("8") ? "selected" : ""%>>8</option>
+					<option value="4"
+						<%=numPerPage == null || numPerPage.equals("4") ? "selected" : ""%>>4</option>
+				</select>
+			</form>
+		</div>
 		<ul class="product_list">
 			<%
 				for (Books bk : book) {
@@ -225,12 +263,13 @@ a {
 	<!-- 페이징처리 부분 스타일 -->
 	<style>
 span.page-btn {
-	border:1px solid black;
-	border-radius:15px;
+	border: 1px solid black;
+	border-radius: 15px;
 }
-.pageno{
-border:1px solid black;
-	border-radius:15px;
+
+.pageno {
+	border: 1px solid black;
+	border-radius: 15px;
 }
 </style>
 	<div id="push"></div>
@@ -274,5 +313,19 @@ border:1px solid black;
       console.log(checkcart);
       checkcart.submit();
     }
+    $("input:radio[name=categoryfrm]").on('change',function(){
+    	var x=$(this).val();
+    	alert(x);
+    })
+   	$('.radiov').on('click',function(){
+   		$('.radiov:checked').prop('checked',true);
+   		$("#categoryfrm").submit();
+   		//라디오버튼을 눌렀을때 해당 라디오버튼의 값을 가져온다
+   		/* let check=$('.radiov:checked').val() */
+   		
+   	});
+    $("#numPerPage").change(e => {
+		$("#numperPageFrm").submit();
+	});
   </script>
 <%@ include file="/views/common/footer.jsp"%></Books>
