@@ -40,6 +40,7 @@
           font-size: 14px;
           border: none;
           cursor: pointer;
+          border-radius:10px;
         }
         
         .datebtn:hover, .datebtn:focus {
@@ -58,6 +59,7 @@
           font-size: 14px;
           border: none;
           cursor: pointer;
+          border-radius:10px;
         }
         .choicedate a{
             font-size: 14px;
@@ -81,6 +83,7 @@
           font-size: 14px;
           border: none;
           cursor: pointer;
+          border-radius:10px;
         }
         
         .useTime:hover, .useTime:focus {
@@ -99,6 +102,7 @@
           font-size: 14px;
           border: none;
           cursor: pointer;
+          border-radius:10px;
         }
         
         .memberCount:hover, .memberCount:focus {
@@ -114,6 +118,7 @@
           font-size: 14px;
           border: none;
           cursor: pointer;
+          border-radius:10px;
         }
         
         #btn_SeatList:hover, #btn_SeatList:focus {
