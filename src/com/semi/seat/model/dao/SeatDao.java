@@ -87,4 +87,29 @@ public class SeatDao {
 			System.out.println("dao result:"+result);
 			return result;
 		}
+		
+		public int insertSeatOrder(Connection conn, Seat seat) {
+			PreparedStatement pstmt=null;
+			int resultOrder=0;
+			try {
+				System.out.println("dao s :"+seat);
+				pstmt=conn.prepareStatement(prop.getProperty("insertSeatOrder"));
+				
+				pstmt.setInt(1, seat.getMemberNo());
+				pstmt.setString(2, seat.getSeatDate());
+				pstmt.setInt(3, seat.getSeatTime());
+				pstmt.setInt(4, seat.getUseTime());
+				pstmt.setInt(5, seat.getMemberCount());
+				pstmt.setString(6, seat.getSeatNo());
+				pstmt.setInt(7,seat.getSeatPrice());
+				
+				resultOrder=pstmt.executeUpdate();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			System.out.println("dao result:"+resultOrder);
+			return resultOrder;
+		}
 }

@@ -33,20 +33,27 @@
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
-	      
+	        alert(msg);
+	        result();
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
+	        alert(msg);
+	        result1();
 	    }
-	    alert(msg);
-	    result();
 	});
 
 </script>
 <script>
 	function result(){
-		opener.result.value=true;
-		window.open('','_self').close(); 
+		const url="<%=request.getContextPath() %>/seatSend";
+		seatSend.action=url;
+		seatSend.submit();
+	}
+	function result1(){
+		const url="<%=request.getContextPath() %>/seatMove";
+		seatSend.action=url;
+		seatSend.submit();
 	}
 </script>
 <html>
@@ -54,8 +61,25 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+	.seat-info-hidden{
+       display:none
+    }
+</style>
 <body>
-
+	<form name="seatSend" action="" method="post">
+            <div class="seat-info-hidden"><!--개발 후 숨김처리-->
+            	<input type="text" name="memberName" id="memberName" class="seatInfo" value="<%=MemberName%>">
+      			<input type="text" name="email" id="email" class="seatInfo" value="<%=Email%>">	
+                <input type="text" name="memberNo" id="memberNo" class="seatInfo" value="<%=s.getMemberNo()%>">
+                <input type="text" name="seatDate" id="seatDate" class="seatInfo" value="<%=s.getSeatDate()%>">
+                <input type="text" name="seatTime" id="seatTime" class="seatInfo" value="<%=s.getSeatTime()%>">
+                <input type="text" name="useTime" id="useTime" class="seatInfo" value="<%=s.getUseTime()%>">
+                <input type="text" name="memberCount" id="memberCount" class="seatInfo" value="<%=s.getMemberCount()%>">
+                <input type="text" name="seatInfo" id="seatInfo" value="<%=s.getSeatNo()%>">
+                <input type="text" name="seatPrice" id="seatPrice" value="<%=s.getSeatPrice()%>">
+            </div>
+   	</form>
 </body>
 </html>
 

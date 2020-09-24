@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 <%@ include file="/views/common/header.jsp" %>
+<%
+	if (logginedMember == null) {
+		request.setAttribute("msg", "로그인이 이후 사용가능합니다");
+		request.setAttribute("loc", "/");
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+	}
+%>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <style> 
         /* 코드표 : RGB

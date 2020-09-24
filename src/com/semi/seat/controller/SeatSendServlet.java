@@ -41,6 +41,13 @@ public class SeatSendServlet extends HttpServlet {
 		seat.setSeatPrice(Integer.parseInt(request.getParameter("seatPrice")));
 		
 		System.out.println(seat);
+		
+		//스터디룸 주문내역 입력
+		int resultOrder=new SeatService().insertSeatOrder(seat);
+		System.out.println("servlet resultOrder : "+resultOrder);
+		
+		
+		
 		int result=0;
 		
 		//사용시간에 따라 데이터 입력
@@ -98,7 +105,7 @@ public class SeatSendServlet extends HttpServlet {
 		}
 		String msg="";
 		String loc="/";
-		if(result>0&&result>0) {
+		if(result>0&&result>0&&resultOrder>0) {
 			msg="좌석 예약 성공";
 			loc="/seatMove";
 		}else {

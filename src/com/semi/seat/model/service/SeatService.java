@@ -34,4 +34,14 @@ public class SeatService {
 		return result;
 		
 	}
+	public int insertSeatOrder(Seat seat) {
+		Connection conn=getConnection();
+		int resultOrder=dao.insertSeatOrder(conn, seat);
+		if(resultOrder>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return resultOrder;
+		
+	}
+	
 }

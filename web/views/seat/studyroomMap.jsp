@@ -216,26 +216,13 @@
                   <div><input type="button" value="Room4" id="Room4" class="seat" style="width:90%; height:150px; border-radius:5px" onclick="seatInfoFunction(event)"></div>
                 </div>
         </div>
-      	
-       	<!-- 결제를 위한 창 -->
-      	<form name="seatOrder1" action="">
-      	<input type="text" name="memberName1" id="memberName1" class="seatInfo1" value="<%=logginedMember.getMemberName()%>">
-      	<input type="text" name="email" id="email" class="seatInfo1" value="<%=logginedMember.getEmail()%>">
-      	<input type="text" name="memberNo1" id="memberNo1" class="seatInfo1" value="<%=logginedMember.getMemberNo()%>">
-      	<input type="text" name="seatDate1" id="seatDate1" class="seatInfo1" value="<%=seatDate%>">
-      	<input type="text" name="seatTime1" id="seatTime1" class="seatInfo1" value="<%=seatTime%>">
-        <input type="text" name="useTime1" id="useTime1" class="seatInfo1" value="<%=useTime%>">
-        <input type="text" name="memberCount1" id="memberCount1" class="seatInfo1" value="<%=memberCount%>">
-        <input type="text" name="seatInfo1" id="seatInfo1" value="A1">
-        <input type="text" name="seatPrice1" id="seatPrice1" value="1000">
-      	</form> 
-        <input type="text" name="result" id="result" value="false">
-      
      
       	<!-- 좌석 정보 가져오는 텍스트 (히든) -->
         <div class="next">
-          <form action="<%=request.getContextPath() %>/seatSend" method="post">
-            <div class="seat-info_hidden"><!--개발 후 숨김처리-->
+          <form action="<%=request.getContextPath() %>/seatOrderMove" method="post">
+            <div class="seat-info-hidden"><!--개발 후 숨김처리-->
+            	<input type="text" name="memberName" id="memberName" class="seatInfo" value="<%=logginedMember.getMemberName()%>">
+      			<input type="text" name="email" id="email" class="seatInfo" value="<%=logginedMember.getEmail()%>">	
                 <input type="text" name="memberNo" id="memberNo" class="seatInfo" value="<%=logginedMember.getMemberNo()%>">
                 <input type="text" name="seatDate" id="seatDate" class="seatInfo" value="<%=seatDate%>">
                 <input type="text" name="seatTime" id="seatTime" class="seatInfo" value="<%=seatTime%>">
@@ -263,17 +250,14 @@
         		alert("예약이 된 좌석입니다. 다시 선택하세요");
         	}else{
 	        	document.getElementById('seatInfo').value=event.target.value;
-	        	document.getElementById('seatInfo1').value=event.target.value;
 	        	if(event.target.id=="Room1"||event.target.id=="Room2"||event.target.id=="Room3"||event.target.id=="Room4"){
 	        		let UseTime=document.getElementById('useTime').value
 	        		let memberCount=document.getElementById('memberCount').value
 	        		document.getElementById('seatPrice').value=5000*memberCount*UseTime;
-	        		document.getElementById('seatPrice1').value=5000*memberCount*UseTime;
 	        	}else{
 	        		let UseTime=document.getElementById('useTime').value
 	        		let memberCount=document.getElementById('memberCount').value
 	        		document.getElementById('seatPrice').value=1000*UseTime;
-	        		document.getElementById('seatPrice1').value=1000*UseTime;
 	        	}
         	}
         	<%}%>
@@ -283,7 +267,7 @@
             	alert("취소되었습니다.");
             	location.reload();
         	 }
-
+			
           	function seatOrder(){
         		let result=document.getElementById('result').value;
         		console.log("seatOrder함수 :"+result);
@@ -296,14 +280,8 @@
         		seatOrder1.action=url;
         		seatOrder1.method="post";
         		seatOrder1.submit();
-        		while(true){
-        			return false;
-        			console.log("a");
-        			if(result==true){
-						return true;
-						console.log("b");
-        			}
-        		}
+        		
+        		
 
         		
           	}
