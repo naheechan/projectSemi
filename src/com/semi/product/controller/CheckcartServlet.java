@@ -42,10 +42,17 @@ public class CheckcartServlet extends HttpServlet {
 		//제품번호화 사용자 번호를 가져와서 장바구니 테이블에 담기
 		int no=Integer.parseInt(request.getParameter("cproductno"));
 		int userno=Integer.parseInt(request.getParameter("memberno"));
+		int count=0;
+		if(request.getParameter("count") != null) {
+		 count=Integer.parseInt(request.getParameter("count"));
+		}else {
+			//없으면 오라클 기본값 1부여해서 넣기
+			count=1;	
+		}
 		Books bk=new BookService().addcartselect(no);	
 		System.out.println(userno);
 		System.out.println(bk);
-		int result=new CartService().insertnumber(no,userno);
+		int result=new CartService().insertnumber(no,userno,count);
 		if(result>0) {
 			System.out.println("장바구니에 값이 추가");
 		}
