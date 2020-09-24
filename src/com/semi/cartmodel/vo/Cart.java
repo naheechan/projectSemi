@@ -4,6 +4,14 @@ public class Cart {
 	private int cartno;
 	private int memberno;
 	private int bookno;
+	private int count;
+	public Cart(int cartno, int memberno, int bookno, int count) {
+		super();
+		this.cartno = cartno;
+		this.memberno = memberno;
+		this.bookno = bookno;
+		this.count = count;
+	}
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
@@ -25,15 +33,16 @@ public class Cart {
 	public void setBookno(int bookno) {
 		this.bookno = bookno;
 	}
-	public Cart(int cartno, int memberno, int bookno) {
-		super();
-		this.cartno = cartno;
-		this.memberno = memberno;
-		this.bookno = bookno;
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	@Override
 	public String toString() {
-		return "Cart [cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + "]";
+		return "Cart [cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + ", count=" + count + "]";
 	}
 	
 

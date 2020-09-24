@@ -17,6 +17,10 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.min.js"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	 <script
+      type="text/javascript"
+      src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
+    ></script>
 <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
 <title>Main</title>

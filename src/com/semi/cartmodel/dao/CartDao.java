@@ -62,6 +62,7 @@ public class CartDao {
 				ca.setBookno(rs.getInt("book_no"));
 				ca.setCartno(rs.getInt("cart_no"));
 				ca.setMemberno(rs.getInt("member_no"));
+				ca.setCount(rs.getInt("count"));
 				list.add(ca);
 			}
 		} catch (SQLException e) {

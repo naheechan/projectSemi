@@ -103,55 +103,59 @@ td {
 				%>
 			</table>
 			<hr>
-			<form action="<%=request.getContextPath()%>/cart/orderend" method="post"> 
-		
-			<div id="addresstxt">
-				<div id="totaltxt">
-				<input type="hidden" name="totalprice" value="<%=totalprice%>"/>
-					총금 액 :<%=totalprice%>원
-				</div>
-				<table>
-					<tr>
-						<td>주문인</td>
-						<input  type="hidden" name="userno" value="<%=logginedMember.getMemberNo()%>"/>
-						<td><%=logginedMember.getMemberName()%></td>
-						
-					</tr>
-					<tr>
-						<td>받는사람</td>
-						<td><input type="text" name="Recipient" /></td>
-					</tr>
-					<tr>
-						<td>주소</td>
-						<td><input type="text" id="sample6_postcode" name="postcode"
-							placeholder="우편번호" /> <input type="button"
-							onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
-							<input type="text" name="address"id="sample6_address" placeholder="주소" /><br />
-							<input type="text" name="extraaddress"id="sample6_detailAddress" placeholder="상세주소" /><br />
-							<input type="text" name="detailaddress" id="sample6_extraAddress" placeholder="참고항목" />
-						</td>
-					</tr>
-					<tr>
-						<td>휴대폰 번호</td>
-						<td><input type="tel" name="tel" id="" placeholder="-없이 입력해주세요" />
-						</td>
-					</tr>
-					<tr>
-						<td>배송시 요청사항</td>
-						<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
-					</tr>
-				</table>
-				<div id="button-box">
-					<button type="submit"
-						<%-- onclick="location.href='<%=request.getContextPath()%>/cart/orderend'" --%>>주문하기</button>
-				</div>
+			<form action="<%=request.getContextPath()%>/cart/orderend"
+				method="post" id="buyfrm">
+
+				<div id="addresstxt">
+					<div id="totaltxt">
+						<input type="hidden" name="totalprice" id="totalprice"
+							value="<%=totalprice%>" /> 총금 액 :<%=totalprice%>원
+					</div>
+					<table>
+						<tr>
+							<td>주문인</td>
+							<input type="hidden" name="userno"
+								value="<%=logginedMember.getMemberNo()%>" />
+							<td id="username"><%=logginedMember.getMemberName()%></td>
+
+						</tr>
+						<tr>
+							<td>받는사람</td>
+							<td><input type="text" name="Recipient" /></td>
+						</tr>
+						<tr>
+							<td>주소</td>
+							<td><input type="text" id="sample6_postcode" name="postcode"
+								placeholder="우편번호" /> <input type="button"
+								onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
+								<input type="text" name="address" id="sample6_address"
+								placeholder="주소" /><br /> <input type="text"
+								name="extraaddress" id="sample6_detailAddress"
+								placeholder="상세주소" /><br /> <input type="text"
+								name="detailaddress" id="sample6_extraAddress"
+								placeholder="참고항목" /></td>
+						</tr>
+						<tr>
+							<td>휴대폰 번호</td>
+							<td><input type="tel" name="tel" id="tel"
+								placeholder="-없이 입력해주세요" /></td>
+						</tr>
+						<tr>
+							<td>배송시 요청사항</td>
+							<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
+						</tr>
+					</table>
+					<div id="button-box">
+						<button type="button" onclick="buy()"<%-- onclick="location.href='<%=request.getContextPath()%>/cart/orderend'" --%>>주문하기</button>
+					</div>
 			</form>
-				<!--주문하기 누르면 아임포트api이용하기-->
+			<!--주문하기 누르면 아임포트api이용하기-->
 		</div>
 
 		<div class="push"></div>
 
 		<script>
+		
 			function sample6_execDaumPostcode() {
 				new daum.Postcode(
 						{
@@ -208,6 +212,46 @@ td {
 										.focus();
 							},
 						}).open();
+			}
+			function buy() {
+				console.log("버튼눌림");
+				let frm=document.querySelector("#buyfrm")
+			     let price = document.querySelector("#totalprice").value;
+				 let username = document.querySelector("#username").innerText;
+			      console.log(username);
+			      let tel = document.querySelector("#tel").value;
+			      let email="<%=logginedMember.getEmail()%>"
+			      let post=document.querySelector("#sample6_postcode").value;
+			      let addrss=document.querySelector("#sample6_address").value;
+			      IMP.init("imp75893840");
+			      IMP.request_pay(
+			        {
+			          pg: "html5_inicis",
+			          pay_method: "card",
+			          merchant_uid: "merchant_" + new Date().getTime(),
+			          name: "주문결제테스트",
+			          amount: /* price */"1000",
+			          buyer_email: email,
+			          buyer_name: username,
+			          buyer_tel: tel,
+			          buyer_addr: addrss,
+			          buyer_postcode: post,
+			        },
+			        function (rsp) {
+			          if (rsp.success) {
+			            var msg = "결제가 완료되었습니다.";
+			            frm.submit(); 
+			          } else {
+			            var msg = "결제에 실패하였습니다.";
+			            msg+="홈으로 돌아갑니다";
+			            frm.action="<%=request.getContextPath()%>
+			";
+						alert(msg);
+						frm.submit();
+					}
+				}
+
+				);
 			}
 		</script>
 	</section>

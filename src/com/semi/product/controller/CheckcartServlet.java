@@ -42,6 +42,10 @@ public class CheckcartServlet extends HttpServlet {
 		//제품번호화 사용자 번호를 가져와서 장바구니 테이블에 담기
 		int no=Integer.parseInt(request.getParameter("cproductno"));
 		int userno=Integer.parseInt(request.getParameter("memberno"));
+		if(request.getParameter("count") != null) {
+			//제품수량 넣기
+		}
+		//없으면 오라클 기본값 1부여해서 넣기
 		Books bk=new BookService().addcartselect(no);	
 		System.out.println(userno);
 		System.out.println(bk);
