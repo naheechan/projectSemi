@@ -28,14 +28,14 @@ public class OrderDao {
 			e.printStackTrace();
 		}
 	}
-	public List<Cart> selectproduct(Connection conn, Buylist bu) {
+	public List<Cart> selectproduct(Connection conn, int userno) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Cart>list=new ArrayList<Cart>();
 		Cart ck=null;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("selectproduct"));
-			pstmt.setInt(1, bu.getMemberno());
+			pstmt.setInt(1, userno);
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				ck=new Cart();
@@ -51,6 +51,11 @@ public class OrderDao {
 			close(pstmt);
 		}
 		return list;
+	}
+	
+	public int insertorder(Connection conn, List<Buylist> blist) {
+		
+		return 0;
 	}
 	
 

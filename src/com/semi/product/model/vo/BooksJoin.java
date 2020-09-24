@@ -3,7 +3,7 @@ package com.semi.product.model.vo;
 import java.sql.Date;
 
 public class BooksJoin {
-	private int bookNo;
+	private int bookNo;//책테이블 책번호
 	private String title;//책제목
 	private String author;//저자
 	private int price;//가격
@@ -12,10 +12,21 @@ public class BooksJoin {
 	private Date publicationdate;//출판일
 	private int cartno;
 	private int memberno;
-	private int bookno;
+	private int bookno;//장바구니테이블 책번호
 	private int categoryno;
+	private int count;
+	public BooksJoin() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "BooksJoin [bookNo=" + bookNo + ", title=" + title + ", author=" + author + ", price=" + price
+				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate
+				+ ", cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + ", categoryno=" + categoryno
+				+ ", count=" + count + "]";
+	}
 	public BooksJoin(int bookNo, String title, String author, int price, String publisher, String bookimg,
-			Date publicationdate, int cartno, int memberno, int bookno2, int categoryno) {
+			Date publicationdate, int cartno, int memberno, int bookno2, int categoryno, int count) {
 		super();
 		this.bookNo = bookNo;
 		this.title = title;
@@ -28,13 +39,7 @@ public class BooksJoin {
 		this.memberno = memberno;
 		bookno = bookno2;
 		this.categoryno = categoryno;
-	}
-	@Override
-	public String toString() {
-		return "BooksJoin [bookNo=" + bookNo + ", title=" + title + ", author=" + author + ", price=" + price
-				+ ", publisher=" + publisher + ", bookimg=" + bookimg + ", publicationdate=" + publicationdate
-				+ ", cartno=" + cartno + ", memberno=" + memberno + ", bookno=" + bookno + ", categoryno=" + categoryno
-				+ "]";
+		this.count = count;
 	}
 	public int getBookNo() {
 		return bookNo;
@@ -102,8 +107,11 @@ public class BooksJoin {
 	public void setCategoryno(int categoryno) {
 		this.categoryno = categoryno;
 	}
-	public BooksJoin() {
-		// TODO Auto-generated constructor stub
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
 }

@@ -80,6 +80,8 @@ td {
 		<p id="headerfont">Order</p>
 		<hr>
 		<div id="cartcontainer">
+			<form action="<%=request.getContextPath()%>/cart/orderend"
+				method="post" id="buyfrm">
 			<table id="carttable">
 				<%
 					for (BooksJoin bk : list) {
@@ -91,6 +93,7 @@ td {
 				</tr>
 				<tr>
 				<tr>
+					<input type="hidden"  name="bookno"value="<%=bk.getBookno()%>">
 					<td><img name="img"
 						src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
 					<td><%=bk.getTitle()%></td>
@@ -103,9 +106,6 @@ td {
 				%>
 			</table>
 			<hr>
-			<form action="<%=request.getContextPath()%>/cart/orderend"
-				method="post" id="buyfrm">
-
 				<div id="addresstxt">
 					<div id="totaltxt">
 						<input type="hidden" name="totalprice" id="totalprice"
@@ -244,8 +244,7 @@ td {
 			          } else {
 			            var msg = "결제에 실패하였습니다.";
 			            msg+="홈으로 돌아갑니다";
-			            frm.action="<%=request.getContextPath()%>
-			";
+			            frm.action="<%=request.getContextPath()%>";
 						alert(msg);
 						frm.submit();
 					}

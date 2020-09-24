@@ -1,6 +1,7 @@
 package com.semi.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,17 +38,30 @@ public class OrederEnd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Buylist bu = new Buylist();
-		bu.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
-		bu.setMemberno(Integer.parseInt(request.getParameter("userno")));
-		bu.setRecipient(request.getParameter("Recipient"));
-		bu.setPostcode(Integer.parseInt(request.getParameter("postcode")));
-		bu.setAddress(request.getParameter("address"));
-		bu.setExtraaddress(request.getParameter("extraaddress"));
-		bu.setDetailaddress(request.getParameter("detailaddress"));
-		bu.setPhone(request.getParameter("tel"));
-		System.out.println(bu);
-		List<Cart>list=new OrderSerivce().selectproduct(bu);
+		
+		int userno=Integer.parseInt(request.getParameter("userno"));
+		//어떤 책을 구매했는지 cart테이블을 조회해서 가져온다
+		List<Cart>list=new OrderSerivce().selectproduct(userno);
+		List<Buylist>blist=new ArrayList<Buylist>();
+		Buylist bu = null;
+		for(Cart ck:list) {
+			bu=new Buylist();
+			bu.setTotalprice(Integer.parseInt(request.getParameter("totalprice")));
+			bu.setMemberno(Integer.parseInt(request.getParameter("userno")));
+			bu.setRecipient(request.getParameter("Recipient"));
+			bu.setPostcode(Integer.parseInt(request.getParameter("postcode")));
+			bu.setAddress(request.getParameter("address"));
+			bu.setExtraaddress(request.getParameter("extraaddress"));
+			bu.setDetailaddress(request.getParameter("detailaddress"));
+			bu.setPhone(request.getParameter("tel"));
+			bu.setBookno(ck.getBookno());
+			blist.add(bu);
+		}
+		
+	
+	
+		//가져왔으면 그책번호랑 주문정보를 주문테이블에 데이터를 넣는다
+		new OrderSerivce().insertorder(blist);
 		
 		
 
