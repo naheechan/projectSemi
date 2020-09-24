@@ -26,7 +26,7 @@
 		.p2{
             text-align: center;
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: rgb(79, 80, 82); 
         }
@@ -34,13 +34,13 @@
         .p3{
             text-align: center;
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 18px;
             font-weight: bold;
             color: rgb(79, 80, 82); 
         }
         .seat-wrap{
           width:49%;
-          margin:80px auto 0 auto;
+          margin:20px auto 0 auto;
           padding: 30px 0;
         }
 		.seat-container{
@@ -156,6 +156,8 @@
 		<div class="seatText-container">
 	        <p class="p2">STUDYROOM MAP</p>
 	        <p class="p3">원하시는 좌석을 선택하여 예약하기 버튼을 누르세요.</p>
+	        <br>
+	        <p class="p3">일반좌석 : 1시간 1000원   | ROOM : 1시간 5000원 (1인 기준)</p>
         </div>
         <div class="seat-wrap">
             <div class="seat-container">
@@ -225,7 +227,8 @@
                 <input type="text" name="seatTime" id="seatTime" class="seatInfo" value="<%=seatTime%>">
                 <input type="text" name="useTime" id="useTime" class="seatInfo" value="<%=useTime%>">
                 <input type="text" name="memberCount" id="memberCount" class="seatInfo" value="<%=memberCount%>">
-                <input type="text" name="seatInfo" id="seatInfo" value="0">
+                <input type="text" name="seatInfo" id="seatInfo" value="A1">
+                <input type="text" name="seatPrice" id="seatPrice" value="1000">
             </div>
             <div class="reserve-button-wrap">
                 <input id="cancel" type="button" value="취소" onclick="goindex();" style="width:100px;height:50px">
@@ -245,7 +248,16 @@
         	if(event.target.id=="<%=s.getSeatNo()%>"){
         		alert("예약이 된 좌석입니다. 다시 선택하세요");
         	}else{
-	        	document.getElementById('seatInfo').value=event.target.value;    		
+	        	document.getElementById('seatInfo').value=event.target.value;
+	        	if(event.target.id=="Room1"||event.target.id=="Room2"||event.target.id=="Room3"||event.target.id=="Room4"){
+	        		let UseTime=document.getElementById('useTime').value
+	        		let memberCount=document.getElementById('memberCount').value
+	        		document.getElementById('seatPrice').value=5000*memberCount*UseTime;
+	        	}else{
+	        		let UseTime=document.getElementById('useTime').value
+	        		let memberCount=document.getElementById('memberCount').value
+	        		document.getElementById('seatPrice').value=1000*UseTime;
+	        	}
         	}
         	<%}%>
         	}

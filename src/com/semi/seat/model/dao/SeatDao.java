@@ -76,6 +76,7 @@ public class SeatDao {
 				pstmt.setInt(4, seat.getUseTime());
 				pstmt.setInt(5, seat.getMemberCount());
 				pstmt.setString(6, seat.getSeatNo());
+				pstmt.setInt(7,seat.getSeatPrice());
 				
 				result=pstmt.executeUpdate();
 			}catch(SQLException e) {

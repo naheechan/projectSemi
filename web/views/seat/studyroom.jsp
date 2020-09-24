@@ -27,7 +27,14 @@
             margin-top: 15px;
             margin-bottom: 15px;
         }
-        
+        .p2{
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            color: rgb(79, 80, 82); 
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
         .choicedate {
           display: inline-block;
           margin-left: 27%;
@@ -113,6 +120,8 @@
         #btn_SeatList{
           background-color: rgb(203, 230, 212);
           margin-left: 47.4%;
+          margin-top: 30px;
+          margin-bottom: 40px;
           color: rgb(79, 80, 82);
           padding: 16px;
           font-size: 14px;
@@ -176,6 +185,7 @@
     </div>
     
     <p class="p1">이용 시간</p>
+    <p class="p2">일반좌석 : 1시간 1000원   | ROOM : 1시간 5000원 (1인 기준)</p>
     <div class="choiceUseTime">
     	<button type="button" id="useTime1" onclick="useTimeFunction(event)" class="useTime" value="1">1시간</button>
     	<button type="button" id="useTime2" onclick="useTimeFunction(event)" class="useTime" value="2">2시간</button>
@@ -188,6 +198,7 @@
     </div>
     
     <p class="p1">인원</p>
+    <p class="p2">일반좌석 : 1명  | ROOM  : 1~4명 </p>
     <div class="choiceMemberCount">
     	<button type="button" id="memberCount1" onclick="memberCountFunction(event)" class="memberCount" value="1">1명</button>
     	<button type="button" id="memberCount2" onclick="memberCountFunction(event)" class="memberCount" value="2">2명</button>
@@ -204,11 +215,11 @@
 			<input type="text" name="useTime" id="useTime" class="seatInfo" value="0">
 			<input type="text" name="memberCount" id="memberCount" class="seatInfo" value="0">
 	 	</div>
-		<br>
-		<br>
+		
+		
 		<button id="btn_SeatList">좌석 조회</button>
-		<br>
-		<br>
+		
+		
 			
 		<!-- 좌석 보기 Ajax -->	
 		<div id="seatMap"></div>
