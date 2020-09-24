@@ -1,7 +1,9 @@
+
 <%@page import="oracle.net.aso.l"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="com.semi.member.model.vo.Member"%>
+<%@ page import="java.util.List" %>
 <%
 	Member logginedMember = (Member) session.getAttribute("logginedMember");
 %>
@@ -82,7 +84,7 @@
 				<li><a href="<%=request.getContextPath()%>/product/productmain">BOOK</a></li>
 				<li><a href="<%=request.getContextPath()%>/seatMove">STUDYROOM</a></li>
 				<li><a href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a></li>
-				<li><a href="#">글귀게시판</a></li>
+				<li><a href="<%=request.getContextPath()%>/wording/wordingList">글귀게시판</a></li>
 				<li><a href="#">북클럽</a></li>
 			</ul>
 		</div>
@@ -92,3 +94,5 @@
 		<script>
 		
 		</script>
+
+

@@ -9,15 +9,14 @@ public class Wording {
 	private Date wordingDate;
 	private int wordingViewCount;
 	private int memberNo;
-	private int wordingPicNo;
-	private int wordingTextNo;
+	private String writer;
 	
 	public Wording() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Wording(int wordingNo, String wordingTitle, String wordingContent, Date wordingDate, int wordingViewCount,
-			int memberNo, int wordingPicNo, int wordingTextNo) {
+			int memberNo, String writer) {
 		super();
 		this.wordingNo = wordingNo;
 		this.wordingTitle = wordingTitle;
@@ -25,8 +24,7 @@ public class Wording {
 		this.wordingDate = wordingDate;
 		this.wordingViewCount = wordingViewCount;
 		this.memberNo = memberNo;
-		this.wordingPicNo = wordingPicNo;
-		this.wordingTextNo = wordingTextNo;
+		this.writer = writer;
 	}
 
 	public int getWordingNo() {
@@ -77,30 +75,20 @@ public class Wording {
 		this.memberNo = memberNo;
 	}
 
-	public int getWordingPicNo() {
-		return wordingPicNo;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setWordingPicNo(int wordingPicNo) {
-		this.wordingPicNo = wordingPicNo;
-	}
-
-	public int getWordingTextNo() {
-		return wordingTextNo;
-	}
-
-	public void setWordingTextNo(int wordingTextNo) {
-		this.wordingTextNo = wordingTextNo;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	@Override
 	public String toString() {
 		return "Wording [wordingNo=" + wordingNo + ", wordingTitle=" + wordingTitle + ", wordingContent="
 				+ wordingContent + ", wordingDate=" + wordingDate + ", wordingViewCount=" + wordingViewCount
-				+ ", memberNo=" + memberNo + ", wordingPicNo=" + wordingPicNo + ", wordingTextNo=" + wordingTextNo
-				+ "]";
+				+ ", memberNo=" + memberNo + ", writer=" + writer + "]";
 	}
-	
-	
+
 	
 }
