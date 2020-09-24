@@ -139,11 +139,12 @@
         }
 		
 		.seat-info-hidden{
-		
         	display:none
         }
+        
         .active{
         	background-color: rgb(79, 80, 82);
+
         }
 </style>
 	<!-- 날짜 선택 --> 

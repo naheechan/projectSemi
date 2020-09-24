@@ -1,8 +1,6 @@
 package com.semi.seat.model.service;
 
 import static com.semi.common.JDBCTemplate.close;
-
-
 import static com.semi.common.JDBCTemplate.commit;
 import static com.semi.common.JDBCTemplate.getConnection;
 import static com.semi.common.JDBCTemplate.rollback;

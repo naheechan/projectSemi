@@ -4,6 +4,7 @@
 <% 
 	Seat s=(Seat)request.getAttribute("seat");
 	String MemberName=(String)request.getAttribute("MemberName");
+	String Email=(String)request.getAttribute("Email");
 %>
 <!DOCTYPE html>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
@@ -19,12 +20,12 @@
 	    merchant_uid : 'merchant_' + new Date().getTime(),
 	    name : '<%=s.getSeatNo()%>',
 	    amount : <%=s.getSeatPrice()%>,
-	    buyer_email : 'iamport@siot.do',
+	    buyer_email : '<%=Email%>',
 	    buyer_name : '<%=MemberName%>',
 	    buyer_tel : '',
 	    buyer_addr : '',
 	    buyer_postcode : '',
-	    m_redirect_url : 'http://localhost:9090/Semi/views/studyroom.jsp'
+	    m_redirect_url : ''
 	}, function(rsp) {
 	    if ( rsp.success ) {
 	        var msg = '결제가 완료되었습니다.';
@@ -32,13 +33,21 @@
 	        msg += '상점 거래ID : ' + rsp.merchant_uid;
 	        msg += '결제 금액 : ' + rsp.paid_amount;
 	        msg += '카드 승인번호 : ' + rsp.apply_num;
+	      
 	    } else {
 	        var msg = '결제에 실패하였습니다.';
 	        msg += '에러내용 : ' + rsp.error_msg;
 	    }
 	    alert(msg);
+	    result();
 	});
 
+</script>
+<script>
+	function result(){
+		opener.result.value=true;
+		window.open('','_self').close(); 
+	}
 </script>
 <html>
 <head>
