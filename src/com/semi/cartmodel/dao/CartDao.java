@@ -14,7 +14,7 @@ import com.semi.cartmodel.vo.Cart;
 import com.semi.product.model.vo.Books;
 import com.semi.product.model.vo.BooksJoin;
 
-import oracle.net.aso.p;
+
 
 import static com.semi.common.JDBCTemplate.close;
 
@@ -31,13 +31,14 @@ public class CartDao {
 
 	}
 
-	public int insertnumber(Connection conn, int no, int userno) {
+	public int insertnumber(Connection conn, int no, int userno, int count) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertcart"));
 			pstmt.setInt(1, no);
 			pstmt.setInt(2, userno);
+			pstmt.setInt(3, count);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,6 +54,7 @@ public class CartDao {
 		List<Cart> list = new ArrayList<Cart>();
 		Cart ca = null;
 		try {
+			
 			pstmt = conn.prepareStatement(prop.getProperty("selectcartno"));
 			pstmt.setInt(1, userno);
 			rs = pstmt.executeQuery();
@@ -61,6 +63,7 @@ public class CartDao {
 				ca.setBookno(rs.getInt("book_no"));
 				ca.setCartno(rs.getInt("cart_no"));
 				ca.setMemberno(rs.getInt("member_no"));
+				ca.setCount(rs.getInt("count"));
 				list.add(ca);
 			}
 		} catch (SQLException e) {
@@ -94,6 +97,7 @@ public class CartDao {
 				bk.setCartno(rs.getInt("cart_no"));
 				bk.setBookno(rs.getInt("book_no"));
 				bk.setMemberno(rs.getInt("member_no"));
+				bk.setCount(rs.getInt("count"));
 				
 				list.add(bk);
 			}

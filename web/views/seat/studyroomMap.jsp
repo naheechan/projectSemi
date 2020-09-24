@@ -26,7 +26,7 @@
 		.p2{
             text-align: center;
             margin-bottom: 10px;
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: rgb(79, 80, 82); 
         }
@@ -34,13 +34,13 @@
         .p3{
             text-align: center;
             margin-bottom: 20px;
-            font-size: 15px;
+            font-size: 18px;
             font-weight: bold;
             color: rgb(79, 80, 82); 
         }
         .seat-wrap{
           width:49%;
-          margin:80px auto 0 auto;
+          margin:20px auto 0 auto;
           padding: 30px 0;
         }
 		.seat-container{
@@ -49,9 +49,13 @@
         }
         .R1{
             width:25%;float:left; overflow:hidden;
+
         }
         .R2{
             width:25%;float:left; overflow:hidden;
+        }
+        #Room1, #Room3{
+        	margin-bottom:5px;
         }
         .seat:hover, .seat:focus {
           background-color: rgb(203, 230, 212); 
@@ -61,6 +65,7 @@
         }
         .room{
           border-radius: 10px;
+   		  
         }
         #room2, #room4{margin-top:15px}
 		.seats{
@@ -151,6 +156,8 @@
 		<div class="seatText-container">
 	        <p class="p2">STUDYROOM MAP</p>
 	        <p class="p3">원하시는 좌석을 선택하여 예약하기 버튼을 누르세요.</p>
+	        <br>
+	        <p class="p3">일반좌석 : 1시간 1000원   | ROOM : 1시간 5000원 (1인 기준)</p>
         </div>
         <div class="seat-wrap">
             <div class="seat-container">
@@ -209,22 +216,35 @@
                   <div><input type="button" value="Room4" id="Room4" class="seat" style="width:90%; height:150px; border-radius:5px" onclick="seatInfoFunction(event)"></div>
                 </div>
         </div>
+      	
+       	<!-- 결제를 위한 창 -->
+      	<form name="seatOrder1" action="">
+      	<input type="text" name="memberName1" id="memberNo1" class="seatInfo" value="<%=logginedMember.getMemberName()%>">
+      	<input type="text" name="memberNo1" id="memberNo1" class="seatInfo" value="<%=logginedMember.getMemberNo()%>">
+      	<input type="text" name="seatDate1" id="seatDate1" class="seatInfo" value="<%=seatDate%>">
+      	<input type="text" name="seatTime1" id="seatTime1" class="seatInfo" value="<%=seatTime%>">
+        <input type="text" name="useTime1" id="useTime1" class="seatInfo" value="<%=useTime%>">
+        <input type="text" name="memberCount1" id="memberCount1" class="seatInfo" value="<%=memberCount%>">
+        <input type="text" name="seatInfo1" id="seatInfo1" value="A1">
+        <input type="text" name="seatPrice1" id="seatPrice1" value="1000">   
+      	</form> 
       
+     
       	<!-- 좌석 정보 가져오는 텍스트 (히든) -->
-
         <div class="next">
           <form action="<%=request.getContextPath() %>/seatSend" method="post">
-            <div class="seat-info hidden"><!--개발 후 숨김처리-->
+            <div class="seat-info_hidden"><!--개발 후 숨김처리-->
                 <input type="text" name="memberNo" id="memberNo" class="seatInfo" value="<%=logginedMember.getMemberNo()%>">
                 <input type="text" name="seatDate" id="seatDate" class="seatInfo" value="<%=seatDate%>">
                 <input type="text" name="seatTime" id="seatTime" class="seatInfo" value="<%=seatTime%>">
                 <input type="text" name="useTime" id="useTime" class="seatInfo" value="<%=useTime%>">
                 <input type="text" name="memberCount" id="memberCount" class="seatInfo" value="<%=memberCount%>">
-                <input type="text" name="seatInfo" id="seatInfo" value="0">
+                <input type="text" name="seatInfo" id="seatInfo" value="A1">
+                <input type="text" name="seatPrice" id="seatPrice" value="1000">
             </div>
             <div class="reserve-button-wrap">
                 <input id="cancel" type="button" value="취소" onclick="goindex();" style="width:100px;height:50px">
-                <input id="reserve" type="submit" value="예약하기" style="width:100px;height:50px">
+                <input id="reserve" type="submit" value="예약하기" style="width:100px;height:50px" onclick="return seatOrder();">
             </div>
           </form>
         </div>
@@ -240,7 +260,19 @@
         	if(event.target.id=="<%=s.getSeatNo()%>"){
         		alert("예약이 된 좌석입니다. 다시 선택하세요");
         	}else{
-	        	document.getElementById('seatInfo').value=event.target.value;    		
+	        	document.getElementById('seatInfo').value=event.target.value;
+	        	document.getElementById('seatInfo1').value=event.target.value;
+	        	if(event.target.id=="Room1"||event.target.id=="Room2"||event.target.id=="Room3"||event.target.id=="Room4"){
+	        		let UseTime=document.getElementById('useTime').value
+	        		let memberCount=document.getElementById('memberCount').value
+	        		document.getElementById('seatPrice').value=5000*memberCount*UseTime;
+	        		document.getElementById('seatPrice1').value=5000*memberCount*UseTime;
+	        	}else{
+	        		let UseTime=document.getElementById('useTime').value
+	        		let memberCount=document.getElementById('memberCount').value
+	        		document.getElementById('seatPrice').value=1000*UseTime;
+	        		document.getElementById('seatPrice1').value=1000*UseTime;
+	        	}
         	}
         	<%}%>
         	}
@@ -250,9 +282,18 @@
             	location.reload();
         	 }
 
-          	function sendData(){
-            	alert("좌석이 예약되었습니다.");
-            	location.href="index.html";
+          	function seatOrder(){
+          		const url="<%=request.getContextPath()%>/seatOrderMove";
+        		const title="seatOrder1";
+        		const status="left=500px,top=100px,width=850px,height=650px";
+        		window.open("",title,status);
+        		
+         		seatOrder1.target=title;
+        		seatOrder1.action=url;
+        		seatOrder1.method="post";
+        		seatOrder1.submit(); 
+        		
+        		return false;
           	}
         </script>
         

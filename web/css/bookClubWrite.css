@@ -1,0 +1,63 @@
+section{
+	/* background-color: red; */
+	min-height:800px;
+}
+.announceTitle{
+	font-size: 25px;
+	margin-left: 20%;
+	margin-bottom: 50px;
+}
+#bookClubWrite-container{
+	position: absolute;
+	left: 41%;
+}
+#bookClubWrite-container table th,td{
+	padding: 10px;
+}
+.searchBook-td{
+	padding-left: 30px;
+}
+.searchBook-area{
+	/* border: black 1px solid; */
+	background-color: aqua;
+	width: 250px;
+	height: 350px; 
+
+}
+.searchBook-area img{
+	/* border: black 1px solid; */
+	background-color: lightgray;
+	width: 250px;
+	height: 350px;
+
+}
+.btn{
+
+    border: none;
+  
+    color: white;
+  
+    padding: 10px 20px;
+  
+    text-align: center;
+  
+    text-decoration: none;
+  
+    display: inline-block;
+  
+    font-size: 15px;
+  
+    margin: 4px 2px;
+  
+    cursor: pointer;
+    font-weight: bolder;
+}
+.writeSubmitBtn{
+    margin-top: 5%;
+    background-color: dodgerblue;
+}
+.cancelBtn{
+    margin-left: 5%;
+    background-color: firebrick;
+}
+  

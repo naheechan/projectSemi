@@ -38,6 +38,7 @@ public class SeatSendServlet extends HttpServlet {
 		seat.setUseTime(Integer.parseInt(request.getParameter("useTime")));
 		seat.setMemberCount(Integer.parseInt(request.getParameter("memberCount")));
 		seat.setSeatNo(request.getParameter("seatInfo"));
+		seat.setSeatPrice(Integer.parseInt(request.getParameter("seatPrice")));
 		
 		System.out.println(seat);
 		int result=0;

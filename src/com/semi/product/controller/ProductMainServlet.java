@@ -1,6 +1,7 @@
 package com.semi.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,9 +34,11 @@ public class ProductMainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		int cPage;//페이징처리하기 초기값을 설정
 		try {
 			cPage=Integer.parseInt(request.getParameter("cPage"));
+			System.out.println(cPage);
 		}catch(NumberFormatException e) {
 			cPage=1;
 		}
@@ -43,6 +46,7 @@ public class ProductMainServlet extends HttpServlet {
 		int numPerPage;
 		try {
 			numPerPage=Integer.parseInt(request.getParameter("numPerPage"));	
+			System.out.println(numPerPage);
 		}catch(NumberFormatException e) {
 			numPerPage=4;
 		}
@@ -56,7 +60,7 @@ public class ProductMainServlet extends HttpServlet {
 			pageBar="<span class='page-btn'>이전</span>";
 		}else {
 			pageBar="<a href='"+request.getContextPath()
-			+"/product/productmain?cPage="+(pageNo-1)+"'>이전</a>";
+			+"/product/productmain?cPage="+(pageNo-1)+"&numPerPage="+numPerPage+"'>이전</a>";
 		}
 		
 		while(!(pageNo>pageEnd||pageNo>totalPage)) {
@@ -64,7 +68,7 @@ public class ProductMainServlet extends HttpServlet {
 				pageBar+="<span class='pageno'>"+pageNo+"</span>";
 			}else {
 				pageBar+="<a href='"+request.getContextPath()
-				+"/product/productmain?cPage="+(pageNo)+"'>"+pageNo+"</a>";
+				+"/product/productmain?cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
@@ -73,9 +77,8 @@ public class ProductMainServlet extends HttpServlet {
 				pageBar+="<span class='page-btn'>다음</span>";
 		}else {
 			pageBar+="<a href='"+request.getContextPath()
-			+"/product/productmain?cPage="+(pageNo)+"'>다음</a>";
+			+"/product/productmain?cPage="+(pageNo)+"&numPerPage="+numPerPage+"'>다음</a>";
 		}
-		
 		List<Books> list=new BookService().selectBook(cPage,numPerPage);
 		if(!list.isEmpty()) {
 			System.out.println("값이 있음");
