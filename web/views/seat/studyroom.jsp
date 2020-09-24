@@ -36,7 +36,7 @@
             text-align: center;
             font-size: 15px;
             font-weight: bold;
-            color: rgb(79, 80, 82); 
+            color: rgb(70, 124, 88); 
             margin-top: 15px;
             margin-bottom: 15px;
         }
