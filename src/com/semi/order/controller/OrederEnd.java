@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.semi.buy.model.vo.Buylist;
 import com.semi.cartmodel.vo.Cart;
 import com.semi.order.model.service.OrderSerivce;
 import com.semi.product.model.vo.BooksJoin;
+
 
 
 
@@ -38,7 +40,7 @@ public class OrederEnd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+	
 		int userno=Integer.parseInt(request.getParameter("userno"));
 		//어떤 책을 구매했는지 cart테이블을 조회해서 가져온다
 		List<Cart>list=new OrderSerivce().selectproduct(userno);
@@ -52,16 +54,21 @@ public class OrederEnd extends HttpServlet {
 			bu.setPostcode(Integer.parseInt(request.getParameter("postcode")));
 			bu.setAddress(request.getParameter("address"));
 			bu.setExtraaddress(request.getParameter("extraaddress"));
+			bu.setRequest(request.getParameter("request"));
 			bu.setDetailaddress(request.getParameter("detailaddress"));
 			bu.setPhone(request.getParameter("tel"));
 			bu.setBookno(ck.getBookno());
 			blist.add(bu);
+			
 		}
-		
-	
-	
+		for(Buylist bb:blist) {
+			System.out.println(bb);
+		}
 		//가져왔으면 그책번호랑 주문정보를 주문테이블에 데이터를 넣는다
-		new OrderSerivce().insertorder(blist);
+		int result=new OrderSerivce().insertorder(blist);
+		if(result>0) {
+			request.getRequestDispatcher("/views/order/orderend.jsp").forward(request, response);
+		}
 		
 		
 
