@@ -10,6 +10,7 @@ public class Buylist {
 	private String extraaddress;
 	private String detailaddress;
 	private Date orderdate;
+	private String request;
 	private int memberno;
 	private String recipient;
 	private int bookno;	
@@ -59,6 +60,12 @@ public class Buylist {
 	public void setOrderdate(Date orderdate) {
 		this.orderdate = orderdate;
 	}
+	public String getRequest() {
+		return request;
+	}
+	public void setRequest(String request) {
+		this.request = request;
+	}
 	public int getMemberno() {
 		return memberno;
 	}
@@ -84,7 +91,7 @@ public class Buylist {
 		this.phone = phone;
 	}
 	public Buylist(int orderno, int totalprice, String address, int postcode, String extraaddress, String detailaddress,
-			Date orderdate, int memberno, String recipient, int bookno, String phone) {
+			Date orderdate, String request, int memberno, String recipient, int bookno, String phone) {
 		super();
 		this.orderno = orderno;
 		this.totalprice = totalprice;
@@ -93,17 +100,13 @@ public class Buylist {
 		this.extraaddress = extraaddress;
 		this.detailaddress = detailaddress;
 		this.orderdate = orderdate;
+		this.request = request;
 		this.memberno = memberno;
 		this.recipient = recipient;
 		this.bookno = bookno;
 		this.phone = phone;
 	}
-	@Override
-	public String toString() {
-		return "Buylist [orderno=" + orderno + ", totalprice=" + totalprice + ", address=" + address + ", postcode="
-				+ postcode + ", extraaddress=" + extraaddress + ", detailaddress=" + detailaddress + ", orderdate="
-				+ orderdate + ", memberno=" + memberno + ", recipient=" + recipient + ", bookno=" + bookno + ", phone="
-				+ phone + "]";
-	}
+	
+	
 
 }

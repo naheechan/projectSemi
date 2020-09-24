@@ -68,7 +68,8 @@
             </div>
           
         </div>
-
+	
+	
         
         <!-- 좋아요 -->
         <div id="wordingLike">
@@ -79,7 +80,15 @@
             <!-- 좋아요 개수 -->
             <div class="likeCnt"><%=likeCount%></div>
         </div>
-
+		
+		
+	<!-- 기능구현때문에 안보이게 넣어놓은 div들 -->
+	<div class="reply" style="display:none">
+		<textarea id="replyContent" cols="85" rows="3"></textarea>
+		<button class="btn replyWriteBtn">등록</button>
+	</div>
+     <!-- 기능구현때문에 안보이게 넣어놓은 div들 -->
+	
         <!-- 댓글 부분 -->
         <div class="wordingDetailComments">
           <div class="CommentsTitle">댓글</div>
@@ -96,12 +105,27 @@
                             </td>
                         </tr>
                     </table>
-                    <hr>
+                    
                 </div>
+                
+                <%if(listCom.size()<1 || listCom==null) {%>
+               		<div class="level1Comment">
+				     	<div class="commentNo" style="display:none"></div>
+				     	<div class="commentHeader" style="background-color:white">
+					      	<div class="commentWriter"></div>
+					      	<div class="commentRight" style="display:none">
+						       	<button class="btn replyBtn">답글 달기</button>
+						       	<div class="commentDate"></div>
+				      		</div>
+				      	</div>
+				     	<div class="commentContent"></div>
+				     </div> 
+                <%} %>
                 
                 <%for(WordingComment co : listCom) {%>
                 	<%if(co.getComLevel()==1) {%>
 		                <div class="level1Comment">
+		                	<div class="commentNo" style="display:none"><%=co.getWordingComNo()%></div>
 		                	<div class="commentHeader">
 			                	<div class="commentWriter"><%=co.getWriter()%></div>
 			                	<div class="commentRight">
@@ -123,7 +147,7 @@
                 	<%} %>
                 <%} %>
           </div>
-
+			
       </div>
       </div>
     </section>
@@ -202,11 +226,14 @@
 					console.log("ajax갔다왔음")
 					console.log(data);
 					if(data!=null) {
-						let com = $(".level1Comment").first().clone();
+						let com = $(".level1Comment").first().clone(true);
+						com.find(".commentHeader").css("background-color","#EAEAEA");
 						com.find(".commentWriter").html(data["writer"]);
 						com.find(".commentDate").html(data["comDate"]);
 						com.find(".commentContent").html(data["comContent"]);
-						$(".Comments").append(com);
+						com.find(".commentNo").html(data["wordingComNo"]);
+						com.find(".commentRight").css("display","flex");
+						$(".writeComments").after(com);
 					}else {
 						alert("댓글등록 실패");
 					}
@@ -217,16 +244,72 @@
 			
 		});
 		
+		
+		
 		$(".commentHeader").hover(function() {
 			$(this).find(".replyBtn").css("display","flex");
 		}, function() {
 			$(this).find(".replyBtn").css("display","none");
 		});
 		
+		
+		
 		//대댓글 창 띄우기
 		$(".replyBtn").click(function(e) {
+			let replyForm = $(".reply").first().clone(true);
+			$(".reply").first().remove();
+			replyForm.css("display","flex");
+			$(this).closest(".level1Comment").after(replyForm);
+		});
+		
+		
+		
+		//대댓글 등록 ajax
+		$(".replyWriteBtn").click(function(e) {
+			
+			let parentCom = $(".reply").prev();
+			console.log(parentCom);
+			console.log(parentCom.nextAll(".level1Comment").first());
+
+			$.ajax({
+				url:"<%=request.getContextPath()%>/wording/writeComent",
+				type:"post",
+				data:{
+					comLevel:2,
+					comContent:$("#replyContent").val(),
+					writer:"<%=logginedMember.getMemberId()%>",
+					memberNo:"<%=logginedMember.getMemberNo()%>",
+					wordingNo:"<%=w.getWordingNo()%>",
+					refComNo:$(".reply").prev().find(".commentNo").html()
+				},
+				dataType:"json",
+				success:function(data){
+					console.log("ajax갔다왔음(reply)");
+					console.log(data);
+					if(data!=null) {
+						let re = $(".level2Comment").first().clone();
+		
+						re.find(".commentWriter").html(data["writer"]);
+						re.find(".commentDate").html(data["comDate"]);
+						re.find(".commentContent").html(data["comContent"]);
+						if(parentCom.nextAll(".level1Comment").first().length) {
+							parentCom.nextAll(".level1Comment").first().before(re);
+						}else {
+							parentCom.nextAll(".level2Comment").last().after(re);	
+						}
+					}else {
+						alert("댓글등록 실패");
+					}
+					$("#replyContent").val("");
+					$(".reply").css("display","none");
+				}
+				
+			});
 			
 		});
+		
+		
+		
 		
 		
 	})

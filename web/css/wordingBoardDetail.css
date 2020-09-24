@@ -212,6 +212,9 @@ hr{
     /* background-color: palegoldenrod; */
 
 }
+.writeComments{
+	margin-bottom: 10%;
+}
 .writeComments div{
     display: inline-block;
     /* background-color: royalblue; */
@@ -296,4 +299,15 @@ hr{
 	padding-top: 10px;
 	padding-bottom: 35px;
 }
-
+.reply{
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 20px;
+}
+.replyWriteBtn{
+	background-color: navy;
+	font-size: 15px;
+}
+.level2Comment{
+	margin-left: 15%;
+}

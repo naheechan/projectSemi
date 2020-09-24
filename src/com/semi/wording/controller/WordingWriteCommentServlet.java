@@ -38,6 +38,8 @@ public class WordingWriteCommentServlet extends HttpServlet {
 		com.setWriter(request.getParameter("writer"));
 		com.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
 		com.setWordingNo(Integer.parseInt(request.getParameter("wordingNo")));
+		String refComNo = request.getParameter("refComNo");
+		com.setRefComNo(refComNo==null?0:Integer.parseInt(refComNo));
 		
 		com = new WordingService().insertWordingComment(com);
 		
