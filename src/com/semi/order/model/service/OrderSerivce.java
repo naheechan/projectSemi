@@ -19,10 +19,11 @@ public class OrderSerivce {
 		return list;
 	}
 
-	public void insertorder(Buylist bu, List<Cart> list) {
-		Connection conn=getConnection();
-		int result=dao.insertorder(conn,bu,list);
+	public void insertorder(List<Buylist> blist) {
+		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }
