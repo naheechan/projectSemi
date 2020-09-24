@@ -164,6 +164,7 @@ position: absolute;
 }
 #foottext{
 	position: relative;
+	height: 2.5rem;
 }
 #section_text {
   height: 20vh;
