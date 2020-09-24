@@ -27,5 +27,24 @@ $(function() {
 	});
 	
 	
+	
+	$("#wordingPic").change(function(){
+		console.log(this.files);
+
+		for(let i=0; i<this.files.length; i++) {
+			if(this.files[i].type.includes("image")) {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					$(".backPicTd").css("background-color","white");
+					let img = $("<img>").attr({"src":e.target.result,"width":"600px","height":"400px"});
+					$(".imgAndText").children('img').remove();
+					$(".imgAndText").prepend(img);
+				}
+				reader.readAsDataURL(this.files[i]);
+			}
+		}
+	});
+		
+	
 })
 	
