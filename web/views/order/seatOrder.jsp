@@ -1,14 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
-     
-<%List<Seat> list=(List)request.getAttribute("list");
-int totalprice=0;
+     <%@page import="com.semi.product.model.vo.Books,com.semi.seat.model.vo.Seat"%>
 
-for(Books bk:list){
-	totalprice+=bk.getPrice();
-}
-%>
+
 <%@ include file="/views/common/header.jsp"%>
 <section>
 <style>
@@ -70,7 +64,7 @@ for(Books bk:list){
   <hr>
   	<div id="cartcontainer">
     <table id="carttable">
-     <%for(Books bk:list){%>
+     
       <tr>
         <th colspan="2">상품명</th>
         <th class="price">가격</th>
@@ -78,17 +72,17 @@ for(Books bk:list){
       </tr>
       <tr>
         <tr>
-        <td><img  name="img"src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
-        <td><%=bk.getTitle() %></td>
-       	<td><%=bk.getPrice()%>원</td>
+        <td></td>
+        <td></td>
+       	<td></td>
         <td><input type="text" readonly="readonly"></td>
       </tr>
       
-      <%} %>
+
     </table>
     <hr>
     <div id="addresstxt">
-      <div id="totaltxt">총금액 :<%=totalprice%>원</div>
+      <div id="totaltxt"></div>
     <table>
       <tr>
         <td>주문인</td>

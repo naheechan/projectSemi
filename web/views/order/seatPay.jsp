@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.semi.seat.model.vo.Seat"%>
+<% 
+	Seat s=(Seat)request.getAttribute("seat");
+	String MemberName=(String)request.getAttribute("MemberName");
+%>
 <!DOCTYPE html>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
@@ -12,13 +17,13 @@
 	    pg : 'inicis', // version 1.1.0부터 지원.
 	    pay_method : 'card',
 	    merchant_uid : 'merchant_' + new Date().getTime(),
-	    name : '주문명:결제테스트',
-	    amount : 10,
+	    name : '<%=s.getSeatNo()%>',
+	    amount : <%=s.getSeatPrice()%>,
 	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456',
+	    buyer_name : '<%=MemberName%>',
+	    buyer_tel : '',
+	    buyer_addr : '',
+	    buyer_postcode : '',
 	    m_redirect_url : 'http://localhost:9090/Semi/views/studyroom.jsp'
 	}, function(rsp) {
 	    if ( rsp.success ) {

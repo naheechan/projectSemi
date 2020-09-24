@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.seat.model.vo.Seat;
+
 /**
  * Servlet implementation class SeatOrderServlet
  */
@@ -30,8 +32,21 @@ public class SeatOrderMoveServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 결제 페이지로 이동
-			RequestDispatcher rd=request.getRequestDispatcher("/views/order/seatOrder.jsp");
-			rd.forward(request,response);
+		String MemberName=request.getParameter("membername");
+		Seat seat=new Seat();
+		seat.setMemberNo(Integer.parseInt(request.getParameter("memberNo1")));
+		seat.setSeatDate(request.getParameter("seatDate1"));
+		seat.setSeatTime(Integer.parseInt(request.getParameter("seatTime1")));
+		seat.setUseTime(Integer.parseInt(request.getParameter("useTime1")));
+		seat.setMemberCount(Integer.parseInt(request.getParameter("memberCount1")));
+		seat.setSeatNo(request.getParameter("seatInfo1"));
+		seat.setSeatPrice(Integer.parseInt(request.getParameter("seatPrice1")));
+		
+		request.setAttribute("seat",seat);
+		request.setAttribute("MemberName",MemberName);
+		System.out.println(seat);
+		RequestDispatcher rd=request.getRequestDispatcher("/views/order/seatPay.jsp");
+		rd.forward(request,response);
 	}
 
 	/**
