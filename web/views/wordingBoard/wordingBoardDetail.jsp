@@ -79,7 +79,11 @@
             <!-- 좋아요 개수 -->
             <div class="likeCnt"><%=likeCount%></div>
         </div>
-
+		
+	<div class="reply" style="display:none">
+		<textarea id="replyContent" cols="85" rows="3"></textarea>
+		<button class="btn replyWriteBtn">등록</button>
+	</div>
         <!-- 댓글 부분 -->
         <div class="wordingDetailComments">
           <div class="CommentsTitle">댓글</div>
@@ -96,12 +100,13 @@
                             </td>
                         </tr>
                     </table>
-                    <hr>
+                    
                 </div>
                 
                 <%for(WordingComment co : listCom) {%>
                 	<%if(co.getComLevel()==1) {%>
 		                <div class="level1Comment">
+		                	<div class="commentNo" style="display:none"><%=co.getWordingComNo()%></div>
 		                	<div class="commentHeader">
 			                	<div class="commentWriter"><%=co.getWriter()%></div>
 			                	<div class="commentRight">
@@ -123,7 +128,7 @@
                 	<%} %>
                 <%} %>
           </div>
-
+			
       </div>
       </div>
     </section>
@@ -206,7 +211,7 @@
 						com.find(".commentWriter").html(data["writer"]);
 						com.find(".commentDate").html(data["comDate"]);
 						com.find(".commentContent").html(data["comContent"]);
-						$(".Comments").append(com);
+						$(".writeComments").after(com);
 					}else {
 						alert("댓글등록 실패");
 					}
@@ -225,8 +230,54 @@
 		
 		//대댓글 창 띄우기
 		$(".replyBtn").click(function(e) {
+			let replyForm = $(".reply").first().clone(true);
+			$(".reply").first().remove();
+			replyForm.css("display","flex");
+			$(this).closest(".level1Comment").after(replyForm);
+		});
+		
+		
+		
+		//대댓글 등록 ajax
+		$(".replyWriteBtn").click(function(e) {
+			
+			let parentNextCom = $(".reply").prev().nextAll(".level1Comment").first();
+
+			$.ajax({
+				url:"<%=request.getContextPath()%>/wording/writeComent",
+				type:"post",
+				data:{
+					comLevel:2,
+					comContent:$("#replyContent").val(),
+					writer:"<%=logginedMember.getMemberId()%>",
+					memberNo:"<%=logginedMember.getMemberNo()%>",
+					wordingNo:"<%=w.getWordingNo()%>",
+					refComNo:$(".reply").prev().find(".commentNo").html()
+				},
+				dataType:"json",
+				success:function(data){
+					console.log("ajax갔다왔음(reply)");
+					console.log(data);
+					if(data!=null) {
+						let com = $(".level2Comment").first().clone();
+						com.find(".commentWriter").html(data["writer"]);
+						com.find(".commentDate").html(data["comDate"]);
+						com.find(".commentContent").html(data["comContent"]);
+						parentNextCom.before(com); 
+					}else {
+						alert("댓글등록 실패");
+					}
+					$("#replyContent").val("");
+					$(".reply").css("display","none");
+				}
+				
+			});
 			
 		});
+		
+		
+		
+		
 		
 		
 	})
