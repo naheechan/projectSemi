@@ -32,7 +32,8 @@ public class SeatOrderMoveServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 결제 페이지로 이동
-		String MemberName=request.getParameter("membername");
+		String MemberName=request.getParameter("memberName1");
+		String Email=request.getParameter("email");
 		Seat seat=new Seat();
 		seat.setMemberNo(Integer.parseInt(request.getParameter("memberNo1")));
 		seat.setSeatDate(request.getParameter("seatDate1"));
@@ -44,7 +45,9 @@ public class SeatOrderMoveServlet extends HttpServlet {
 		
 		request.setAttribute("seat",seat);
 		request.setAttribute("MemberName",MemberName);
+		request.setAttribute("Email",Email);
 		System.out.println(seat);
+		System.out.println(MemberName);
 		RequestDispatcher rd=request.getRequestDispatcher("/views/order/seatPay.jsp");
 		rd.forward(request,response);
 	}

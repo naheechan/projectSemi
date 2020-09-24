@@ -219,15 +219,17 @@
       	
        	<!-- 결제를 위한 창 -->
       	<form name="seatOrder1" action="">
-      	<input type="text" name="memberName1" id="memberNo1" class="seatInfo" value="<%=logginedMember.getMemberName()%>">
-      	<input type="text" name="memberNo1" id="memberNo1" class="seatInfo" value="<%=logginedMember.getMemberNo()%>">
-      	<input type="text" name="seatDate1" id="seatDate1" class="seatInfo" value="<%=seatDate%>">
-      	<input type="text" name="seatTime1" id="seatTime1" class="seatInfo" value="<%=seatTime%>">
-        <input type="text" name="useTime1" id="useTime1" class="seatInfo" value="<%=useTime%>">
-        <input type="text" name="memberCount1" id="memberCount1" class="seatInfo" value="<%=memberCount%>">
+      	<input type="text" name="memberName1" id="memberName1" class="seatInfo1" value="<%=logginedMember.getMemberName()%>">
+      	<input type="text" name="email" id="email" class="seatInfo1" value="<%=logginedMember.getEmail()%>">
+      	<input type="text" name="memberNo1" id="memberNo1" class="seatInfo1" value="<%=logginedMember.getMemberNo()%>">
+      	<input type="text" name="seatDate1" id="seatDate1" class="seatInfo1" value="<%=seatDate%>">
+      	<input type="text" name="seatTime1" id="seatTime1" class="seatInfo1" value="<%=seatTime%>">
+        <input type="text" name="useTime1" id="useTime1" class="seatInfo1" value="<%=useTime%>">
+        <input type="text" name="memberCount1" id="memberCount1" class="seatInfo1" value="<%=memberCount%>">
         <input type="text" name="seatInfo1" id="seatInfo1" value="A1">
-        <input type="text" name="seatPrice1" id="seatPrice1" value="1000">   
+        <input type="text" name="seatPrice1" id="seatPrice1" value="1000">
       	</form> 
+        <input type="text" name="result" id="result" value="false">
       
      
       	<!-- 좌석 정보 가져오는 텍스트 (히든) -->
@@ -283,6 +285,8 @@
         	 }
 
           	function seatOrder(){
+        		let result=document.getElementById('result').value;
+        		console.log("seatOrder함수 :"+result);
           		const url="<%=request.getContextPath()%>/seatOrderMove";
         		const title="seatOrder1";
         		const status="left=500px,top=100px,width=850px,height=650px";
@@ -291,9 +295,17 @@
          		seatOrder1.target=title;
         		seatOrder1.action=url;
         		seatOrder1.method="post";
-        		seatOrder1.submit(); 
+        		seatOrder1.submit();
+        		while(true){
+        			return false;
+        			console.log("a");
+        			if(result==true){
+						return true;
+						console.log("b");
+        			}
+        		}
+
         		
-        		return false;
           	}
         </script>
         
