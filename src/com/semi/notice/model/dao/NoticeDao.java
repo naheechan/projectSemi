@@ -38,6 +38,7 @@ public class NoticeDao {
 				Notice n = new Notice();
 				n.setNoticeNo(rs.getInt("notice_No"));
 				n.setNoticeTitle(rs.getString("notice_Title"));
+				n.setNoticeWriter(rs.getString("notice_writer"));
 				n.setNoticeContent(rs.getString("notice_content"));
 				n.setNoticeDate(rs.getDate("notice_Date"));
 				n.setNoticeViews(rs.getInt("notice_Views"));
@@ -87,6 +88,7 @@ public class NoticeDao {
 				n = new Notice();
 				n.setNoticeNo(rs.getInt("notice_no"));
 				n.setNoticeTitle(rs.getString("notice_title"));
+				n.setNoticeWriter(rs.getNString("notice_writer"));
 				n.setNoticeContent(rs.getString("notice_content"));
 				n.setNoticeDate(rs.getDate("notice_date"));
 				n.setFilepath(rs.getString("filepath"));
@@ -108,8 +110,10 @@ public class NoticeDao {
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("insertNotice"));
 			pstmt.setString(1, n.getNoticeTitle());
-			pstmt.setString(2, n.getNoticeContent());
-			pstmt.setString(3, n.getFilepath());
+			pstmt.setString(2, n.getNoticeWriter());
+			pstmt.setString(3, n.getNoticeContent());
+			pstmt.setString(4, n.getFilepath());
+		
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

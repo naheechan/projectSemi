@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.notice.model.service.NoticeService;
+import com.semi.notice.model.vo.NoticeComment;
+
 /**
  * Servlet implementation class NoticeCommentInsertServlet
  */
@@ -27,7 +30,22 @@ public class NoticeCommentInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		int noticeCommentLevel=Integer.parseInt(request.getParameter("noticeCommentLevel"));
+		String noticeComment=request.getParameter("noticeCommenr");
+		
+		NoticeComment nc= new NoticeComment(0, 0, null, null, null, 0, 0);
+		
+		int result=new NoticeService().insertNoticeComment(nc);
+		String msg="";
+		String loc="/notice/noticView?no="+noticeComment;
+		if(result>0) {
+			msg="댓글등록성공";
+		}else {
+			msg="댓글등록실패";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
 	/**
