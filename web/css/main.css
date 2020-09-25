@@ -46,7 +46,7 @@ header {
   visibility : visible;
   box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
   padding: 20px 0;
-  padding-bottom:50px;
+  
 }
 
 #mainimage {
@@ -153,15 +153,21 @@ input[type="text"] {
 position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;
+  height: auto;
   background-color: #797a7e;
   text-align: center;
+  display:inline-block;
+  
 
   /* footer바닥에 고정 */
   /* position: absolute;
   bottom: 0;
   width: 100%;
   height: 2.5rem; */
+}
+#footer_container >p {
+	padding-bottom:15px;
+	
 }
 #foottext{
 	position: relative;

@@ -100,6 +100,7 @@ a {
 	justify-content: space-around;
 	margin: 0 auto;
 	width: 960px;
+	margin-top:30px;
 }
 
 .product_list .author {
@@ -153,6 +154,7 @@ a {
 .item:hover {
 	background-color: red;
 }
+
 
 .maincategory {
 	border: 1px solid black;
