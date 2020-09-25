@@ -41,11 +41,15 @@
             margin-bottom: 15px;
         }
         .choicedate {
-          display: inline-block;
-          margin-left: 27%;
+          display : flex;
+          justify-content: center;
+          flex-wrap:nowrap;
         }
 
         .datebtn {
+          display: inline-block;
+          float: left;
+          margin-left: 10px;
           background-color: rgb(121,122,126);
           color: rgb(247,242,231);
           padding: 16px;
@@ -60,11 +64,15 @@
         }
 
         .choicetime {
-          display: inline-block;
-          margin-left: 31%;
+          display : flex;
+          justify-content: center;
+          flex-wrap:nowrap;
         }
         
         .timebtn {
+          display: inline-block;
+          float: left;
+          margin-left: 10px;
           background-color: rgb(121,122,126);
           color: rgb(247,242,231);
           padding: 16px;
@@ -84,11 +92,15 @@
         
         
   		.choiceUseTime {
-          display: inline-block;
-          margin-left: 34.7%;
+          display : flex;
+          justify-content: center;
+          flex-wrap:nowrap;
         }
 
         .useTime {
+          display: inline-block;
+          float: left;
+          margin-left: 10px;
           background-color: rgb(121,122,126);
           color: rgb(247,242,231);
           padding: 16px;
@@ -103,11 +115,15 @@
         }
         
         .choiceMemberCount {
-          display: inline-block;
-          margin-left: 43.5%;
+          display : flex;
+          justify-content: center;
+          flex-wrap:nowrap;
         }
 
         .memberCount {
+          display: inline-block;
+          float: left;
+          margin-left: 10px;
           background-color: rgb(121,122,126);
           color: rgb(247,242,231);
           padding: 16px;
@@ -120,16 +136,22 @@
         .memberCount:hover, .memberCount:focus {
           background-color: rgb(79, 80, 82); 
         }
-        
+        .btn_SeatList_div{
+          display : flex;
+          justify-content: center;
+          flex-wrap:nowrap;
+        }
         
         #btn_SeatList{
-          background-color: rgb(203, 230, 212);
-          margin-left: 47.4%;
+          display: inline-block;
+          float: left;
           margin-top: 30px;
-          margin-bottom: 40px;
+          background-color: rgb(203, 230, 212);
           color: rgb(79, 80, 82);
-          padding: 16px;
-          font-size: 14px;
+          padding: 17px;
+          font-size: 16px;
+          font-weight: bold;
+          text-shadow: 1px;
           border: none;
           cursor: pointer;
           border-radius:10px;
@@ -222,9 +244,9 @@
 			<input type="text" name="memberCount" id="memberCount" class="seatInfo" value="0">
 	 	</div>
 		
-		
+	<div class="btn_SeatList_div">	
 		<button id="btn_SeatList">좌석 조회</button>
-		
+	</div>	
 		
 			
 		<!-- 좌석 보기 Ajax -->	
