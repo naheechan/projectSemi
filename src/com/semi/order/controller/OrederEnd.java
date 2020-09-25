@@ -59,7 +59,6 @@ public class OrederEnd extends HttpServlet {
 			bu.setPhone(request.getParameter("tel"));
 			bu.setBookno(ck.getBookno());
 			blist.add(bu);
-			
 		}
 		for(Buylist bb:blist) {
 			System.out.println(bb);
