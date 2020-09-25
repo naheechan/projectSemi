@@ -43,7 +43,7 @@ public class Interest {
 
 	@Override
 	public String toString() {
-		return "interest [memberCategoryNo=" + memberCategoryNo + ", memberNo=" + memberNo + ", categoryNo="
+		return "Interest [memberCategoryNo=" + memberCategoryNo + ", memberNo=" + memberNo + ", categoryNo="
 				+ categoryNo + "]";
 	}
 	
