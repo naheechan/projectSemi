@@ -73,8 +73,7 @@ public class OrederEnd extends HttpServlet {
 			int cleancart=new CartService().cleancart(userno);
 			if(cleancart>0) {
 				session.removeAttribute("booklist");
-				
-				response.sendRedirect(request.getContextPath());
+				request.getRequestDispatcher("/views/order/orderback.jsp").forward(request, response);
 			}
 			
 		}
