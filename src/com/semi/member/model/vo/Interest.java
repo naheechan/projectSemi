@@ -1,16 +1,16 @@
 package com.semi.member.model.vo;
 
-public class interest {
+public class Interest {
 
 	int memberCategoryNo;
 	int memberNo;
 	String categoryNo;
 	
-	public interest() {
+	public Interest() {
 		// TODO Auto-generated constructor stub
 	}
 
-	interest(int memberCategoryNo, int memberNo, String categoryNo) {
+	Interest(int memberCategoryNo, int memberNo, String categoryNo) {
 		super();
 		this.memberCategoryNo = memberCategoryNo;
 		this.memberNo = memberNo;

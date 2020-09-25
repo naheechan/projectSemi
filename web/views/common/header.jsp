@@ -62,7 +62,7 @@
 					</li>
 					
 					<li><a
-						href="<%=request.getContextPath()%>/myinfomove?userId=<%=logginedMember.getMemberId()%>"><i
+						href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>"><i
 							class="fas fa-user"></i>MyInfo</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout"><i
 							class="fas fa-user"></i>LogOut</a></li>
