@@ -156,6 +156,7 @@ td {
 
 		<script>
 		
+		
 			function sample6_execDaumPostcode() {
 				new daum.Postcode(
 						{
@@ -214,11 +215,15 @@ td {
 						}).open();
 			}
 			function buy() {
-				console.log("버튼눌림");
+				let name=[]
+				<%for(BooksJoin bk:list){%>
+				name+=["<%=bk.getTitle()%>"]
+				<%}%>
+				console.log(name);
 				let frm=document.querySelector("#buyfrm")
 			     let price = document.querySelector("#totalprice").value;
 				 let username = document.querySelector("#username").innerText;
-			      console.log(username);
+			     
 			      let tel = document.querySelector("#tel").value;
 			      let email="<%=logginedMember.getEmail()%>"
 			      let post=document.querySelector("#sample6_postcode").value;
@@ -229,7 +234,7 @@ td {
 			          pg: "html5_inicis",
 			          pay_method: "card",
 			          merchant_uid: "merchant_" + new Date().getTime(),
-			          name: "주문결제테스트",
+			          name: name,
 			          amount: /* price */"1000",
 			          buyer_email: email,
 			          buyer_name: username,
