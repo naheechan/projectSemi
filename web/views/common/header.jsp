@@ -39,7 +39,7 @@
 				%>
 				<div id="header_nav">
 					<ul>
-						<li class="searchbtn"><i class="fas fa-search"></i></li>
+						
 						<li><a href="<%=request.getContextPath()%>/login"><i
 								class="fas fa-user"></i>Login</a></li>
 						<li><a href="<%=request.getContextPath()%>/enrollMember"><i
@@ -60,7 +60,7 @@
 							<%=logginedMember.getMemberId()%>님
 						<p>
 					</li>
-					<li class="searchbtn"><i class="fas fa-search"></i></li>
+					
 					<li><a
 						href="<%=request.getContextPath()%>/myinfomove?userId=<%=logginedMember.getMemberId()%>"><i
 							class="fas fa-user"></i>MyInfo</a></li>
