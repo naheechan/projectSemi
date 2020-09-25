@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
-	List<BooksJoin> list = (List) request.getAttribute("booklist");
+	List<BooksJoin> list = (List) session.getAttribute("booklist");
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {

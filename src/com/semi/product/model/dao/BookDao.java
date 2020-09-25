@@ -60,7 +60,7 @@ public class BookDao {
 		}
 		return list;
 	}
-	public Books addcartselect(Connection conn, int no) {
+	/*public Books addcartselect(Connection conn, int no) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		Books bk=null;
@@ -88,7 +88,7 @@ public class BookDao {
 			close(pstmt);
 		}
 		return bk;
-	}
+	}*/
 	public int selectBookCount(Connection conn) {
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;

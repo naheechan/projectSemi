@@ -14,7 +14,7 @@ import com.semi.cartmodel.vo.Cart;
 import com.semi.product.model.vo.Books;
 import com.semi.product.model.vo.BooksJoin;
 
-
+import oracle.net.aso.p;
 
 import static com.semi.common.JDBCTemplate.close;
 
@@ -124,6 +124,21 @@ public class CartDao {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+	//주문을 완료하면 장바구니를 비워주는 로직
+	public int cleancart(Connection conn, int userno) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("cleancart"));
+			pstmt.setInt(1, userno);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		return result;
 	}
 

@@ -15,7 +15,6 @@ import static com.semi.common.JDBCTemplate.rollback;
 
 public class CartService {
 	private CartDao dao=new CartDao();
-
 	public int insertnumber(int no, int userno, int count) {
 		Connection conn=getConnection();
 		int result=dao.insertnumber(conn,no,userno,count);
@@ -45,6 +44,14 @@ public class CartService {
 	public int deletecart(int[] check) {
 		Connection conn=getConnection();
 		int result=dao.cartdelet(conn,check);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		return result;
+	}
+
+	public int cleancart(int userno) {
+		Connection conn=getConnection();
+		int result=dao.cleancart(conn,userno);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		return result;

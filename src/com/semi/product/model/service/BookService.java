@@ -19,14 +19,14 @@ public class BookService {
 		return list;
 	}
 
-	public Books addcartselect(int no) {
+	/*public Books addcartselect(int no) {
 		Connection conn=getConnection();
 		Books bk=dao.addcartselect(conn,no);
 		close(conn);
 		return bk;
 		
 		
-	}
+	}*/
 
 	public int selectBookCount() {
 		Connection conn=getConnection();

@@ -241,14 +241,14 @@ a {
 					<dd class="author" name="author"><%=bk.getAuthor()%>(지은이)
 					</dd>
 					<dd class="btm">
-						<div>00구매</div>
+						
 						<div>
-							<a href=""><img src="" alt="" /> 찜 21</a>
-						</div>
-						<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다--> <!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
+							<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다--> <!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
 							<button
 								onclick="cart(<%=bk.getBookNo()%>,<%=logginedMember.getMemberNo()%>)">장바구니
 							</button></span>
+						</div>
+						
 					</dd>
 				</dl>
 			</li>
@@ -310,7 +310,7 @@ span.page-btn {
       checkcart.method = "post";
       checkcart.cproductno.value=num;
       checkcart.memberno.value=userno;
-      console.log(checkcart);
+    
       checkcart.submit();
     }
     $("input:radio[name=categoryfrm]").on('change',function(){
