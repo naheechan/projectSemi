@@ -120,7 +120,7 @@ td {
 		
 	}
 	//나중에 ajax꼭 사용해보기
-	<%-- function order() {
+	 function order() {
 		let check1=document.querySelector("#carttable>tbody");
 		if(check1==null){
 			alert("주문할 상품을 담아주세요. ");
@@ -129,7 +129,7 @@ td {
 		}
 		location.href='<%=request.getContextPath()%>/cart/order'
 	}
-	$("#down").click(e=>{
+	<%-- $("#down").click(e=>{
 		
 	 $.ajax({
 			type:"post",
@@ -147,7 +147,7 @@ td {
 	function error() {
 		alert(" ajax연결 실패");	
 		
-	} --%>
+	} --%> 
 	</script>
 </section>
 <%@ include file="/views/common/footer.jsp"%>

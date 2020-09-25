@@ -10,6 +10,7 @@
 			totalprice += bk.getPrice();
 		}
 	}
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
