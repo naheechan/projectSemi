@@ -73,10 +73,7 @@ public class OrederEnd extends HttpServlet {
 			int cleancart=new CartService().cleancart(userno);
 			if(cleancart>0) {
 				session.removeAttribute("booklist");
-				response.setDateHeader("Expires", 0);
-				response.setHeader("Pragma", "no-cache");
-				if (request.getProtocol().equals("HTTP/1.1")) {
-				response.setHeader("Cache-Control", "no-cache");}
+				
 				response.sendRedirect(request.getContextPath());
 			}
 			

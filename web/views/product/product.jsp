@@ -104,7 +104,7 @@ a {
 
 .product_list .author {
 	position: absolute;
-	font-size: 14px;
+	font-size: 11px;
 	left: 80px;
 	bottom: 60px;
 	color: #1a1a1a;
@@ -233,7 +233,7 @@ a {
 					</dt>
 					<dd class="img" name="img">
 						<a href=""><img id="img" width="200" height="250"
-							src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"
+							src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"
 							alt="" /></a>
 					</dd>
 					<dd class="price" id="price" name="price"><%=bk.getPrice()%>원
