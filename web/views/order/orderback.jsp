@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <section>
-</sction>
+</section>
 <%@ include file="/views/common/footer.jsp"%>

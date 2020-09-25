@@ -68,6 +68,7 @@ public class OrderDao {
 				pstmt.setString(7, bk.getRecipient());
 				pstmt.setInt(8, bk.getMemberno());
 				pstmt.setInt(9, bk.getBookno());
+				pstmt.setInt(10, bk.getCount());
 				result=pstmt.executeUpdate();
 			}
 			

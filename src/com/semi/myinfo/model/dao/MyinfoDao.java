@@ -1,4 +1,4 @@
-package com.semi.myinfo.dao;
+package com.semi.myinfo.model.dao;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,8 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import static com.semi.common.JDBCTemplate.close;
+
+import com.semi.buy.model.vo.Buylist;
+import com.semi.buy.model.vo.BuylistJoin;
 import com.semi.member.model.vo.Member;
-import com.semi.myinfo.vo.BuylistDetail;
+
 
 public class MyinfoDao {
 	
@@ -32,7 +35,6 @@ private Properties prop=new Properties();
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("updateMember"));
-			
 			pstmt.setString(1, m.getMemberPwd());
 			pstmt.setString(2, m.getMemberName());
 //			pstmt.setString(4, m.getGender());
@@ -70,36 +72,7 @@ private Properties prop=new Properties();
 		return result;	
 	}
 	
-	public List<BuylistDetail> selectBuyList(Connection conn, int cPage, int numPerPage) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		List<BuylistDetail> list=new ArrayList();
-		
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("selectBuyList"));
-			pstmt.setInt(1, (cPage-1)*numPerPage+1);
-			pstmt.setInt(2, cPage*numPerPage);
-			rs=pstmt.executeQuery();
-			while(rs.next()) {
-				BuylistDetail b=new BuylistDetail();
-				b.setMemberNo(rs.getInt("MEMBER_NO"));
-				b.setOrderNo(rs.getInt("ORDER_NO"));
-				b.setTotalPrice(rs.getInt("TOTALPRICE"));
-				b.setPostCode(rs.getInt("POSTCODE"));
-				b.setAddress(rs.getString("ADDRESS"));
-				b.setExtraAddress(rs.getString("EXTRAADDRESS"));
-				b.setDetailAddress(rs.getString("DETAILADDRESS"));
-				b.setDeliveryRequest(rs.getString("DELIVERY_REQUEST"));
-				b.setOrderDate(rs.getDate("ORDER_DATE"));
-				list.add(b);
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return list;
-	}
+	
 	
 	
 	public int selectBoardCount(Connection conn) {
@@ -118,6 +91,41 @@ private Properties prop=new Properties();
 			close(rs);
 			close(pstmt);
 		}return result;
+	}
+
+	public List<BuylistJoin> selectbuylist(Connection conn, int userno) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		BuylistJoin by=null;
+		List<BuylistJoin>list=new ArrayList<BuylistJoin>();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectbuylist"));
+			pstmt.setInt(1, userno);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				by=new BuylistJoin();
+				by.setOrderno(rs.getInt("order_no"));
+				by.setTotalprice(rs.getInt("totalprice"));
+				by.setAddress(rs.getString("address"));
+				by.setPostcode(rs.getInt("postcode"));
+				by.setExtraaddress(rs.getString("extraaddress"));
+				by.setDetailaddress(rs.getString("detailaddress"));
+				by.setRequest(rs.getString("deliveryrequest"));
+				by.setOrderdate(rs.getDate("order_date"));
+				by.setRecipient(rs.getString("recipient"));
+				by.setMemberno(rs.getInt("member_no"));
+				by.setBookno(rs.getInt("book_no"));
+				by.setCount(rs.getInt("count"));
+				by.setTitle(rs.getString("book_title"));
+				by.setBookimg(rs.getString("book_img"));
+				list.add(by);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return list;
 	}
 	
 }

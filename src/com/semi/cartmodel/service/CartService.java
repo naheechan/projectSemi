@@ -33,6 +33,13 @@ public class CartService {
 		
 	}
 
+	public List<BooksJoin> selectbook(int userno, int count) {
+		Connection conn=getConnection();
+		List<BooksJoin> list=dao.selectbook(conn,userno,count);
+		close(conn);
+		return list;
+		
+	}
 	public List<BooksJoin> selectbook(int userno) {
 		Connection conn=getConnection();
 		List<BooksJoin> list=dao.selectbook(conn,userno);

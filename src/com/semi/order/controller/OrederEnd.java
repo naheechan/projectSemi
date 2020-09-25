@@ -60,6 +60,7 @@ public class OrederEnd extends HttpServlet {
 			bu.setRequest(request.getParameter("request"));
 			bu.setDetailaddress(request.getParameter("detailaddress"));
 			bu.setPhone(request.getParameter("tel"));
+			bu.setCount(Integer.parseInt(request.getParameter("count")));
 			bu.setBookno(ck.getBookno());
 			blist.add(bu);
 		}

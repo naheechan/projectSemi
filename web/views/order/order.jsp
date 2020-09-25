@@ -99,7 +99,8 @@ td {
 						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"></td>
 					<td><%=bk.getTitle()%></td>
 					<td><%=bk.getPrice()%>원</td>
-					<td><input type="text" readonly="readonly"></td>
+					<td><input type="hidden" name="count" value="<%=bk.getCount()%>">
+					<%=bk.getCount()%></td>
 				</tr>
 
 				<%
@@ -236,7 +237,7 @@ td {
 			          pay_method: "card",
 			          merchant_uid: "merchant_" + new Date().getTime(),
 			          name: name,
-			          amount:  price 
+			          amount:  price,
 			          buyer_email: email,
 			          buyer_name: username,
 			          buyer_tel: tel,

@@ -45,8 +45,7 @@
     	margin-top: 20px;
         display : flex;
         justify-content: left;
-        flex-direction: row;
-        flex-wrap: nowrap;   
+        flex-flow: nowrap row;
     }
     .info-side-bar{
         display: inline-block;
@@ -157,7 +156,7 @@
             <div>마이페이지</div>
             <div><a href="">회원정보</a></div>
             <div><a href="">비밀번호 변경</a></div>
-            <div><a href="">도서목록</a></div>
+            <div><a href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
             <div><a href="">스터디룸</a></div>
             <div><a href="">나의글귀</a></div>
             <div><a href="">좋아요목록</a></div>
