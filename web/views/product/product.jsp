@@ -173,6 +173,7 @@ a {
 	<div class="content">
 		<form action="<%=request.getContextPath()%>/product/searchtype"
 			id="searchfrom">
+
 			<div id="input_inbt">
 				<select id="searchType" name="searchType">
 					<option value="book_title">제목</option>
