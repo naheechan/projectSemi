@@ -7,7 +7,7 @@
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
-			totalprice += bk.getPrice();
+			totalprice += (bk.getPrice() * bk.getCount());
 		}
 	}
 	
@@ -96,7 +96,7 @@ td {
 				<tr>
 					<input type="hidden"  name="bookno"value="<%=bk.getBookno()%>">
 					<td><img name="img"
-						src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"></td>
 					<td><%=bk.getTitle()%></td>
 					<td><%=bk.getPrice()%>원</td>
 					<td><input type="text" readonly="readonly"></td>

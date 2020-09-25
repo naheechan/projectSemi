@@ -80,7 +80,7 @@ td {
 				<tr>
 				<!--이미지와  책제목 flex로 묶어주기-->
 					<td colspan="2"><img
-						src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"><div><%=bk.getTitle()%></div></td>
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"><div><%=bk.getTitle()%></div></td>
 					
 					<td><%=bk.getPrice()%>원</td>
 					<td><input id="quantity" type="text" size="1"
