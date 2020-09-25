@@ -236,7 +236,7 @@ td {
 			          pay_method: "card",
 			          merchant_uid: "merchant_" + new Date().getTime(),
 			          name: name,
-			          amount: /* price */"1000",
+			          amount:  price 
 			          buyer_email: email,
 			          buyer_name: username,
 			          buyer_tel: tel,
@@ -246,6 +246,7 @@ td {
 			        function (rsp) {
 			          if (rsp.success) {
 			            var msg = "결제가 완료되었습니다.";
+			            alert(msg);
 			            frm.submit(); 
 			          } else {
 			            var msg = "결제에 실패하였습니다.";
