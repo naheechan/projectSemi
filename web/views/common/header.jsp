@@ -28,7 +28,7 @@
 <title>Main</title>
 </head>
 <body>
-	<div id="foottext">
+	
 		<div id="main_container">
 			<header id="main_logo"> <!--  <span id="header_img"><img src="/image/logo.png" height="40" /></span> -->
 			<span id="header_logo"><a
