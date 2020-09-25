@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.member.model.vo.interest;
+import com.semi.member.model.vo.Interest;
 import com.semi.product.model.service.BookService;
 import com.semi.product.model.vo.Books;
 
