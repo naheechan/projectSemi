@@ -9,7 +9,7 @@
 	<div id="notice-container">
 	        <table id="tbl-notice">
 	        <tr>
-	            <th>타이틀</th>
+	            <th>제목</th>
 	            <td><%=n.getNoticeTitle() %></td>
 	        </tr>
 	        <tr>
@@ -20,7 +20,7 @@
 	            <th>첨부파일</th>
 	            <td>
 	           		<%if(n.getFilepath()!=null){ %>
-	           			<a href="#">
+	           			<a href="<%=request.getContextPath()%>/notice/Noticefiledown?fname=<%=n.getFilepath() %>">
 	           				<img src="<%=request.getContextPath() %>/images/file.png" width="20" height="20">
 	           			</a>
 	           		<%} %>
@@ -28,7 +28,7 @@
 	        </tr>
 	        <tr>
 	            <th colspan="2">
-	                <input type="button" value="수정하기"onclick="location.assign('<%=request.getContextPath()%>/notice/noticeUpdete?noticeNo=<%=n.getNoticeNo()%>">
+	                <input type="button" value="수정하기"onclick="location.assign('<%=request.getContextPath()%>/notice/noticeUpdeteEnd?noticeNo=<%=n.getNoticeNo()%>">
 	              
 	                <input type="button" value="삭제하기"onclick="location.assign('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>">
 	                         	                

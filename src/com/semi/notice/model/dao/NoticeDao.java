@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.semi.notice.model.vo.Notice;
+import com.semi.notice.model.vo.NoticeComment;
+
 import static com.semi.common.JDBCTemplate.close;
 
 public class NoticeDao {
@@ -154,6 +156,24 @@ public class NoticeDao {
 		}
 		return result;
 
+	}
+	public int insertNoticeComment(Connection conn, NoticeComment nc) {
+		PreparedStatement pstmt= null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("insertNoticeComment"));
+			pstmt.setString(1, nc.getCommentlevle());
+			pstmt.setString(2, nc.getComment());
+			pstmt.setInt(3, nc.getMemberNo());
+			pstmt.setInt(4, nc.getNoitcNo());
+			result=pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+		
 	}
 
 }

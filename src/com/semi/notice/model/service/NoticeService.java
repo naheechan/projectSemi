@@ -6,6 +6,8 @@ import static com.semi.common.JDBCTemplate.getConnection;
 import static com.semi.common.JDBCTemplate.close;
 import com.semi.notice.model.dao.NoticeDao;
 import com.semi.notice.model.vo.Notice;
+import com.semi.notice.model.vo.NoticeComment;
+
 import static com.semi.common.JDBCTemplate.commit;
 import static com.semi.common.JDBCTemplate.rollback;
 
@@ -56,6 +58,14 @@ public class NoticeService {
 	public int deleteNotice(int NoticeNo) {
 		Connection conn=getConnection();
 		int result=dao.deleteNotice(conn, NoticeNo);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	public int insertNoticeComment(NoticeComment nc) {
+		Connection conn=getConnection();
+		int result=dao.insertNoticeComment(conn,nc);
 		if(result>0) commit(conn);
 		else rollback(conn);
 		close(conn);
