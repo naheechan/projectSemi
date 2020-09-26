@@ -56,6 +56,7 @@ public class MemberDao {
 				m.setAddress(rs.getString("address"));
 				m.setExtraAddress(rs.getString("extraaddress"));
 				m.setDetailAddress(rs.getString("detailaddress"));
+				m.setLeave(rs.getString("leave"));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -288,7 +289,8 @@ public class MemberDao {
 		         pstmt=conn.prepareStatement(prop.getProperty("getInterest"));
 		         pstmt.setInt(1, memberNo);
 		         rs=pstmt.executeQuery();
-		         if(rs.next()) {
+		         
+		         while(rs.next()) {
 		        	Interest inter=new Interest();
 		            inter.setMemberCategoryNo(rs.getInt("member_category_no"));
 		            inter.setMemberNo(rs.getInt("member_no"));
@@ -302,5 +304,68 @@ public class MemberDao {
 		      return list;
 		   }
 	   
+	   
+	   public int DeleteMember(Connection conn,String memberId) {
+		   	System.out.println("Dao : "+memberId);
+			PreparedStatement pstmt=null;
+			int result=0;
+			try {
+				pstmt=conn.prepareStatement(prop.getProperty("udpateMember"));
+				pstmt.setString(1, memberId);
+				result=pstmt.executeUpdate();
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			System.out.println("Dao delete 결과 :"+result);
+			return result;
+	   }
+	   
+	  public int updateMember(Connection conn,Member m) {
+		  PreparedStatement pstmt=null;
+			int result=0;
+			try {
+				System.out.println("dao update m:"+m);
+				pstmt=conn.prepareStatement(prop.getProperty("udpateMember"));
+				pstmt.setString(1, m.getGender());
+				pstmt.setInt(2, m.getPostcode());
+				pstmt.setString(3, m.getAddress());
+				pstmt.setString(4, m.getExtraAddress());
+				pstmt.setString(5, m.getDetailAddress());
+				pstmt.setString(6, m.getEmail());
+				pstmt.setString(7, m.getPhone());
+				pstmt.setString(8, m.getMemberId());
+
+				result=pstmt.executeUpdate();
+
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			System.out.println("dao update result:"+result);
+			return result;
+	  }
+		
+		public int deleteInterest(Connection conn,int memberSeq){
+			System.out.println("Dao : "+memberSeq);
+			PreparedStatement pstmt=null;
+			int result=0;
+			try {
+				pstmt=conn.prepareStatement(prop.getProperty("deleteInterest"));
+				pstmt.setInt(1, memberSeq);
+				result=pstmt.executeUpdate();
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(pstmt);
+			}
+			System.out.println("Dao delete 결과 :"+result);
+			return result;
+	   }
+		
 }
 

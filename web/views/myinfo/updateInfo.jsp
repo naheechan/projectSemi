@@ -20,6 +20,7 @@
 			if(inter.getCategoryNo().equals("400")){checks[3]="checked";}
 			if(inter.getCategoryNo().equals("500")){checks[4]="checked";}
 		}
+		
 		if(m.getGender().equals("M")){
 			gcheck[0]="selected";
 		}else{
@@ -48,6 +49,7 @@
         flex-flow: nowrap row;
     }
     .info-side-bar{
+    	margin-top: 40px;
         display: inline-block;
         float: left;
         flex-direction: column;
@@ -64,12 +66,19 @@
         line-height: 50px;
 
     }
+    .info-side-bar>.mypage{
+    	background-color: rgb(40, 123, 98);
+    	color : white;
+    	font-size: 18px;
+    	font-weight: bold;
+    
+    }
     a:link { color: white; text-decoration: none;}
     a:visited { color:  white; text-decoration: none;}
     a:hover { color:  white; text-decoration: none;}
 
     .info-side-bar>div:hover, .info-side-bar>div:active,.info-side-bar>div:focus {
-          background-color: rgb(79, 80, 82); 
+          background-color: rgb(40, 123, 98); 
         }
     .info-content{
     	margin-top:10px;
@@ -107,6 +116,9 @@
 		height: 30px;
 		margin-top:4px;
 		margin-bottom:4px;
+    }
+    #sample4_jibunAddress{
+    	display : none;
     }
     .interest {
 			width: 15px;
@@ -147,21 +159,28 @@
 		margin-bottom:4px;
 	}
 	select { text-align-last:center; }
+	
+	.active{
+        	background-color: rgb(40, 123, 98);
+        }
+    #mypages1{
+    		background-color: rgb(40, 123, 98);
+    }
 </style>
 
 <section class="sectionInfo">
 <div class="divInfo">
     <div class="myinfo">
         <div class="info-side-bar">
-            <div>마이페이지</div>
-            <div><a href="">회원정보</a></div>
-            <div><a href="">비밀번호 변경</a></div>
-            <div><a href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
-            <div><a href="">스터디룸</a></div>
-            <div><a href="">나의글귀</a></div>
-            <div><a href="">좋아요목록</a></div>
-            <div><a href="">포인트</a></div>
-            <div><a href="">장바구니</a></div>
+            <div class="mypage">마이페이지</div>
+            <div class="mypages" id="mypages1" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>">회원정보</a></div>
+            <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a href="">비밀번호 변경</a></div>
+            <div class="mypages" id="mypages3" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
+            <div class="mypages" id="mypages4" onclick="choiceBtn(event)"><a href="">스터디룸</a></div>
+            <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a href="">나의글귀</a></div>
+            <div class="mypages" id="mypages6" onclick="choiceBtn(event)"><a href="">좋아요목록</a></div>
+            <div class="mypages" id="mypages7" onclick="choiceBtn(event)"><a href="">포인트</a></div>
+            <div class="mypages" id="mypages8" onclick="choiceBtn(event)"><a href="">장바구니</a></div>
         </div>
         <div class="info-content">
             <div class="myinfo-title">
@@ -201,9 +220,10 @@
                             <th>주소</th>
                             <td>
                                 <input type="button" id="btn_postcode" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                                <span id="guide" style="color:#999;display:none"></span>
                                 <input type="text" id="sample4_postcode" name="postcode" placeholder="우편번호" value="<%=m.getPostcode() %>">
                                 <input type="text" id="sample4_roadAddress" name="address" placeholder="도로명주소" value="<%=m.getAddress() %>">
+                                <input type="text" id="sample4_jibunAddress" name="address1" placeholder="지번주소">
+                                <span id="guide" style="color:#999;display:none"></span>
                                 <input type="text" id="sample4_detailAddress" name="extraAddress" placeholder="상세주소" value="<%=m.getExtraAddress()%>"><br>
                                 <input type="text" id="sample4_extraAddress" name="detailAddress" placeholder="동/구" value="<%=m.getDetailAddress() %>">
                             </td>
@@ -411,28 +431,39 @@ function checkData(){
             return true;
         }
             </script>
-<script>
-<%--         //탈퇴
+			<script>
+         //탈퇴
         function fn_delete_member(){
  			if(confirm("정말로 탈퇴하시겠습니까?")){
- 				location.replace('<%=request.getContextPath()%>/myinfo/deleteMember?Member_Id=<%=logginedMember.getMemberId()%>');
+ 				location.replace('<%=request.getContextPath()%>/myinfo/deleteMember?id=<%=logginedMember.getMemberId()%>');
  			}
  				
  		}
         
         //업데이트
  		function fn_update_submit(){
- 			const frm=$("#memberFrm");
- 			const url="<%=request.getContextPath()%>/myinfo/updateInfo";
+ 			const frm=$("#memberForm");
+ 			const url="<%=request.getContextPath()%>/updateInfo";
  			frm.attr({
  				"action":url,
  				"method":"post",
  			});
  			frm.submit();
- 		} --%>
+ 		}
         
         </script>
         
+        <script>
+		function removeClass(){
+			$(".mypages").removeClass('active');
+      	}
+		
+		function choiceBtn(event){
+			removeClass();
+			let addTarget=event.target.id;
+			$("#"+addTarget).addClass("active");
+		}
+        </script>
 </section>
     
 <%@ include file="/views/common/footer.jsp" %>

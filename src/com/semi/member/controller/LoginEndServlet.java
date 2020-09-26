@@ -46,11 +46,18 @@ public class LoginEndServlet extends HttpServlet {
 				//service에서 요청! 
 				Member m=new MemberService().loginMember(id, pw);
 				System.out.println(m);
-				
+				System.out.println(m.getLeave());
 				//m이 null이면 로그인 실패
 				//m이 null이 아니면 로그인 성공
 				//페이지를 선택해서 전환해줌
 				if(m!=null) {
+					if(m.getLeave().equals("Y")) {
+						request.setAttribute("msg", "탈퇴한 회원입니다.");
+						request.setAttribute("loc", "/");
+						RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
+						rd.forward(request,response);
+					}
+					else {
 					//로그인 성공
 					//로그인한 객체를 데이터보관용 request객체에 보관
 //					request.setAttribute("logginedMember", m);
@@ -59,6 +66,7 @@ public class LoginEndServlet extends HttpServlet {
 					HttpSession session=request.getSession();
 					session.setAttribute("logginedMember",m);//유지할 값을 session에 넣기!
 					response.sendRedirect(request.getContextPath());
+					}
 				}else {
 					//로그인 실패
 					//로그인 실패에 대한 에러메세지를 띄워주고 메인화면으로 이동
