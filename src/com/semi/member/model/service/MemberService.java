@@ -66,6 +66,16 @@ public class MemberService {
 		return result; 
 	}
 	
+	
+	public int updatePassword(String memberId, String Password) {
+		Connection conn=getConnection();
+		int result=dao.updatePassword(conn,memberId,Password);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result; 
+	}
+	
 	public Member getseq(String memberId) {
 		Connection conn=getConnection();
 		Member m=dao.getseq(conn,memberId);

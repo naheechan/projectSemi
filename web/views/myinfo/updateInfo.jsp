@@ -174,7 +174,7 @@
         <div class="info-side-bar">
             <div class="mypage">마이페이지</div>
             <div class="mypages" id="mypages1" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>">회원정보</a></div>
-            <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a href="">비밀번호 변경</a></div>
+            <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/myinfo/passwordUpdate?userId=<%=logginedMember.getMemberId()%>">비밀번호 변경</a></div>
             <div class="mypages" id="mypages3" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
             <div class="mypages" id="mypages4" onclick="choiceBtn(event)"><a href="">스터디룸</a></div>
             <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a href="">나의글귀</a></div>
