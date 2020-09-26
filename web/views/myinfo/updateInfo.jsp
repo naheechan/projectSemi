@@ -38,7 +38,7 @@
 	.divInfo{
 		display: block;
 	}
-	p{
+	.p1{
         font-size: 20px;
         font-weight: bold;
     }
@@ -73,9 +73,9 @@
     	font-weight: bold;
     
     }
-    a:link { color: white; text-decoration: none;}
-    a:visited { color:  white; text-decoration: none;}
-    a:hover { color:  white; text-decoration: none;}
+    .a:link { color: white; text-decoration: none;}
+    .a:visited { color:  white; text-decoration: none;}
+    .a:hover { color:  white; text-decoration: none;}
 
     .info-side-bar>div:hover, .info-side-bar>div:active,.info-side-bar>div:focus {
           background-color: rgb(40, 123, 98); 
@@ -173,18 +173,18 @@
     <div class="myinfo">
         <div class="info-side-bar">
             <div class="mypage">마이페이지</div>
-            <div class="mypages" id="mypages1" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>">회원정보</a></div>
-            <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/myinfo/passwordUpdate?userId=<%=logginedMember.getMemberId()%>">비밀번호 변경</a></div>
-            <div class="mypages" id="mypages3" onclick="choiceBtn(event)"><a href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
-            <div class="mypages" id="mypages4" onclick="choiceBtn(event)"><a href="">스터디룸</a></div>
-            <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a href="">나의글귀</a></div>
-            <div class="mypages" id="mypages6" onclick="choiceBtn(event)"><a href="">좋아요목록</a></div>
-            <div class="mypages" id="mypages7" onclick="choiceBtn(event)"><a href="">포인트</a></div>
-            <div class="mypages" id="mypages8" onclick="choiceBtn(event)"><a href="">장바구니</a></div>
+            <div class="mypages" id="mypages1" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>">회원정보</a></div>
+            <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/passwordUpdate?userId=<%=logginedMember.getMemberId()%>">비밀번호 변경</a></div>
+            <div class="mypages" id="mypages3" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
+            <div class="mypages" id="mypages4" onclick="choiceBtn(event)"><a class="a" href="">스터디룸</a></div>
+            <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a class="a" href="">나의글귀</a></div>
+            <div class="mypages" id="mypages6" onclick="choiceBtn(event)"><a class="a" href="">좋아요목록</a></div>
+            <div class="mypages" id="mypages7" onclick="choiceBtn(event)"><a class="a" href="">포인트</a></div>
+            <div class="mypages" id="mypages8" onclick="choiceBtn(event)"><a class="a" href="">장바구니</a></div>
         </div>
         <div class="info-content">
             <div class="myinfo-title">
-                <label><p>회원정보</p></label>
+                <label><p class="p1">회원정보</p></label>
             </div>
             <div class="memberInfo">
                 <form id="memberForm" action="" method="post">
