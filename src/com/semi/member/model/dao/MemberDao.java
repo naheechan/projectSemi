@@ -272,5 +272,27 @@ public class MemberDao {
 		System.out.println("Dao insert 결과 :"+result);
 		return result;
 	}
+	
+	
+	public String selectGender(Connection conn, int memberNo) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String data = null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectGender"));
+			pstmt.setInt(1, memberNo);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				data = rs.getString(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return data;
+	}
 }
 

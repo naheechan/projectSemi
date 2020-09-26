@@ -85,7 +85,7 @@
 				<li><a href="<%=request.getContextPath()%>/seatMove">STUDYROOM</a></li>
 				<li><a href="<%=request.getContextPath()%>/notice/noticeList">공지사항</a></li>
 				<li><a href="<%=request.getContextPath()%>/wording/wordingList">글귀게시판</a></li>
-				<li><a href="#">북클럽</a></li>
+				<li><a href="<%=request.getContextPath()%>/bookclub/bookclubList">북클럽</a></li>
 			</ul>
 		</div>
 		</nav>

@@ -78,4 +78,11 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	public String selectGender(int memberNo) {
+		Connection conn=getConnection();
+		String data = dao.selectGender(conn, memberNo);
+		close(conn);
+		return data;
+	}
 }
