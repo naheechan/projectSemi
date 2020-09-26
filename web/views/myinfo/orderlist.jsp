@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 	<%@ page import="java.util.List,com.semi.buy.model.vo.BuylistJoin" %>
 	<%
+	
 	List<BuylistJoin>buylist=(List)request.getAttribute("buylist");
+	String numPerPage = request.getParameter("numPerPage");
 	%>
 <%@ include file="/views/common/header.jsp"%>
 <style>
@@ -108,15 +110,19 @@ a:hover {
 				<th>주문금액</th>
 			</tr>
 			<%for(BuylistJoin b:buylist){ %>
+			<tr>
 				<td><%=b.getOrderdate()%></td>
 				<td><%=b.getRecipient()%></td>
 				<td colspan="2"><%=b.getTitle()%>
 				<img height=150px src="<%=request.getContextPath()%>/image/book/<%=b.getBookimg()%>">
 				</td>
-				
-				<td><%=b.getTotalprice()%>원</td>
+				<td><%=b.getPrice()%>원</td>
+				</tr>
 			<%} %>
 		</table>
+		<div id="pageBar">
+		<%=request.getAttribute("pageBar")%>
+		</div>
 		</div>
 	</div>
 </section>
