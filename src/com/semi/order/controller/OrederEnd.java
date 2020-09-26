@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.semi.buy.model.vo.Buylist;
+import com.semi.cartmodel.service.CartService;
 import com.semi.cartmodel.vo.Cart;
 import com.semi.order.model.service.OrderSerivce;
 import com.semi.product.model.vo.BooksJoin;
+
+
 
 
 
@@ -57,17 +60,23 @@ public class OrederEnd extends HttpServlet {
 			bu.setRequest(request.getParameter("request"));
 			bu.setDetailaddress(request.getParameter("detailaddress"));
 			bu.setPhone(request.getParameter("tel"));
+			bu.setCount(Integer.parseInt(request.getParameter("count")));
 			bu.setBookno(ck.getBookno());
 			blist.add(bu);
-			
-		}
-		for(Buylist bb:blist) {
-			System.out.println(bb);
 		}
 		//가져왔으면 그책번호랑 주문정보를 주문테이블에 데이터를 넣는다
 		int result=new OrderSerivce().insertorder(blist);
+		HttpSession session=request.getSession();
 		if(result>0) {
-			request.getRequestDispatcher("/views/order/orderend.jsp").forward(request, response);
+			//여기서 장바구니 비우기를 해줘?
+			//장바구니에 담은 책 세션을 주문을 완료하면 지워준다
+			//해당회원이 주문을 완료하면 장바구니를 비워주는 로직
+			int cleancart=new CartService().cleancart(userno);
+			if(cleancart>0) {
+				session.removeAttribute("booklist");
+				request.getRequestDispatcher("/views/order/orderback.jsp").forward(request, response);
+			}
+			
 		}
 		
 		

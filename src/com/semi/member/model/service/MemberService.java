@@ -2,15 +2,18 @@ package com.semi.member.model.service;
 
 
 import static com.semi.common.JDBCTemplate.close;
+
 import static com.semi.common.JDBCTemplate.commit;
 import static com.semi.common.JDBCTemplate.getConnection;
 import static com.semi.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.List;
 
 import com.semi.member.model.dao.MemberDao;
 import com.semi.member.model.vo.Member;
+import com.semi.member.model.vo.Interest;
 
 
 public class MemberService {
@@ -79,10 +82,12 @@ public class MemberService {
 		return result;
 	}
 	
-	public String selectGender(int memberNo) {
-		Connection conn=getConnection();
-		String data = dao.selectGender(conn, memberNo);
-		close(conn);
-		return data;
-	}
+
+	public List<Interest> getinterest(int memberNo) {
+	      Connection conn=getConnection();
+	      List<Interest> list=dao.getinterest(conn,memberNo);
+	      close(conn);
+	      return list; 
+	   }
+	
 }

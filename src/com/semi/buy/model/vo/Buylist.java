@@ -15,6 +15,7 @@ public class Buylist {
 	private String recipient;
 	private int bookno;	
 	private String phone;
+	private int count;
 	public Buylist() {
 		// TODO Auto-generated constructor stub
 	}
@@ -90,8 +91,14 @@ public class Buylist {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public Buylist(int orderno, int totalprice, String address, int postcode, String extraaddress, String detailaddress,
-			Date orderdate, String request, int memberno, String recipient, int bookno, String phone) {
+			Date orderdate, String request, int memberno, String recipient, int bookno, String phone, int count) {
 		super();
 		this.orderno = orderno;
 		this.totalprice = totalprice;
@@ -105,8 +112,15 @@ public class Buylist {
 		this.recipient = recipient;
 		this.bookno = bookno;
 		this.phone = phone;
+		this.count = count;
 	}
-	
+	@Override
+	public String toString() {
+		return "Buylist [orderno=" + orderno + ", totalprice=" + totalprice + ", address=" + address + ", postcode="
+				+ postcode + ", extraaddress=" + extraaddress + ", detailaddress=" + detailaddress + ", orderdate="
+				+ orderdate + ", request=" + request + ", memberno=" + memberno + ", recipient=" + recipient
+				+ ", bookno=" + bookno + ", phone=" + phone + ", count=" + count + "]";
+	}
 	
 
 }

@@ -3,13 +3,14 @@
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
-	List<BooksJoin> list = (List) request.getAttribute("booklist");
+	List<BooksJoin> list = (List) session.getAttribute("booklist");
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
-			totalprice += bk.getPrice();
+			totalprice += (bk.getPrice() * bk.getCount());
 		}
 	}
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -95,10 +96,11 @@ td {
 				<tr>
 					<input type="hidden"  name="bookno"value="<%=bk.getBookno()%>">
 					<td><img name="img"
-						src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"></td>
 					<td><%=bk.getTitle()%></td>
 					<td><%=bk.getPrice()%>원</td>
-					<td><input type="text" readonly="readonly"></td>
+					<td><input type="hidden" name="count" value="<%=bk.getCount()%>">
+					<%=bk.getCount()%></td>
 				</tr>
 
 				<%
@@ -155,6 +157,7 @@ td {
 		<div class="push"></div>
 
 		<script>
+		
 		
 			function sample6_execDaumPostcode() {
 				new daum.Postcode(
@@ -214,11 +217,15 @@ td {
 						}).open();
 			}
 			function buy() {
-				console.log("버튼눌림");
+				let name=[]
+				<%for(BooksJoin bk:list){%>
+				name+=["<%=bk.getTitle()%>"]
+				<%}%>
+				console.log(name);
 				let frm=document.querySelector("#buyfrm")
 			     let price = document.querySelector("#totalprice").value;
 				 let username = document.querySelector("#username").innerText;
-			      console.log(username);
+			     
 			      let tel = document.querySelector("#tel").value;
 			      let email="<%=logginedMember.getEmail()%>"
 			      let post=document.querySelector("#sample6_postcode").value;
@@ -229,8 +236,8 @@ td {
 			          pg: "html5_inicis",
 			          pay_method: "card",
 			          merchant_uid: "merchant_" + new Date().getTime(),
-			          name: "주문결제테스트",
-			          amount: /* price */"1000",
+			          name: name,
+			          amount:  price,
 			          buyer_email: email,
 			          buyer_name: username,
 			          buyer_tel: tel,
@@ -240,6 +247,7 @@ td {
 			        function (rsp) {
 			          if (rsp.success) {
 			            var msg = "결제가 완료되었습니다.";
+			            alert(msg);
 			            frm.submit(); 
 			          } else {
 			            var msg = "결제에 실패하였습니다.";

@@ -2,6 +2,7 @@ package com.semi.member.model.dao;
 
 import static com.semi.common.JDBCTemplate.close;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,9 +10,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.List;
 
 import com.semi.member.model.vo.Member;
+import com.semi.member.model.vo.Interest;
 
 public class MemberDao {
 	
@@ -103,6 +107,7 @@ public class MemberDao {
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
 				m=new Member();
+				m.setMemberNo(rs.getInt("member_no"));
 				m.setMemberId(rs.getString("member_id"));
 				m.setMemberPwd(rs.getString("member_pwd"));
 				m.setMemberName(rs.getString("member_name"));
@@ -272,27 +277,30 @@ public class MemberDao {
 		System.out.println("Dao insert 결과 :"+result);
 		return result;
 	}
-	
-	
-	public String selectGender(Connection conn, int memberNo) {
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		String data = null;
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("selectGender"));
-			pstmt.setInt(1, memberNo);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				data = rs.getString(1);
-			}
-			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}
-		return data;
-	}
+
+	   public List<Interest> getinterest(Connection conn,int memberNo){
+		      System.out.println("Dao : "+memberNo);
+		      
+		      PreparedStatement pstmt=null;
+		      ResultSet rs=null;
+		      List<Interest> list=new ArrayList();
+		      try {
+		         pstmt=conn.prepareStatement(prop.getProperty("getInterest"));
+		         pstmt.setInt(1, memberNo);
+		         rs=pstmt.executeQuery();
+		         if(rs.next()) {
+		        	Interest inter=new Interest();
+		            inter.setMemberCategoryNo(rs.getInt("member_category_no"));
+		            inter.setMemberNo(rs.getInt("member_no"));
+		            inter.setCategoryNo(rs.getNString("category_no"));
+		            list.add(inter);
+		         }
+		      }catch(SQLException e) {
+		         e.printStackTrace();
+		      }
+		      System.out.println("Dao list: "+list);
+		      return list;
+		   }
+	   
 }
 

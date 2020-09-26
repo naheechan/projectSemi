@@ -5,7 +5,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<% int userno=(int)(request.getAttribute("userno")); %>
+<% int userno=(int)(request.getAttribute("userno"));
+
+
+%>
 </head>
 <style>
 #maintcontent {
@@ -26,8 +29,9 @@
 	<script>
 	function movecart()
 	{
-		opener.document.location.href='<%=request.getContextPath()%>/cart/cartmove?userno=<%=userno%>'
-		<%-- window.open('<%=request.getContextPath()%>/cart/cartmove?userno=<%=userno%>'); --%>
+		opener.document.location.href='<%=request.getContextPath()%>/cart/cartmove';
+	<%-- 	//?userno=<%=userno%> --%>
+	
 		self.close();
 		/* window.close(); */
 	}

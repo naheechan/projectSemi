@@ -78,16 +78,16 @@ td {
 					<th class="del">삭제</th>
 				</tr>
 				<tr>
-					<td><img
-						src="<%=request.getContextPath()%>/image/<%=bk.getBookimg()%>"></td>
-					<td><%=bk.getTitle()%></td>
+				<!--이미지와  책제목 flex로 묶어주기-->
+					<td colspan="2"><img
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"><div><%=bk.getTitle()%></div></td>
+					
 					<td><%=bk.getPrice()%>원</td>
-					<td><button  type="button"id="up">+</button>
-						<input  id="quantity"type="text" size="1" value="<%=bk.getCount()%>">
-					<button  type="button"id="down">-</button></td>
+					<td><input id="quantity" type="text" size="1"
+						value="<%=bk.getCount()%>">
 					<td><input type="checkbox" name="dele" id="dele"
 						value="<%=bk.getCartno()%>" /></td>
-						<input type="hidden" name="cartno"value="<%=bk.getCartno()%>">
+					<input type="hidden" name="cartno" value="<%=bk.getCartno()%>">
 				</tr>
 				<%
 					}
@@ -119,7 +119,8 @@ td {
 		frm.submit();
 		
 	}
-	function order() {
+	//나중에 ajax꼭 사용해보기
+	 function order() {
 		let check1=document.querySelector("#carttable>tbody");
 		if(check1==null){
 			alert("주문할 상품을 담아주세요. ");
@@ -128,7 +129,7 @@ td {
 		}
 		location.href='<%=request.getContextPath()%>/cart/order'
 	}
-	$("#down").click(e=>{
+	<%-- $("#down").click(e=>{
 		
 	 $.ajax({
 			type:"post",
@@ -146,7 +147,7 @@ td {
 	function error() {
 		alert(" ajax연결 실패");	
 		
-	}
+	} --%> 
 	</script>
 </section>
 <%@ include file="/views/common/footer.jsp"%>

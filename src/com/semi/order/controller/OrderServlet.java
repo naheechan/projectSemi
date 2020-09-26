@@ -33,11 +33,9 @@ public class OrderServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("주문하기버튼눌림");
 		HttpSession session=request.getSession();
-		System.out.println();
 		List<BooksJoin>list=(List)session.getAttribute("booklist");
-		request.setAttribute("booklist", list);
+		session.setAttribute("booklist", list);
 		request.getRequestDispatcher("/views/order/order.jsp").forward(request, response);
 	}
 

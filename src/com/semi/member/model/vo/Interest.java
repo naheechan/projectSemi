@@ -1,16 +1,16 @@
 package com.semi.member.model.vo;
 
-public class interest {
+public class Interest {
 
 	int memberCategoryNo;
 	int memberNo;
 	String categoryNo;
 	
-	public interest() {
+	public Interest() {
 		// TODO Auto-generated constructor stub
 	}
 
-	interest(int memberCategoryNo, int memberNo, String categoryNo) {
+	Interest(int memberCategoryNo, int memberNo, String categoryNo) {
 		super();
 		this.memberCategoryNo = memberCategoryNo;
 		this.memberNo = memberNo;
@@ -43,7 +43,7 @@ public class interest {
 
 	@Override
 	public String toString() {
-		return "interest [memberCategoryNo=" + memberCategoryNo + ", memberNo=" + memberNo + ", categoryNo="
+		return "Interest [memberCategoryNo=" + memberCategoryNo + ", memberNo=" + memberNo + ", categoryNo="
 				+ categoryNo + "]";
 	}
 	

@@ -15,6 +15,7 @@ import javax.websocket.Session;
 import com.semi.cartmodel.service.CartService;
 import com.semi.product.model.service.BookService;
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BooksJoin;
 
 /**
  * Servlet implementation class CheckcartServlet
@@ -36,10 +37,9 @@ public class CheckcartServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
 		//세션으로 장바구니 처리계속 남아있어야해서
-		System.out.println("장바구니 담기 테스트");
 		//제품번호화 사용자 번호를 가져와서 장바구니 테이블에 담기
+		//장바구니에 담는 서블릿
 		int no=Integer.parseInt(request.getParameter("cproductno"));
 		int userno=Integer.parseInt(request.getParameter("memberno"));
 		int count=0;
@@ -49,17 +49,21 @@ public class CheckcartServlet extends HttpServlet {
 			//없으면 오라클 기본값 1부여해서 넣기
 			count=1;	
 		}
-		Books bk=new BookService().addcartselect(no);	
-		System.out.println(userno);
-		System.out.println(bk);
+		//해당책번호를 불러와서 그 책번호에 대한 정보를 books객체에 저장한다
 		int result=new CartService().insertnumber(no,userno,count);
+		//책번호 유저번호와 수량을 받아서 cart테이블에 값을 넣는다
+		//값을 생성 유저번호를 통해서 어떤 책이 들어있는지 확인
+		List<BooksJoin>booklist=new CartService().selectbook(userno,count);
+		HttpSession session=request.getSession();
 		if(result>0) {
-			System.out.println("장바구니에 값이 추가");
+			session.setAttribute("booklist", booklist);
+			request.setAttribute("userno", userno);
+			request.getRequestDispatcher("/views/cart/cartck.jsp").forward(request, response);
 		}
 		
-		request.setAttribute("userno", userno);
+	
 //		session.setAttribute("productList", clist);
-		request.getRequestDispatcher("/views/cart/cartck.jsp").forward(request, response);
+		
 		
 		
 	}

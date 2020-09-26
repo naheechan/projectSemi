@@ -48,7 +48,7 @@ public class OrderDeleteServlet extends HttpServlet {
 		
 		if(result>0) {
 			msg="정상적으로 삭제 되었습니다";
-			loc="/";
+			loc="/cart/cartmove";
 		}
 		HttpSession session =request.getSession();
 		session.removeAttribute("booklist");

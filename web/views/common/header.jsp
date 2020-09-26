@@ -15,7 +15,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script src="https://kit.fontawesome.com/464965a728.js"
 	crossorigin="anonymous"></script>
-<script defer src="<%=request.getContextPath()%>/js/main.js"></script>
+
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.min.js"></script>
 <script
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -28,7 +28,6 @@
 <title>Main</title>
 </head>
 <body>
-	<div id="foottext">
 		<div id="main_container">
 			<header id="main_logo"> <!--  <span id="header_img"><img src="/image/logo.png" height="40" /></span> -->
 			<span id="header_logo"><a
@@ -40,8 +39,7 @@
 				%>
 				<div id="header_nav">
 					<ul>
-						<li class="searchbtn"><i class="fas fa-search"></i></li>
-
+						
 						<li><a href="<%=request.getContextPath()%>/login"><i
 								class="fas fa-user"></i>Login</a></li>
 						<li><a href="<%=request.getContextPath()%>/enrollMember"><i
@@ -62,9 +60,9 @@
 							<%=logginedMember.getMemberId()%>님
 						<p>
 					</li>
-					<li class="searchbtn"><i class="fas fa-search"></i></li>
+					
 					<li><a
-						href="<%=request.getContextPath()%>/myinfomove?userId=<%=logginedMember.getMemberId()%>"><i
+						href="<%=request.getContextPath()%>/infoMove?userId=<%=logginedMember.getMemberId()%>"><i
 							class="fas fa-user"></i>MyInfo</a></li>
 					<li><a href="<%=request.getContextPath()%>/logout"><i
 							class="fas fa-user"></i>LogOut</a></li>

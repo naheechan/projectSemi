@@ -48,11 +48,11 @@ public class NoticeWriterEndServlet extends HttpServlet {
 				,encode,new DefaultFileRenamePolicy());
 		String title=mr.getParameter("title");
 		String content=mr.getParameter("content");
+		String writer=mr.getParameter("writer");
 		String filepath=mr.getFilesystemName("upfile");
-		Notice n=new Notice(0, title, content, null , 0, filepath, 0, false);
-
+		Notice n=new Notice(0, title, content,writer, null, 0, filepath, 0, false);
 		int result=new NoticeService().insertNotice(n);
-		
+	
 		String msg="";
 		String loc="";
 		

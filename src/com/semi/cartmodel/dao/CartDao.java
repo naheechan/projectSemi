@@ -14,7 +14,7 @@ import com.semi.cartmodel.vo.Cart;
 import com.semi.product.model.vo.Books;
 import com.semi.product.model.vo.BooksJoin;
 
-
+import oracle.net.aso.p;
 
 import static com.semi.common.JDBCTemplate.close;
 
@@ -74,7 +74,6 @@ public class CartDao {
 		}
 		return list;
 	}
-
 	public List<BooksJoin> selectbook(Connection conn, int userno) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -110,6 +109,41 @@ public class CartDao {
 		return list;
 	}
 
+	public List<BooksJoin> selectbook(Connection conn, int userno, int count) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BooksJoin> list = new ArrayList<BooksJoin>();
+		BooksJoin bk = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectbooklist"));
+			pstmt.setInt(1, userno);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				bk = new BooksJoin();
+				bk.setBookNo(rs.getInt("book_no"));
+				bk.setTitle(rs.getString("book_title"));
+				bk.setAuthor(rs.getString("book_author"));
+				bk.setPrice(rs.getInt("book_price"));
+				bk.setBookimg(rs.getString("book_img"));
+				bk.setPublisher(rs.getString("book_publisher"));
+				bk.setPublicationdate(rs.getDate("book_Publicationdate"));
+				bk.setCategoryno(rs.getInt("category_no"));
+				bk.setCartno(rs.getInt("cart_no"));
+				bk.setBookno(rs.getInt("book_no"));
+				bk.setMemberno(rs.getInt("member_no"));
+				bk.setCount(count);
+				
+				list.add(bk);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+
 	public int cartdelet(Connection conn, int[] check) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -124,6 +158,21 @@ public class CartDao {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+	//주문을 완료하면 장바구니를 비워주는 로직
+	public int cleancart(Connection conn, int userno) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("cleancart"));
+			pstmt.setInt(1, userno);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
 		return result;
 	}
 
