@@ -7,6 +7,7 @@
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
+			
 			totalprice += (bk.getPrice() * bk.getCount());
 		}
 	}
@@ -23,7 +24,10 @@
 #button-box {
 	display: flex;
 	justify-content: space-between;
-	height: 150px;
+	padding-bottom:3rem;
+}
+.btn{
+background-color: rgb(121, 122, 126);
 }
 
 #headerfont {
@@ -99,8 +103,8 @@ td {
 					총금액 :<%=totalprice%>원
 				</div>
 				<div id="button-box">
-					<button type="button" onclick="check()">선택상품삭제하기</button>
-					<button type="button" onclick="order()">주문하기</button>
+					<button type="button" class="btn del"onclick="check()">선택상품삭제하기</button>
+					<button type="button" class="btn order"onclick="order()">주문하기</button>
 		</form>
 	</div>
 	</div>
@@ -114,7 +118,7 @@ td {
 		
 		if(check1==null){
 			alert("장바구니가 이미 비여있습니다. ");
-			frm.action="<%=request.getContextPath()%>/index.jsp"
+			frm.action="<%=request.getContextPath()%>/views/cart/cart.jsp?userno=<%=logginedMember.getMemberNo()%>"
 		}
 		frm.submit();
 		
@@ -124,7 +128,7 @@ td {
 		let check1=document.querySelector("#carttable>tbody");
 		if(check1==null){
 			alert("주문할 상품을 담아주세요. ");
-			location.href='<%=request.getContextPath()%>/index.jsp'
+			location.href='<%=request.getContextPath()%>/views/cart/cart.jsp'
 			retrun;
 		}
 		location.href='<%=request.getContextPath()%>/cart/order'

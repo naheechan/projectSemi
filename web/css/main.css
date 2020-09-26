@@ -1,7 +1,14 @@
 @import url(reset.css);
+html{
+	height: 100%;
+}
 body {
   height: 100%;
- 
+
+}
+#main_container{
+	 min-height: 130%;
+	 position: relative;
 }
 #header_nav > ul {
   padding-left: 0px;
@@ -141,7 +148,8 @@ input[type="text"] {
   font-size: 20px;
   display: inline-block;
   vertical-align: bottom;
-} */
+}
+
 #img_slider {
   height: 55vh;
   background-color: #d8d3cd;
@@ -170,7 +178,7 @@ position: absolute;
 	
 }
 #foottext{
-	position: relative;
+	
 	height: 2.5rem;
 }
 #section_text {
