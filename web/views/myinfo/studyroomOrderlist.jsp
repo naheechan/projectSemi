@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<%@ page import="com.semi.member.model.vo.Member" %>
-<%@ page import="com.semi.member.model.vo.Interest" %>
-<%@ page import="java.util.List" %>
-<%
-		//서버에서 보낸 데이터 받기
-		String userId=(String)request.getAttribute("userId");
-%>
 
+<%@ page import="java.util.List,com.semi.seat.model.vo.SeatOrder" %>
+
+<%
+	List<SeatOrder> studyroomOrderlist=(List)request.getAttribute("studyroomOrderlist");
+	String numPerPage = request.getParameter("numPerPage");
+%>
 
 <style>
 
@@ -81,19 +80,24 @@
     .memberInfo{
         width: 650px;
         height: 800px;
-        background-color:
 
     }
     #memberForm{
     	margin-top: 20px;	
     }
     th{
-        width: 250px;
+    	flex-basis: 250px;
+        height: 40px;
         border: 1px solid rgb(216,211,205);
+        vertical-align: middle;
+        background-color : rgb(239, 241, 243); 
     }
     td{
+    	flex-basis: 250px;
+    	height: 40px;
         border: 1px solid rgb(216,211,205);
         text-align: center;
+        vertical-align: middle;
         
     }
     input{
@@ -138,11 +142,23 @@
 	.active{
         	background-color: rgb(40, 123, 98);
         }
-    #mypages2{
+    #mypages4{
     		background-color: rgb(40, 123, 98);
     }
     .id_tr{
     	display: none;
+    }
+    #studyroomlist{
+    	display : flex;
+        justify-content: center;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .pageBar-div{
+    	display : flex;
+        justify-content: center;
+        margin-top: 20px;
     }
 </style>
 
@@ -163,86 +179,51 @@
         </div>
         <div class="info-content">
             <div class="myinfo-title">
-                <label><p class="p1">비밀번호 확인</p></label>
+                <label><p class="p1">STUDYROOM RESERVATION LIST</p></label>
             </div>
             <div class="memberInfo">
-            	<p class="p2">기존의 비밀번호를 입력하세요.</p>
-                <form id="memberForm" action="<%=request.getContextPath() %>/updatePasswordMove" method="post">
-                    <table>
-                    	<tr class="id_tr">
-                            <th>아이디</th>
-                            <td>
-                                <input id="id" name="id" type="text" maxlength="10" value="<%=userId%>">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호</th>
-                            <td>
-                                <input id="pw" name="pw" type="password" maxlength="20" placeholder="6글자 이상">
-                            </td>
-                        </tr>
-                    </table>
+            	<p class="p2">스터디룸 예약 및 결제 정보는 아래와 같습니다.</p>
+                <form id="memberForm" action="" method="post">
+                    <div id="studyroomlist">
+						<table>
+							<tr>
+								<th><p class="p2">예약날짜</p></th>
+								<th><p class="p2">예약시간</p></th>
+								<th><p class="p2">사용시간</p></th>
+								<th><p class="p2">좌석이름</p></th>
+								<th><p class="p2">예약인원</p></th>
+								<th><p class="p2">결제금액</p></th>
+								<th><p class="p2">결제일자</p></th>
+							</tr>
+
+							<%for(SeatOrder so: studyroomOrderlist){ %>
+							<tr>
+								<td><%=so.getSeatDate()%></td>
+								<td><%=so.getSeatTime()%></td>
+								<td><%=so.getUseTime()%></td>
+								<td><%=so.getSeatNo()%></td>
+								<td><%=so.getMemberCount()%></td>
+								<td><%=so.getSeatPrice()%>원</td>
+								<td><%=so.getSeatOrderDate()%></td>
+							</tr>
+							<%} %>
+						</table>
+						<div class="pageBar-div">
+							<div id="pageBar">
+								<%=request.getAttribute("pageBar")%>
+							</div>
+						</div>
+					</div>
+                     <!-- 
                      <input type="reset" class="infobtn1" value="취소">
-                     <input type="submit" class="infobtn2" onclick="checkData();'" value="확인">
+                     <input type="submit" class="infobtn2" onclick="checkData();'" value="확인"> 
+                     -->
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-
-function checkData(){
-
-            let pw=document.getElementById("pw");
-
-            if(pw.value.length<5){
-                alert("비밀번호를 6글자 이상로 입력하세요.");
-                return false;
-            }
-
-        	var re2= /^[A-za-z0-9]{6,15}/g;
-            if(!re2.test(pw.value)){
-                 alert("6~15자리 이내 숫자, 문자만 가능합니다.");
-                 return false;
-            }
-
-            return true;
-        }
-            </script>
-			<script>
-         //탈퇴
-        function fn_delete_member(){
- 			if(confirm("정말로 탈퇴하시겠습니까?")){
- 				location.replace('<%=request.getContextPath()%>/myinfo/deleteMember?id=<%=logginedMember.getMemberId()%>');
- 			}
- 				
- 		}
-        
-        //업데이트
- 		function fn_update_submit(){
- 			const frm=$("#memberForm");
- 			const url="<%=request.getContextPath()%>/updateInfo";
- 			frm.attr({
- 				"action":url,
- 				"method":"post",
- 			});
- 			frm.submit();
- 		}
-        
-        </script>
-        
-        <script>
-		function removeClass(){
-			$(".mypages").removeClass('active');
-      	}
-		
-		function choiceBtn(event){
-			removeClass();
-			let addTarget=event.target.id;
-			$("#"+addTarget).addClass("active");
-		}
-        </script>
 </section>
     
 <%@ include file="/views/common/footer.jsp" %>

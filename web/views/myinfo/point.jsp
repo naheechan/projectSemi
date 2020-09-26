@@ -2,11 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.semi.member.model.vo.Member" %>
-<%@ page import="com.semi.member.model.vo.Interest" %>
 <%@ page import="java.util.List" %>
 <%
 		//서버에서 보낸 데이터 받기
-		String userId=(String)request.getAttribute("userId");
+		Member m=(Member)request.getAttribute("member");
 %>
 
 
@@ -88,18 +87,22 @@
     	margin-top: 20px;	
     }
     th{
+        height: 40px;
+        vertical-align: middle;
         width: 250px;
         border: 1px solid rgb(216,211,205);
+        background-color : rgb(239, 241, 243); 
     }
     td{
+    	width: 300px;
+    	height: 40px;
+        vertical-align: middle;
         border: 1px solid rgb(216,211,205);
         text-align: center;
         
     }
     input{
-        width: 360px;
-        border: 1px solid rgb(216,211,205);
-        border-radius: 5px;
+        border: none;
         text-align: center;
         font-size: 15px;
 		height: 30px;
@@ -108,42 +111,14 @@
 		margin-left: 5px;
 		margin-right: 5px;
     }
-   
-    .infobtn1, .infobtn2{
-            margin-top: 15px;
-            width: 100px;
-        	height: 50px;
-            background-color: rgb(121,122,126);
-            color:white
-    }
-    .infobtn1{
-        margin-left: 30%;
-        margin-right: 50px;
-    }
-
-    .infobtn1:hover, .infobtn1:active,.infobtn1:focus {
-          background-color: rgb(79, 80, 82); 
-        }
-    .infobtn2:hover, .infobtn2:active,.infobtn2:focus {
-          background-color: rgb(79, 80, 82); 
-        }
-
-	input[type="text"]{
-		font-size: 15px;
-		height: 30px;
-		margin-top:4px;
-		margin-bottom:4px;
+	table{
+		margin-top : 10px;
 	}
 
-	.active{
-        	background-color: rgb(40, 123, 98);
-        }
-    #mypages2{
+    #mypages9{
     		background-color: rgb(40, 123, 98);
     }
-    .id_tr{
-    	display: none;
-    }
+
 </style>
 
 <section class="sectionInfo">
@@ -163,27 +138,41 @@
         </div>
         <div class="info-content">
             <div class="myinfo-title">
-                <label><p class="p1">비밀번호 확인</p></label>
+                <label><p class="p1">POINT</p></label>
             </div>
             <div class="memberInfo">
-            	<p class="p2">기존의 비밀번호를 입력하세요.</p>
-                <form id="memberForm" action="<%=request.getContextPath() %>/updatePasswordMove" method="post">
-                    <table>
-                    	<tr class="id_tr">
-                            <th>아이디</th>
+            	<p class="p2"><%=m.getMemberName()%>님의 포인트 내역은 다음과 같습니다.</p>
+                <form id="memberForm" action="" method="post">
+                    <table id="table1">
+                    	<tr>
+                            <th>포인트</th>
                             <td>
-                                <input id="id" name="id" type="text" maxlength="10" value="<%=userId%>">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호</th>
-                            <td>
-                                <input id="pw" name="pw" type="password" maxlength="20" placeholder="6글자 이상">
+                                <input id="point" name="point" type="text" maxlength="10" readonly value="<%=m.getPoint()%>">
                             </td>
                         </tr>
                     </table>
-                     <input type="reset" class="infobtn1" value="취소">
-                     <input type="submit" class="infobtn2" onclick="checkData();'" value="확인">
+                    <table>
+                        <tr>
+                            <th>사용 내역</th>
+                            <td>
+                                <input id="point" name="point" type="text" maxlength="10" readonly value="사용 내역이 없습니다.">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>사용 포인트</th>
+                            <td>
+                                <input id="point" name="point" type="text" maxlength="10" readonly value="0">
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <th>잔여 포인트</th>
+                            <td>
+                                <input id="point" name="point" type="text" maxlength="10" readonly value="<%=m.getPoint()%>">
+                            </td>
+                        </tr>
+                    </table>
                 </form>
             </div>
         </div>
@@ -192,57 +181,6 @@
 
 <script>
 
-function checkData(){
-
-            let pw=document.getElementById("pw");
-
-            if(pw.value.length<5){
-                alert("비밀번호를 6글자 이상로 입력하세요.");
-                return false;
-            }
-
-        	var re2= /^[A-za-z0-9]{6,15}/g;
-            if(!re2.test(pw.value)){
-                 alert("6~15자리 이내 숫자, 문자만 가능합니다.");
-                 return false;
-            }
-
-            return true;
-        }
-            </script>
-			<script>
-         //탈퇴
-        function fn_delete_member(){
- 			if(confirm("정말로 탈퇴하시겠습니까?")){
- 				location.replace('<%=request.getContextPath()%>/myinfo/deleteMember?id=<%=logginedMember.getMemberId()%>');
- 			}
- 				
- 		}
-        
-        //업데이트
- 		function fn_update_submit(){
- 			const frm=$("#memberForm");
- 			const url="<%=request.getContextPath()%>/updateInfo";
- 			frm.attr({
- 				"action":url,
- 				"method":"post",
- 			});
- 			frm.submit();
- 		}
-        
-        </script>
-        
-        <script>
-		function removeClass(){
-			$(".mypages").removeClass('active');
-      	}
-		
-		function choiceBtn(event){
-			removeClass();
-			let addTarget=event.target.id;
-			$("#"+addTarget).addClass("active");
-		}
-        </script>
 </section>
     
 <%@ include file="/views/common/footer.jsp" %>
