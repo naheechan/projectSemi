@@ -28,7 +28,7 @@
 	                <div class="bookClubDiv">
 	                	<input type="hidden" class="bookclubNo" value="<%=bc.getBookclubNo()%>">
 	                    <div class="bookClubImg">
-	                        <img src="<%=request.getContextPath()%>/image/<%=bc.getBookclubImg()%>" >
+	                        <img src="<%=request.getContextPath()%>/image/book/<%=bc.getBookclubImg()%>" >
 	                    </div>
 	                    <!-- hover시 나타나는 정보들 -->
 	                    <div class="bookClubInfo">

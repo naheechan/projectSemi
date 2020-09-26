@@ -86,7 +86,7 @@
 				dataType:"json",
 				success:function(data){
 					$.each(data,function(i,v){
-						bookImg.attr("src","<%=request.getContextPath()%>/image/"+v);
+						bookImg.attr("src","<%=request.getContextPath()%>/image/book/"+v);
 						$("#searchBookNo").val(i);
 						$("#searchBookImgName").val(v);
 					});
