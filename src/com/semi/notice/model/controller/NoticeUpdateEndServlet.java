@@ -31,12 +31,25 @@ public class NoticeUpdateEndServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Notice n= new Notice();
-		n.setNoticeNo(Integer.parseInt(request.getParameter("notiecNo")));
+		/* n.setNoticeNo(Integer.parseInt(request.getParameter("notiecNo"))); */
 		n.setNoticeTitle(request.getParameter("noticeTitle"));
 		n.setNoticeContent(request.getParameter("noticeContnent"));
 		n.setFilepath(request.getParameter("filepath"));
 		int result=new NoticeService().noticeUpdate(n);
-		request.getRequestDispatcher("/views/notice/noticeUpdate.jsp").forward(request,response);
+		String msg="";
+		String loc="";
+		if(result>0) {
+			msg="성공적으로 수정되었습니다.";
+		}else {
+			msg="수정에 실패하였습니다.";
+		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		/*
+		 * request.getRequestDispatcher("/views/notice/noticeUpdate.jsp").forward(
+		 * request,response);
+		 */
 	}
 
 	/**

@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <th>내용</th>
-            <td><textarea cols="50" rows="5" name="content" C></textarea></td>
+            <td><textarea cols="50" rows="5" name="content"></textarea></td>
         </tr>
         <tr>
             <th colspan="2">
