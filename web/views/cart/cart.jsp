@@ -117,10 +117,6 @@ button:after {
 	bottom: 0;
 }
 
-.carttd {
-	
-}
-
 button:hover:before, button:hover:after {
 	width: 100%;
 	transition: 800ms ease all;
@@ -131,6 +127,8 @@ button:hover:before, button:hover:after {
 	<hr>
 	<div id="cartcontainer">
 		<form action="<%=request.getContextPath()%>/cart/orderdel" id="delfrm">
+		
+		<%if(!list.isEmpty()){ %>
 			<table id="carttable">
 
 				<tr>
@@ -158,6 +156,7 @@ button:hover:before, button:hover:after {
 					}
 				%>
 			</table>
+			<%} %>
 			<hr>
 			<div id="price-box">
 				<div id="totaltxt">
@@ -176,14 +175,18 @@ button:hover:before, button:hover:after {
 
 	function check() {
 		let frm=document.querySelector("#delfrm");
-		console.log(frm);
 		let check1=document.querySelector("#carttable>tbody");
-		
+		let delconfirm=confirm('정말로 삭제하시겠습니까?');
 		if(check1==null){
 			alert("장바구니가 이미 비여있습니다. ");
 			frm.action="<%=request.getContextPath()%>/views/cart/cart.jsp?userno=<%=logginedMember.getMemberNo()%>"
 		}
-		frm.submit();
+		if(delconfirm){
+			frm.submit();
+		}else{
+			return;
+		}
+		
 		
 	}
 	//나중에 ajax꼭 사용해보기
