@@ -96,9 +96,12 @@ pageEncoding="UTF-8"%> <%@ include file="/views/common/header.jsp"%>
 		let frm=document.querySelector("#loginfrm");
 		frm.submit();	
 	}
- 
-    
-    
+</script>
+<script type="text/javascript">
+	window.history.forward();
+	function noBack(){
+		window.history.foward();
+	}
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>

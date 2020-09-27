@@ -120,5 +120,12 @@
           window.open("<%=request.getContextPath()%>/enrollMember","_self");
         }
         </script>
+        <script type="text/javascript">
+			window.history.forward();
+			function noBack(){
+				window.history.foward();
+				alert("로그인 하였습니다.");
+			}
+		</script>
         </section>
 <%@ include file="/views/common/footer.jsp" %>
