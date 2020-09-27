@@ -66,6 +66,16 @@ public class MemberService {
 		return result; 
 	}
 	
+	
+	public int updatePassword(String memberId, String Password) {
+		Connection conn=getConnection();
+		int result=dao.updatePassword(conn,memberId,Password);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result; 
+	}
+	
 	public Member getseq(String memberId) {
 		Connection conn=getConnection();
 		Member m=dao.getseq(conn,memberId);
@@ -89,5 +99,34 @@ public class MemberService {
 	      close(conn);
 	      return list; 
 	   }
+	
+	public int DeleteMember(String memberId) {
+		Connection conn=getConnection();
+		int result=dao.DeleteMember(conn,memberId);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int updateMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn,m);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
+	
+	public int deleteInterst(int memberSeq) {
+		Connection conn=getConnection();
+		int result=dao.deleteInterest(conn,memberSeq);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
 	
 }

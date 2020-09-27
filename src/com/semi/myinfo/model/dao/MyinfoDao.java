@@ -14,6 +14,8 @@ import static com.semi.common.JDBCTemplate.close;
 
 import com.semi.buy.model.vo.Buylist;
 import com.semi.buy.model.vo.BuylistJoin;
+import com.semi.seat.model.vo.Seat;
+import com.semi.seat.model.vo.SeatOrder;
 import com.semi.member.model.vo.Member;
 
 import oracle.net.aso.p;
@@ -32,51 +34,7 @@ private Properties prop=new Properties();
 			e.printStackTrace();	
 		}
 	}
-	
-	public int updateMember(Connection conn, Member m) {
-		PreparedStatement pstmt=null;
-		int result=0;
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("updateMember"));
-			pstmt.setString(1, m.getMemberPwd());
-			pstmt.setString(2, m.getMemberName());
-//			pstmt.setString(4, m.getGender());
-			pstmt.setDate(3, m.getBirth());
-			pstmt.setString(4, m.getEmail());
-			pstmt.setString(5, m.getAgency());
-			pstmt.setString(6, m.getPhone());
-			pstmt.setInt(7, m.getPostcode());
-			pstmt.setString(8, m.getAddress());
-			pstmt.setString(9, m.getExtraAddress());
-			pstmt.setString(10, m.getDetailAddress());
-			
-			pstmt.setString(11, m.getMemberId());
-			
-			result=pstmt.executeUpdate();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}return result;
-	}
-	
-	public int deleteMember(Connection conn, String id) {
-		PreparedStatement pstmt=null;
-		int result=0;
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("deleteMember"));
-			pstmt.setString(1, id);
-			result=pstmt.executeUpdate();
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;	
-	}
-	
-	
-	
+
 	
 	public int selectBoardCount(Connection conn) {
 		PreparedStatement pstmt=null;
@@ -153,6 +111,57 @@ private Properties prop=new Properties();
 		return result;
 	}
 	
+	public int selectStudyroomCount(Connection conn,int memberNo) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		ResultSet rs=null;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectStudyroomCount"));
+			pstmt.setInt(1, memberNo);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				result=rs.getInt(1);
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public List<SeatOrder> selectStudyroomlist(Connection conn, int memberNo, int cPage, int numPerPage){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		SeatOrder so=null;
+		List<SeatOrder> list=new ArrayList<SeatOrder>();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectStudyroomlist"));
+			pstmt.setInt(1, memberNo);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				so=new SeatOrder();
+				so.setSeatOrderNo(rs.getInt("seat_order_no"));
+				so.setMemberNo(rs.getInt("member_no"));
+				so.setSeatDate(rs.getString("seat_date"));
+				so.setSeatTime(rs.getInt("seat_time"));
+				so.setUseTime(rs.getInt("use_time"));
+				so.setMemberCount(rs.getInt("member_count"));
+				so.setSeatNo(rs.getString("seat_no"));
+				so.setSeatPrice(rs.getInt("seat_price"));
+				so.setSeatOrderDate(rs.getDate("seat_order_date"));
+
+				list.add(so);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return list;
+	}
 }
 	
 

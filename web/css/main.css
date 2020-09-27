@@ -1,7 +1,15 @@
 @import url(reset.css);
+html{
+	height: 100%;
+}
 body {
   height: 100%;
- 
+
+}
+#main_container{
+	 min-height: 150%;
+	 position: relative;
+	 max-height:auto;
 }
 #header_nav > ul {
   padding-left: 0px;
@@ -16,6 +24,7 @@ body {
   font-size: 13px;
   padding: 15px 0px 15px 0px;
 }
+
 #header_nav > ul > li > a {
   padding-bottom: 15px;
 }
@@ -141,7 +150,8 @@ input[type="text"] {
   font-size: 20px;
   display: inline-block;
   vertical-align: bottom;
-} */
+}
+
 #img_slider {
   height: 55vh;
   background-color: #d8d3cd;
@@ -154,7 +164,7 @@ position: absolute;
   bottom: 0;
   width: 100%;
   height: auto;
-  background-color: #797a7e;
+  background-color: #8d8d8d;
   text-align: center;
   display:inline-block;
   
@@ -170,11 +180,11 @@ position: absolute;
 	
 }
 #foottext{
-	position: relative;
+	
 	height: 2.5rem;
 }
 #section_text {
-  height: 20vh;
+  height: 30vh;
   /* background-color: #f7f2e7; */
   background-color: #ffffff;
 }
@@ -213,13 +223,30 @@ position: absolute;
 .controls {
   text-align: center;
   margin-top: 50px;
+  margin-bottom:50px;
+  
+  
+}
+.controls .cbtn{
+	background-color:#a4a4a4;
+	padding:0px 30px 0px 30px;
+	color:#f5f5f5;
+	border:0;
+	outline:0;
+	
+}
+.controls .cbtn:hover{
+	background-color:#707070;
+	
 }
 .controls span {
   background: #333;
   color: #fff;
   padding: 10px 20px;
   margin: 0 10px;
+  
 }
+
 .slide {
   height: 150px;
   overflow: hidden;

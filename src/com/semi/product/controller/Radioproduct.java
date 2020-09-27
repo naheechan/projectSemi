@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.semi.product.model.service.BookService;
 import com.semi.product.model.vo.Books;
@@ -99,6 +100,7 @@ public class Radioproduct extends HttpServlet {
 			pageBar+="<a href='"+request.getContextPath()
 			+"/product/radioproduct?cPage="+pageNo+"&item="+item+"&numPerPage="+numPerPage+"'>다음</a>";
 		}
+		HttpSession session=request.getSession();
 		//분기처리 all이 선택되면 모든 책 정보 출력해주기
 		List<Books>list=new ArrayList<Books>();
 		if(ca.getCategoryno()==1) {
@@ -109,6 +111,7 @@ public class Radioproduct extends HttpServlet {
 			System.out.println("값이 있음");
 			request.setAttribute("list", list);
 			request.setAttribute("pageBar", pageBar);
+			session.setAttribute("item", item);
 			request.getRequestDispatcher("/views/product/product.jsp").forward(request, response);
 		}else {
 			list=new BookService().categorylist(cPage,numPerPage,ca);
@@ -117,6 +120,7 @@ public class Radioproduct extends HttpServlet {
 			}
 			request.setAttribute("list", list);
 			request.setAttribute("pageBar", pageBar);
+			session.setAttribute("item", item);
 			request.getRequestDispatcher("/views/product/product.jsp").forward(request, response);	
 		}
 			

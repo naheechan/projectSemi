@@ -16,7 +16,7 @@ import com.semi.common.filter.EncyptorWrapper;
 /**
  * Servlet Filter implementation class EncyptorFilter
  */
-@WebFilter(servletNames = { "enrollMember","login","updatePw" })
+@WebFilter(servletNames = { "enrollMember","login","updatePw", "updatePasswordMove", "updatePasswordEnd" })
 public class EncyptorFilter implements Filter {
 
     /**

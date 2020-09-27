@@ -120,7 +120,8 @@
         }
         
         .reserve-button-wrap{
-          text-align: center
+          text-align: center;
+           margin-bottom:50px;
         }
         
         #cancel{
