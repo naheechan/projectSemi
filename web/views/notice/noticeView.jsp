@@ -1,21 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.semi.notice.model.vo.Notice" %>
+<%@ page import="com.semi.notice.model.vo.*" %>
 <%
   Notice n=(Notice)request.getAttribute("notice");
+  List<NoticeComment>list=(List)request.getAttribute("list");
 %>
 <%@ include file="/views/common/header.jsp" %>
 <section>
 	<div id="notice-container">
+	<h2>상세화면</h2>
 	        <table id="tbl-notice">
 	        <tr>
 	            <th>제목</th>
 	            <td><%=n.getNoticeTitle() %></td>
 	        </tr>
-	        <tr>
-	            <th>내용</th>
+	          <tr>
+	            <th>작성자</th>
 	            <td><%=n.getNoticeContent() %></td>
 	        </tr>
+	        <tr>
+	            <th>내용</th>
+	            <td><%=n.getNoticeWriter() %></td>
+	        </tr>
+	        <tr>
+	          <th>조회수</th>
+	          <td><%=n.getNoticeViews() %>
 	        <tr>
 	            <th>첨부파일</th>
 	            <td>
@@ -28,20 +37,49 @@
 	        </tr>
 	        <tr>
 	            <th colspan="2">
+	              <%if(logginedMember!=null&&(logginedMember.getMemberId().equals(n.getNoticeWriter())
+	            	  ||logginedMember.getMemberId().equals("admin"))){%>
 	                <input type="button" value="수정하기"onclick="location.assign('<%=request.getContextPath()%>/notice/noticeUpdeteEnd?noticeNo=<%=n.getNoticeNo()%>">
-	              
 	                <input type="button" value="삭제하기"onclick="location.assign('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>">
-	                         	                
+	               <%} %>
+	               <button type="button" onclick="location.replace"('<%=request.getContextPath() %>/notice/noticeList')">목록으로</button>          	                
 	            </th>
 	        </tr>
-	   
-	    </table>
-    </div>
+	  </div>
+</table>
+</div>
+   <div id="comment-container">
+	   <form action="<%=request.getContextPath() %>/notice/noticeCommentInsert" method="post">
+	    <input type="hidden" name="noticeRef" value="<%=n.getNoticeNo() %>">
+	    <input type="hidden" name="noticeCommentWriter" value="<%=logginedMember!=null?logginedMember.getMemberId():"" %>">
+	    <input type="hidden" name="noticeCommentLevel" value="1">
+	    <input type="hidden" name="noticeCommentRef" value="0">
+	    <textarea name="noticeCommentContent" cols="55" rows="3"></textarea>
+	    <button type="submit" id="btn-insert">등록</button>
+	   </form>
   <style>
     section#notice-container{width:600px; margin:0 auto; text-align:center;}
     section#notice-container h2{margin:10px 0;}
     table#tbl-notice{width:500px; margin:0 auto; border:1px solid black; border-collapse:collapse; clear:both; }
     table#tbl-notice th {width: 125px; border:1px solid; padding: 5px 0; text-align:center;} 
     table#tbl-notice td {border:1px solid; padding: 5px 0 5px 10px; text-align:left;}
+     table#tbl-comment{width:580px; margin:0 auto; border-collapse:collapse; clear:both; } 
+    table#tbl-comment tr td{border-bottom:1px solid; border-top:1px solid; padding:5px; text-align:left; line-height:120%;}
+    table#tbl-comment tr td:first-of-type{padding: 5px 5px 5px 50px;}
+    table#tbl-comment tr td:last-of-type {text-align:right; width: 100px;}
+    table#tbl-comment button.btn-reply{display:none;}
+    table#tbl-comment button.btn-delete{display:none;}
+    table#tbl-comment tr:hover {background:lightgray;}
+    table#tbl-comment tr:hover button.btn-reply{display:inline;}
+    table#tbl-comment tr:hover button.btn-delete{display:inline;}
+    table#tbl-comment tr.level2 {color:gray; font-size: 14px;}
+    table#tbl-comment sub.comment-writer {color:navy; font-size:14px}
+    table#tbl-comment sub.comment-date {color:tomato; font-size:10px}
+    table#tbl-comment tr.level2 td:first-of-type{padding-left:100px;}
+    table#tbl-comment tr.level2 sub.comment-writer {color:#8e8eff; font-size:14px}
+    table#tbl-comment tr.level2 sub.comment-date {color:#ff9c8a; font-size:10px}
+    table#tbl-comment textarea{margin: 4px 0 0 0;}
+    table#tbl-comment button.btn-insert2{width:60px; height:23px; color:white; background:#3300ff; position:relative; top:-5px; left:10px;}
   </style>
 </section>
+<%@ include file="/views/common/footer.jsp" %>

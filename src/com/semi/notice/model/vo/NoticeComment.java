@@ -4,90 +4,92 @@ import java.sql.Date;
 
 public class NoticeComment {
 	private int noticeCommentNo;
-	private int ComentNo;
-	private String CommentLevle;
-	private String CommentContent;
-	private Date CommentDate;
-	private int noitcNo;
-	private int MemberNo;
-
+	private int noticeCommentLevel;
+	private String noticeCommentWriter;
+	private String noticeCommentContent;
+	private Date noticeCommentDate;
+	private int noticeRef;
+	private int noticeCommentRef;
+	private int memberNo;
+	private int noticeNo;
 	public NoticeComment() {
+		
 	}
-
-	public NoticeComment(int noticeCommentNo, int comentNo, String commentLevle, String commentContent,
-			Date commentDate, int noitcNo, int memberNo) {
+	public NoticeComment(int noticeCommentNo, int noticeCommentLevel, String noticeCommentWriter,
+			String noticeCommentContent, Date noticeCommentDate, int noticeRef, int noticeCommentRef, int memberNo,
+			int noticeNo) {
 		super();
 		this.noticeCommentNo = noticeCommentNo;
-		ComentNo = comentNo;
-		CommentLevle = commentLevle;
-		CommentContent = commentContent;
-		CommentDate = commentDate;
-		this.noitcNo = noitcNo;
-		MemberNo = memberNo;
+		this.noticeCommentLevel = noticeCommentLevel;
+		this.noticeCommentWriter = noticeCommentWriter;
+		this.noticeCommentContent = noticeCommentContent;
+		this.noticeCommentDate = noticeCommentDate;
+		this.noticeRef = noticeRef;
+		this.noticeCommentRef = noticeCommentRef;
+		this.memberNo = memberNo;
+		this.noticeNo = noticeNo;
 	}
-
 	public int getNoticeCommentNo() {
 		return noticeCommentNo;
 	}
-
 	public void setNoticeCommentNo(int noticeCommentNo) {
 		this.noticeCommentNo = noticeCommentNo;
 	}
-
-	public int getComentNo() {
-		return ComentNo;
+	public int getNoticeCommentLevel() {
+		return noticeCommentLevel;
 	}
-
-	public void setComentNo(int comentNo) {
-		ComentNo = comentNo;
+	public void setNoticeCommentLevel(int noticeCommentLevel) {
+		this.noticeCommentLevel = noticeCommentLevel;
 	}
-
-	public String getCommentLevle() {
-		return CommentLevle;
+	public String getNoticeCommentWriter() {
+		return noticeCommentWriter;
 	}
-
-	public void setCommentLevle(String commentLevle) {
-		CommentLevle = commentLevle;
+	public void setNoticeCommentWriter(String noticeCommentWriter) {
+		this.noticeCommentWriter = noticeCommentWriter;
 	}
-
-	public String getCommentContent() {
-		return CommentContent;
+	public String getNoticeCommentContent() {
+		return noticeCommentContent;
 	}
-
-	public void setCommentContent(String commentContent) {
-		CommentContent = commentContent;
+	public void setNoticeCommentContent(String noticeCommentContent) {
+		this.noticeCommentContent = noticeCommentContent;
 	}
-
-	public Date getCommentDate() {
-		return CommentDate;
+	public Date getNoticeCommentDate() {
+		return noticeCommentDate;
 	}
-
-	public void setCommentDate(Date commentDate) {
-		CommentDate = commentDate;
+	public void setNoticeCommentDate(Date noticeCommentDate) {
+		this.noticeCommentDate = noticeCommentDate;
 	}
-
-	public int getNoitcNo() {
-		return noitcNo;
+	public int getNoticeRef() {
+		return noticeRef;
 	}
-
-	public void setNoitcNo(int noitcNo) {
-		this.noitcNo = noitcNo;
+	public void setNoticeRef(int noticeRef) {
+		this.noticeRef = noticeRef;
 	}
-
+	public int getNoticeCommentRef() {
+		return noticeCommentRef;
+	}
+	public void setNoticeCommentRef(int noticeCommentRef) {
+		this.noticeCommentRef = noticeCommentRef;
+	}
 	public int getMemberNo() {
-		return MemberNo;
+		return memberNo;
 	}
-
 	public void setMemberNo(int memberNo) {
-		MemberNo = memberNo;
+		this.memberNo = memberNo;
 	}
-
+	public int getNoticeNo() {
+		return noticeNo;
+	}
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
+	}
 	@Override
 	public String toString() {
-		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", ComentNo=" + ComentNo + ", CommentLevle="
-				+ CommentLevle + ", CommentContent=" + CommentContent + ", CommentDate=" + CommentDate + ", noitcNo="
-				+ noitcNo + ", MemberNo=" + MemberNo + "]";
+		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", noticeCommentLevel=" + noticeCommentLevel
+				+ ", noticeCommentWriter=" + noticeCommentWriter + ", noticeCommentContent=" + noticeCommentContent
+				+ ", noticeCommentDate=" + noticeCommentDate + ", noticeRef=" + noticeRef + ", noticeCommentRef="
+				+ noticeCommentRef + ", memberNo=" + memberNo + ", noticeNo=" + noticeNo + "]";
 	}
-
+	
 
 }
