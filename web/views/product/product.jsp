@@ -7,6 +7,8 @@
 	String type = request.getParameter("searchType");
 	String keyword = request.getParameter("searchkey");
 	String numPerPage = request.getParameter("numPerPage");
+	String item=(String)session.getAttribute("item");
+	System.out.print(item);
 %>
 <%@ include file="/views/common/header.jsp"%>
 <%
@@ -29,6 +31,19 @@ div>.product_list {
 	align-content: space-around;
 }
 
+#numPerpage-container {
+	margin: 0 auto;
+	width: 960px;
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: flex-end;
+}
+input[type='radio']{
+
+display:none;
+margin:10px;
+}
+
 #push {
 	height: 100px;
 }
@@ -38,22 +53,50 @@ div>.product_list {
 }
 
 hr {
-	margin-bottom: 100px;
+	margin-bottom: 25px;
+	margin-top: 25px
 }
 
 .content {
 	overflow: scroll;
 }
 
+<%if(item!=null){%>
+
+ <%if(item.equals("all")){%>
+.all{
+background-color:#6ec6ff;
+}
+<%}else if(item.equals("social")){%> 
+.Social{
+background-color:#6ec6ff;
+}		
+<%}else if(item.equals("science")){%> 
+.Science{
+background-color:#6ec6ff;
+}		
+<%}else if(item.equals("it")){%> 
+.it{
+background-color:#6ec6ff;
+}		
+<%}else if(item.equals("literature")){%> 
+.literature{
+background-color:#6ec6ff;
+}		
+<%}else if(item.equals("development")){%> 
+.Self-development{
+background-color:#6ec6ff;
+}		
+<%}
+ }%>
+
+
+
 .product_list li {
 	position: relative;
-	/*  width: 374px; */
 	width: 200px;
 	height: 350px;
-	/*   height: 501px;  */
 	border: 1px solid #d9d9d9;
-	/* float: left;
-    margin: 0 20px 20px 0; */
 	margin-bottom: 50px;
 }
 
@@ -100,7 +143,7 @@ a {
 	justify-content: space-around;
 	margin: 0 auto;
 	width: 960px;
-	margin-top:30px;
+	margin-top: 30px;
 }
 
 .product_list .author {
@@ -123,22 +166,21 @@ a {
 }
 
 .product_list .btm div {
-	float: left;
-	width: 50%;
 	text-align: center;
 	height: 30px;
-	line-height: 30px;
 	font-size: 12px;
 	color: #767676;
+}
+
+.cartbtn {
+	margin-top: 1px;
+	padding: 5px 55px 1px 55px;
+	border: 0;
+	outline: 0;
 }
 
 .content::-webkit-scrollbar {
 	display: none;
-}
-
-.product_list .btm div a {
-	font-size: 12px;
-	color: #767676;
 }
 
 .product_list .title a {
@@ -146,15 +188,15 @@ a {
 }
 
 .item {
-	border: 1px solid black;
+
 	border-radius: 10px;
 	padding: 10px;
 }
 
 .item:hover {
-	background-color: red;
+	background-color: #0069c0;
+	border-radius: 10px;
 }
-
 
 .maincategory {
 	border: 1px solid black;
@@ -169,6 +211,13 @@ a {
 	text-align: center;
 	display: flex;
 	justify-content: space-between;
+	/*flex안에 자식들의 텍스트의 높이를 똑같이 지정해준다.*/
+	align-items:baseline;
+	/* border:1px solid #bfd4df; */
+	border-radius:5px;
+	
+	
+	
 }
 </style>
 <section>
@@ -184,8 +233,9 @@ a {
 				<!--name에 공백이 있으면 값이 안넘어간다-->
 				<input type="hidden" name="numPerPage"
 					value='<%=numPerPage == null ? "4" : numPerPage%>'> <input
-					type="text" name="searchkey"  id="searchinput"
-					placeholder="searchbook" /> <input id="search"type="submit" value="&#xf002" />
+					type="text" name="searchkey" id="searchinput"
+					placeholder="searchbook" /> <input id="search" type="submit"
+					value="&#xf002" />
 
 			</div>
 		</form>
@@ -193,7 +243,7 @@ a {
 			action="<%=request.getContextPath()%>/product/radioproduct">
 			<ul class="maincategory">
 				<li class="item all"><input class="radiov" type="radio"
-					name="item" value="all" id="all"  /><label for="all">전체보기</label></li>
+					name="item" value="all" id="all" checked/><label for="all">전체보기</label></li>
 				<li class="item Social"><input class="radiov" type="radio"
 					name="item" id="social" value="social" /><label for="social">인문사회</label></li>
 				<li class="item Science"><input class="radiov" type="radio"
@@ -243,14 +293,13 @@ a {
 					<dd class="author" name="author"><%=bk.getAuthor()%>(지은이)
 					</dd>
 					<dd class="btm">
-						
 						<div>
-							<span> <!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다--> <!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
-							<button
+							<!--클릭시 매개변수로 책번호를 넘겨줘서 그해당 독서의 정보를 장바구니에 저장한다-->
+							<!-- 비회원일때 는 어떻게 처리를 할것인가  비회원인경우 null이 발생한다-->
+							<button class="cartbtn"
 								onclick="cart(<%=bk.getBookNo()%>,<%=logginedMember.getMemberNo()%>)">장바구니
-							</button></span>
+							</button>
 						</div>
-						
 					</dd>
 				</dl>
 			</li>
@@ -265,13 +314,31 @@ a {
 	<!-- 페이징처리 부분 스타일 -->
 	<style>
 span.page-btn {
-	border: 1px solid black;
-	border-radius: 15px;
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px 0px 0px 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>a:nth-child(1) {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>a:nth-child(7) {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 0px 5px 5px 0px;
+	padding: 3px;
+	background-color:#bbdefb; 
 }
 
 .pageno {
-	border: 1px solid black;
-	border-radius: 15px;
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
 }
 </style>
 	<div id="push"></div>
@@ -322,12 +389,12 @@ span.page-btn {
    	$('.radiov').on('click',function(){
    		$('.radiov:checked').prop('checked',true);
    		$("#categoryfrm").submit();
-   		//라디오버튼을 눌렀을때 해당 라디오버튼의 값을 가져온다
-   		/* let check=$('.radiov:checked').val() */
    		
+   		//라디오버튼을 눌렀을때 해당 라디오버튼의 값을 가져온다
    	});
     $("#numPerPage").change(e => {
 		$("#numperPageFrm").submit();
 	});
+
   </script>
 <%@ include file="/views/common/footer.jsp"%></Books>

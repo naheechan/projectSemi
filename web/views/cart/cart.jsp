@@ -7,7 +7,7 @@
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
-			
+
 			totalprice += (bk.getPrice() * bk.getCount());
 		}
 	}
@@ -24,16 +24,14 @@
 #button-box {
 	display: flex;
 	justify-content: space-between;
-	padding-bottom:3rem;
-}
-.btn{
-background-color: rgb(121, 122, 126);
+	padding-bottom: 3rem;
 }
 
 #headerfont {
 	font-size: 25px;
 	width: 960px;
 	margin: 0 auto;
+	padding-top: 50px;
 }
 
 #carttable th {
@@ -65,6 +63,68 @@ td {
 #totaltxt {
 	margin-bottom: 100px;
 }
+th {
+	flex-basis: 250px;
+	height: 30px;
+	border: 1px solid rgb(216, 211, 205);
+	vertical-align: middle;
+	background-color: rgb(239, 241, 243);
+}
+
+td {
+	flex-basis: 250px;
+	height: 40px;
+	border: 1px solid rgb(216, 211, 205);
+	text-align: center;
+	vertical-align: middle;
+}
+
+button {
+	background: #8fa3ad;
+	color: #fff;
+	border: none;
+	position: relative;
+	height: 50px;
+	font-size: 15px;
+	padding: 0 2em;
+	cursor: pointer;
+	transition: 800ms ease all;
+	outline: none;
+}
+
+button:hover {
+	background: #fff;
+	color: #8fa3ad;
+}
+
+
+
+button:before, button:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 2px;
+	width: 0;
+	background: #8fa3ad;
+	transition: 400ms ease all;
+}
+
+button:after {
+	right: inherit;
+	top: inherit;
+	left: 0;
+	bottom: 0;
+}
+
+.carttd {
+	
+}
+
+button:hover:before, button:hover:after {
+	width: 100%;
+	transition: 800ms ease all;
+}
 </style>
 <section>
 	<p id="headerfont">Cart</p>
@@ -72,26 +132,27 @@ td {
 	<div id="cartcontainer">
 		<form action="<%=request.getContextPath()%>/cart/orderdel" id="delfrm">
 			<table id="carttable">
-				<%
-					for (BooksJoin bk : list) {
-				%>
+
 				<tr>
 					<th colspan="2">상품명</th>
 					<th class="price">가격</th>
 					<th class="count">수량</th>
 					<th class="del">삭제</th>
 				</tr>
+				<%
+					for (BooksJoin bk : list) {
+				%>
 				<tr>
-				<!--이미지와  책제목 flex로 묶어주기-->
-					<td colspan="2"><img
-						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"><div><%=bk.getTitle()%></div></td>
-					
+					<!--이미지와  책제목 flex로 묶어주기-->
+					<td colspan="2" class="carttd"><img height=150px
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>">
+						<span><%=bk.getTitle()%></span></td>
 					<td><%=bk.getPrice()%>원</td>
-					<td><input id="quantity" type="text" size="1"
-						value="<%=bk.getCount()%>">
+					<td><%=bk.getCount()%> <input type="hidden" name="quantity"
+						value="<%=bk.getCount()%>" /></td>
 					<td><input type="checkbox" name="dele" id="dele"
 						value="<%=bk.getCartno()%>" /></td>
-					<input type="hidden" name="cartno" value="<%=bk.getCartno()%>">
+					<input type="hidden" name="cartno" value="<%=bk.getCartno()%>" />
 				</tr>
 				<%
 					}
@@ -103,12 +164,14 @@ td {
 					총금액 :<%=totalprice%>원
 				</div>
 				<div id="button-box">
-					<button type="button" class="btn del"onclick="check()">선택상품삭제하기</button>
-					<button type="button" class="btn order"onclick="order()">주문하기</button>
+					<button type="button" class="btn del" onclick="check()">선택상품삭제하기</button>
+					<button type="button" class="btn order" onclick="order()">주문하기</button>
+				</div>
+			</div>
 		</form>
+
 	</div>
-	</div>
-	</div>
+
 	<script>
 
 	function check() {

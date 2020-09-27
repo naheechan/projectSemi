@@ -10,7 +10,6 @@
 			totalprice += (bk.getPrice() * bk.getCount());
 		}
 	}
-	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -20,29 +19,94 @@
 	margin: 0 auto;
 	border: 2px solid black;
 	width: 960px;
+	padding:20px;
 }
 
-body {
-	height: 100%;
+
+#button-box>button {
+	background: #8fa3ad;
+	color: #fff;
+	border: none;
+	position: relative;
+	height: 50px;
+	font-size: 15px;
+	padding: 0 2em;
+	cursor: pointer;
+	transition: 800ms ease all;
+	outline: none;
+}
+
+#button-box>button:hover {
+	background: #fff;
+	color: #8fa3ad;
+}
+
+
+
+#button-box>button:before, button:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 2px;
+	width: 0;
+	background: #8fa3ad;
+	transition: 400ms ease all;
+}
+
+#button-box>button:after {
+	right: inherit;
+	top: inherit;
+	left: 0;
+	bottom: 0;
+}
+
+#button-box>button:hover:before, button:hover:after {
+	width: 100%;
+	transition: 800ms ease all;
 }
 
 #button-box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+	margin-bottom:100px;
 }
 
 #headerfont {
 	font-size: 25px;
 	width: 960px;
 	margin: 0 auto;
+	padding-top:25px;
 }
 
 #carttable th {
-	border: 1px solid black;
+	  width: 250px;
+      border: 1px solid rgb(216,211,205);
 }
+ input{
+        width: 360px;
+        border: 1px solid rgb(216,211,205);
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+		height: 30px;
+		margin-top:4px;
+		margin-bottom:4px;
+    }
+    textarea{
+    width: 360px;
+        border: 1px solid rgb(216,211,205);
+        border-radius: 5px;
+        text-align: center;
+        font-size: 15px;
+		height: 30px;
+		margin-top:4px;
+		margin-bottom:4px;
+    }
 
 #carttable td {
-	border: 1px solid black;
+	  border: 1px solid rgb(216,211,205);
+      text-align: center;
 }
 
 hr {
@@ -65,17 +129,39 @@ td {
 }
 
 #totaltxt {
-	margin-bottom: 100px;
+	margin-bottom: 50px;
+	border:1px solid black;
+	padding:25px;
 }
 
 #addresstxt {
 	width: 960px;
-	margin: 0 auto;
+	margin:0 auto;
+}
+#addresstxt>table{
+width:960px;
+border:1px solid black;
+margin:auto;
+
 }
 
-#push {
-	heigh: 20vh;
+.carttable>th {
+	flex-basis: 250px;
+	height: 30px;
+	border: 1px solid rgb(216, 211, 205);
+	vertical-align: middle;
+	background-color: rgb(239, 241, 243);
 }
+
+.carttable>th>td {
+	flex-basis: 250px;
+	height: 40px;
+	border: 1px solid rgb(216, 211, 205);
+	text-align: center;
+	vertical-align: middle;
+}
+
+
 </style>
 	<section>
 		<p id="headerfont">Order</p>
@@ -83,41 +169,40 @@ td {
 		<div id="cartcontainer">
 			<form action="<%=request.getContextPath()%>/cart/orderend"
 				method="post" id="buyfrm">
-			<table id="carttable">
-				<%
-					for (BooksJoin bk : list) {
-				%>
-				<tr>
-					<th colspan="2">상품명</th>
-					<th class="price">가격</th>
-					<th class="count">수량</th>
-				</tr>
-				<tr>
-				<tr>
-					<input type="hidden"  name="bookno"value="<%=bk.getBookno()%>">
-					<td><img name="img"
-						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"></td>
-					<td><%=bk.getTitle()%></td>
-					<td><%=bk.getPrice()%>원</td>
-					<td><input type="hidden" name="count" value="<%=bk.getCount()%>">
-					<%=bk.getCount()%></td>
-				</tr>
+				<table id="carttable">
+					<tr>
+						<th colspan="2">상품명</th>
+						<th class="price">가격</th>
+						<th class="count">수량</th>
+					</tr>
+					<%
+						for (BooksJoin bk : list) {
+					%>
+					<tr>
+						<input type="hidden" name="bookno" value="<%=bk.getBookno()%>">
+						<td><img height=150px name="img"
+							src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"></td>
+						<td><%=bk.getTitle()%></td>
+						<td><%=bk.getPrice()%>원</td>
+						<td><input type="hidden" name="count"
+							value="<%=bk.getCount()%>"> <%=bk.getCount()%></td>
+					</tr>
 
-				<%
-					}
-				%>
-			</table>
-			<hr>
+					<%
+						}
+					%>
+				</table>
+				<hr>
 				<div id="addresstxt">
 					<div id="totaltxt">
 						<input type="hidden" name="totalprice" id="totalprice"
 							value="<%=totalprice%>" /> 총금 액 :<%=totalprice%>원
 					</div>
-					<table>
+					<table >
 						<tr>
 							<td>주문인</td>
 							<input type="hidden" name="userno"
-								value="<%=logginedMember.getMemberNo()%>" />
+								value="<%=logginedMember.getMemberNo()%>">
 							<td id="username"><%=logginedMember.getMemberName()%></td>
 
 						</tr>
@@ -146,15 +231,16 @@ td {
 							<td>배송시 요청사항</td>
 							<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
 						</tr>
+						
 					</table>
 					<div id="button-box">
-						<button type="button" onclick="buy()"<%-- onclick="location.href='<%=request.getContextPath()%>/cart/orderend'" --%>>주문하기</button>
-					</div>
+						<button type="button" class="orderbtn"onclick="buy()">주문하기</button>
+						</div>
+				</div>
 			</form>
 			<!--주문하기 누르면 아임포트api이용하기-->
 		</div>
 
-		<div class="push"></div>
 
 		<script>
 		
@@ -218,7 +304,7 @@ td {
 			}
 			function buy() {
 				let name=[]
-				<%for(BooksJoin bk:list){%>
+				<%for (BooksJoin bk : list) {%>
 				name+=["<%=bk.getTitle()%>"]
 				<%}%>
 				console.log(name);

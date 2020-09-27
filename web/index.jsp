@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
+<%session.removeAttribute("item"); %>
 
 <script defer src="<%=request.getContextPath()%>/js/event.js"></script>
 <section id="">
@@ -60,14 +61,8 @@ img {
 	text-align: center;
 }
 
-/* Number text (1/3 etc) */
-.numbertext {
-	color: #f2f2f2;
-	font-size: 12px;
-	padding: 8px 12px;
-	position: absolute;
-	top: 0;
-}
+
+
 
 /* The dots/bullets/indicators */
 .dot {
@@ -127,8 +122,8 @@ to {
 		</ul>
 	</div>
 	<p class="controls">
-		<button class="prev" onclick="perBtn()">&lt</button>
-		<button class="next" onclick="nextBtn1()">&gt</button>
+		<button class="prev cbtn" onclick="perBtn()">&lt</button>
+		<button class="next cbtn" onclick="nextBtn1()">&gt</button>
 	</p>
 	<article id="section_text">
 		<div class="slide">
