@@ -1,13 +1,21 @@
+<%@page import="com.semi.myinfo.model.vo.MyBookclub"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.semi.member.model.vo.Member" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.semi.wording.model.vo.*, java.util.Map" %>    
+<%@ page import="com.semi.myinfo.model.vo.*" %>  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoard.css">
+<script src="<%=request.getContextPath()%>/js/wordingBoard.js"></script>
 <%@ include file="/views/common/header.jsp" %>
-
-<%@ page import="java.util.List,com.semi.seat.model.vo.SeatOrder" %>
-
 <%
-	List<SeatOrder> studyroomOrderlist=(List)request.getAttribute("studyroomOrderlist");
-	String numPerPage = request.getParameter("numPerPage");
+		//서버에서 보낸 데이터 받기
+		List<MyBookclub> MyBookclubList=(List)request.getAttribute("MyBookclubList");
+		List<MyBookclub> MyBookclubListParti=(List)request.getAttribute("MyBookclubListParti");
+		System.out.println("jsp 조장 : "+MyBookclubList);
+		System.out.println("jsp 조원 : "+MyBookclubListParti);
 %>
+
 
 <style>
 
@@ -87,7 +95,7 @@
     }
     th{
     	flex-basis: 250px;
-        height: 40px;
+        height: 30px;
         border: 1px solid rgb(216,211,205);
         vertical-align: middle;
         background-color : rgb(239, 241, 243); 
@@ -100,19 +108,7 @@
         vertical-align: middle;
         
     }
-    input{
-        width: 360px;
-        border: 1px solid rgb(216,211,205);
-        border-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-		height: 30px;
-		margin-top:4px;
-		margin-bottom:4px;
-		margin-left: 5px;
-		margin-right: 5px;
-    }
-   
+    
     .infobtn1, .infobtn2{
             margin-top: 15px;
             width: 100px;
@@ -132,23 +128,11 @@
           background-color: rgb(79, 80, 82); 
         }
 
-	input[type="text"]{
-		font-size: 15px;
-		height: 30px;
-		margin-top:4px;
-		margin-bottom:4px;
-	}
-
-	.active{
-        	background-color: rgb(40, 123, 98);
-        }
-    #mypages4{
+    #mypages7{
     		background-color: rgb(40, 123, 98);
     }
-    .id_tr{
-    	display: none;
-    }
-    #studyroomlist{
+
+    #buylist{
     	display : flex;
         justify-content: center;
         flex-direction: column;
@@ -178,40 +162,70 @@
         </div>
         <div class="info-content">
             <div class="myinfo-title">
-                <label><p class="p1">STUDYROOM RESERVATION LIST</p></label>
+                <label><p class="p1">BOOKCLUB LIST</p></label>
             </div>
             <div class="memberInfo">
-            	<p class="p2">스터디룸 예약 및 결제 정보는 아래와 같습니다.</p>
+            	<p class="p2">북클럽 활동 내역</p>
                 <form id="memberForm" action="" method="post">
-                    <div id="studyroomlist">
+                    <div id="buylist">
 						<table>
+							<p class="p2">북클럽 관리</p>
 							<tr>
-								<th><p class="p2">예약날짜</p></th>
-								<th><p class="p2">예약시간</p></th>
-								<th><p class="p2">사용시간</p></th>
-								<th><p class="p2">좌석이름</p></th>
-								<th><p class="p2">예약인원</p></th>
-								<th><p class="p2">결제금액</p></th>
-								<th><p class="p2">결제일자</p></th>
+								<th><p class="p2">북클럽명</p></th>
+								<th><p class="p2">북클럽이미지</p></th>
+								<th><p class="p2">도서명</p></th>
+								<th><p class="p2">지은이</p></th>
+								<th><p class="p2">조장</p></th>
+								<th><p class="p2">조원</p></th>
+								<th><p class="p2">개설일자</p></th>
 							</tr>
 
-							<%for(SeatOrder so: studyroomOrderlist){ %>
+							<%for(MyBookclub mbc:MyBookclubList){ %>
 							<tr>
-								<td><%=so.getSeatDate()%></td>
-								<td><%=so.getSeatTime()%></td>
-								<td><%=so.getUseTime()%></td>
-								<td><%=so.getSeatNo()%></td>
-								<td><%=so.getMemberCount()%></td>
-								<td><%=so.getSeatPrice()%>원</td>
-								<td><%=so.getSeatOrderDate()%></td>
+								<td><%=mbc.getBookclubTitle()%></td>
+								<td><img height=150px src="<%=request.getContextPath()%>/image/book/<%=mbc.getBookclubImg()%>"></td>
+								<td><%=mbc.getBookTitle()%></td>
+								<td><%=mbc.getBookAuthor()%></td>
+								<td><%=mbc.getWriter()%></td>
+								<td><%=mbc.getPartiId()%></td>
+								<td><%=mbc.getBookclubDate()%></td>
 							</tr>
 							<%} %>
 						</table>
-						<div class="pageBar-div">
-							<div id="pageBar">
-								<%=request.getAttribute("pageBar")%>
-							</div>
+								<div class="pageBar-div">
+								<div id="pageBar">
+									<%=request.getAttribute("pageBar")%>
+								</div>
 						</div>
+						<table>
+							<p class="p2">북클럽 참여</p>
+							<tr>
+								<th><p class="p2">북클럽명</p></th>
+								<th><p class="p2">북클럽이미지</p></th>
+								<th><p class="p2">도서명</p></th>
+								<th><p class="p2">지은이</p></th>
+								<th><p class="p2">조장</p></th>
+								<th><p class="p2">조원</p></th>
+								<th><p class="p2">개설일자</p></th>
+							</tr>
+
+							<%for(MyBookclub parti:MyBookclubListParti){ %>
+							<tr>
+								<td><%=parti.getBookclubTitle()%></td>
+								<td><img height=150px src="<%=request.getContextPath()%>/image/book/<%=parti.getBookclubImg()%>"></td>
+								<td><%=parti.getBookTitle()%></td>
+								<td><%=parti.getBookAuthor()%></td>
+								<td><%=parti.getWriter()%></td>
+								<td><%=parti.getPartiId()%></td>
+								<td><%=parti.getBookclubDate()%></td>
+							</tr>
+							<%} %>
+						</table>
+							<div class="pageBar-div">
+								<div id="pageBar">
+									<%=request.getAttribute("pageBar")%>
+								</div>
+							</div>
 					</div>
                      <!-- 
                      <input type="reset" class="infobtn1" value="취소">
