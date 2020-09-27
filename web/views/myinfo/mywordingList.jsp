@@ -223,5 +223,51 @@
 </div>
 
 </section>
-    
+<script>
+$(function(){
+
+	let s = "";
+	
+	$(".wordingArticleImg").children("img").each(function(index,item){
+		//console.log($(item).attr("alt"));
+	
+		<%for(WordingPic pic : listPic) {%>
+			if($(item).attr("alt")=='<%=pic.getWordingNo()%>') {
+				s = "<%=request.getContextPath()%>/image/wordingBoard/<%=pic.getWordingPicName()%>";
+				$(item).each(function(index, item){
+					//console.log(s);
+					//console.log($(item));
+					$(item).attr("src",s);
+					$(item).css("filter","brightness("+<%=pic.getWordingPicBright()%>+"%)")
+					
+				});
+				
+			}
+		<%}%>
+		
+		
+		<%for(WordingText te : listText) {%>
+			if($(item).attr("alt")=='<%=te.getWordingNo()%>') {
+				$(item).each(function(index, item){
+					$(item).next().css({
+						"font-size":'<%=te.getWordingTextSize()%>'/2+"px",
+						"left":'<%=te.getWordingTextX()%>'+"%",
+						"top":'<%=te.getWordingTextY()%>'+"%",
+						"color":'<%=te.getWordingTextColor()%>'
+					});
+
+				});
+				
+			}
+		<%}%>
+	});
+	
+	$(".wordingArticle").click(function(e) {
+		console.log($(this));
+		location.href="<%=request.getContextPath()%>/wording/wordingDetail?wordingNo="+$(this).children('.wordingArticleImg').children('img').attr('alt');
+	});
+
+})
+</script>
+
 <%@ include file="/views/common/footer.jsp" %>
