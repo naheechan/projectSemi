@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.semi.notice.model.vo.Notice"%>
+<%@ page import="com.semi.notice.model.vo.Notice,"%>
 <%
 	Notice n = (Notice) request.getAttribute("notice");
+   /*  Member m =(Member)request.getAttribute("member"); */
 %>
 <%
 	String noticeTitle = request.getParameter("noticeTitle");
@@ -66,12 +67,20 @@ table#tbl-notice td {
 				</tr>
 				<tr>
 					<th colspan="2">
-						<button type="button" onclick="#" value="수정하기">수정하기</button>
-						<button type="button" onclick="#" value="삭제하기">삭제하기</button>
+						<button type="button" onclick="fn_update_submit();" value="수정하기">수정하기</button>
+						<button type="button" onclick="fn_delete_member();" value="삭제하기">삭제하기</button>
 					</th>
 				</tr>
 			</table>
 		</form>
+	<%-- 	<script>
+		function fn_delete_member(){
+ 			
+
+ 			if(confirm("정말로 탈퇴하시겠습니까?")){
+ 				location.replace('<%=request.getContextPath()%>/member/deleteMember?userId=<%=logginedMember.getUserId()%>');
+ 			}
+		</script> --%>
 	</div>
 	<%--  <script>
 	function fn_delete_member(){

@@ -15,6 +15,7 @@ import com.semi.notice.model.vo.NoticeComment;
 
 import static com.semi.common.JDBCTemplate.close;
 
+
 public class NoticeDao {
 	private Properties prop = new Properties();
 
@@ -108,7 +109,20 @@ public class NoticeDao {
 		}
 		return n;
 	}
-
+	
+	public int updateReadCount(Connection conn, int no) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updateReadCount"));
+			pstmt.setInt(1, no);
+			result=pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}return result;
+	}
 	public int insertNotice(Connection conn, Notice n) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -165,16 +179,49 @@ public class NoticeDao {
     	int result=0;
     	try {
     		pstmt=conn.prepareStatement(prop.getProperty("insertNoticeComment"));
-    		pstmt.setInt(1, nc.getNoticeCommentLevel());
-    		pstmt.setNString(2,nc.getNoticeCommentWriter());
-    		pstmt.setString(3, nc.getNoticeCommentContent());
-    		pstmt.setInt(4, nc.getNoticeRef());
-    		pstmt.setString(5, nc.getNoticeCommentRef()==0?null:String.valueOf(nc.getNoticeCommentRef()));
+			pstmt.setInt(1, nc.getNoticeCommentNo()); 
+    		pstmt.setInt(2, nc.getNoticeCommentLevel());
+    		pstmt.setNString(3,nc.getNoticeCommentWriter());
+    		pstmt.setString(4, nc.getNoticeCommentContent());
+			/* pstmt.setDate(5, nc.getNoticeCommentDate()); */
+    		pstmt.setInt(5, nc.getNoticeRef());
+    		pstmt.setString(6, nc.getNoticeCommentRef()==0?null:String.valueOf(nc.getNoticeCommentRef()));
+			/*
+			 * pstmt.setInt(8, nc.getMemberNo()); pstmt.setInt(9, nc.getNoticeNo());
+			 */
     		result=pstmt.executeUpdate();
     	}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}return result;
+    }
+    public List<NoticeComment> selectNoticeCommentList(Connection conn, int no){
+    	PreparedStatement pstmt=null;
+    	ResultSet rs=null;
+    	List<NoticeComment> list=new ArrayList();
+    	try {
+    		pstmt=conn.prepareStatement(prop.getProperty("selectNoticeCommentList"));
+    		pstmt.setInt(1, no);
+    		rs=pstmt.executeQuery();
+    		while(rs.next()) {
+    			NoticeComment nc= new NoticeComment();
+    			nc.setNoticeCommentNo(rs.getInt(1));
+    			nc.setNoticeCommentLevel(rs.getInt(2));
+    			nc.setNoticeCommentWriter(rs.getNString(3));
+    			nc.setNoticeCommentContent(rs.getNString(4));
+    			nc.setNoticeCommentDate(rs.getDate(5));
+    			nc.setNoticeRef(rs.getInt(6));
+    			nc.setNoticeCommentRef(rs.getInt(7));
+    			nc.setMemberNo(rs.getInt(8));
+    			nc.setNoticeNo(rs.getInt(9));
+    			list.add(nc);
+    		}
+    	}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}return list;
     }
 }
