@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/views/common/header.jsp" %>
 <%@ page import="com.semi.member.model.vo.Member" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.semi.wording.model.vo.*, java.util.Map" %>    
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoard.css">
+<script src="<%=request.getContextPath()%>/js/wordingBoard.js"></script>
+<%@ include file="/views/common/header.jsp" %>
 <%
 		//서버에서 보낸 데이터 받기
 		Member m=(Member)request.getAttribute("member");
+		List<Wording> list = (List)request.getAttribute("list");
+		List<WordingPic> listPic = (List)request.getAttribute("listPic");
+		List<WordingText> listText = (List)request.getAttribute("listText");
+		Map<Integer,Integer> mapLike = (Map)request.getAttribute("mapLike");
 %>
 
 
@@ -69,56 +76,85 @@
         display: inline-block;
         float: left;
         margin-left: 50px;
-        width: 650px;
+        width: 800px;
         background-color: white;
     }
-    .myinfo-title{
-        display : flex;
-        justify-content: center;
-        margin-bottom:15px;
-    }
-    .memberInfo{
-        width: 650px;
-        height: 800px;
-        background-color:
 
-    }
-    #memberForm{
-    	margin-top: 20px;	
-    }
-    th{
-        height: 40px;
-        vertical-align: middle;
-        width: 250px;
-        border: 1px solid rgb(216,211,205);
-        background-color : rgb(239, 241, 243); 
-    }
-    td{
-    	width: 300px;
-    	height: 40px;
-        vertical-align: middle;
-        border: 1px solid rgb(216,211,205);
-        text-align: center;
-        
-    }
-    input{
-        border: none;
-        text-align: center;
-        font-size: 15px;
-		height: 30px;
-		margin-top:4px;
-		margin-bottom:4px;
-		margin-left: 5px;
-		margin-right: 5px;
-    }
-	table{
-		margin-top : 10px;
-	}
 
-    #mypages9{
+    #mypages5{
     		background-color: rgb(40, 123, 98);
     }
+	.wordingArticle{
+    width: 300px;
+    height: 200px;
+    background-color: white;
+    display: inline-block;
+    margin-top: 30px;
+    border-radius: 5%;
 
+	}
+
+	.wordingArticleImg{
+    width: 250px;
+    height: 150px;
+    padding: 0px;
+
+	}
+	
+	.wordingArticleImg img{
+    float: left;
+    width:250px;
+    height:150px;
+    border-radius: 5% 5% 5% 5%;
+	}
+	
+	.img-text{
+	padding: 2.5px 5px;
+	background-color: rgba( 255, 255, 255, 0);
+	color: black;
+	font-size:25px;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+	}
+	
+	.wordingArticleText{
+    width: 250px;
+    height: 100px;
+    float: left;
+	}
+	
+	.wordingArticleTitle{
+    width: 250px;
+    height: 30px;
+    font-size: 15px;
+    text-align: center;
+    padding-top: 5%;
+    font-weight: bolder;
+	}
+	
+	.likeCnt{
+	float:left;
+	padding-top:20px;
+	}
+	
+	.wordingArticleWriterId{
+    float: right;
+    padding-top: 8%;
+}
+.wordingArticleWriterPic{
+    width: 50px;
+    height: 50px;
+    float: right;
+}
+
+.wordingArticleWriterPic img{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+}
 </style>
 
 <section class="sectionInfo">
@@ -137,42 +173,50 @@
         </div>
         <div class="info-content">
             <div class="myinfo-title">
-                <label><p class="p1">POINT</p></label>
+                <label><p class="p1">나의 도서 글귀</p></label>
             </div>
             <div class="memberInfo">
-            	<p class="p2"><%=m.getMemberName()%>님의 포인트 내역은 다음과 같습니다.</p>
-                <form id="memberForm" action="" method="post">
-                    <table id="table1">
-                    	<tr>
-                            <th>포인트</th>
-                            <td>
-                                <input id="point" name="point" type="text" maxlength="10" readonly value="<%=m.getPoint()%>">
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <th>사용 내역</th>
-                            <td>
-                                <input id="point" name="point" type="text" maxlength="10" readonly value="사용 내역이 없습니다.">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>사용 포인트</th>
-                            <td>
-                                <input id="point" name="point" type="text" maxlength="10" readonly value="0">
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <th>잔여 포인트</th>
-                            <td>
-                                <input id="point" name="point" type="text" maxlength="10" readonly value="<%=m.getPoint()%>">
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+			            	<!-- 게시글 div -->
+			    <div id="wordingList">
+			
+					<%if(!list.isEmpty()) { %>
+						<%for(Wording w : list) { %>
+							<!-- 게시글 하나 -->
+					        <div class="wordingArticle">
+					            <div class="wordingArticleImg"> <!--글귀 사진-->
+			
+									<img src="" alt="<%=w.getWordingNo()%>">             															
+			               			<div class="img-text"><p><%=w.getWordingContent()%></p></div>
+			               			console.log(<%=w.getWordingContent()%>);
+				                															
+					            </div>
+					            <div class="wordingArticleText">
+					                <div class="wordingArticleTitle"> <!--글귀 제목-->
+					                    <span><%=w.getWordingTitle() %></span>
+					                </div>
+					                <div class="likeCnt"> <!-- 좋아요수 -->
+					                	<img src="<%=request.getContextPath()%>/image/wordingBoard/like.png" witdh="20px" height="20px">
+					                	<span><%=mapLike.get(w.getWordingNo())%></span>
+					                </div>
+					                <div class="wordingArticleWriter">
+					                    <div class="wordingArticleWriterId"> <!--작성자 아이디-->
+					                        <span><%=w.getWriter() %></span>
+					                    </div>
+					                    <div class="wordingArticleWriterPic"> <!--작성자 프로필사진(동그라미)-->
+					                        <img src="<%=request.getContextPath()%>/image/wordingBoard/profileSample.jpg" >
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+					        <!-- 게시글 하나 -->
+						<%} %>
+					<%} %>
+				
+			    </div>
+			    
+			    <div class="pageBar">
+			    	<%=request.getAttribute("pageBar")%>
+			    </div>
             </div>
         </div>
     </div>

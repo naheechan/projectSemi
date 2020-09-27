@@ -195,12 +195,35 @@ public class WordingService {
 		return listCom;
 	}
 	
+	//마이페이지용
+	public List<Wording> selectWordingBoardList(int cPage, int numPerPage, String userId) {
+		Connection conn = getConnection();
+		List<Wording> list = dao.selectWordingBoardList(conn, cPage, numPerPage, userId);
+		close(conn);
+		return list;
+	}
+	//마이페이지용
+	public List<WordingPic> selectWordingPicList(String userId) {
+		Connection conn = getConnection();
+		List<WordingPic> list = dao.selectWordingPicList(conn, userId);
+		close(conn);
+		return list;
+	}
+	//마이페이지용
+	public List<WordingText> selectWordingTextList(String userId) {
+		Connection conn = getConnection();
+		List<WordingText> list = dao.selectWordingTextList(conn, userId);
+		close(conn);
+		return list;
+	}
 	
-	
-	
-	
-	
-	
+	//마이페이지용
+	public int selectWordingCount(String userId) {
+		Connection conn = getConnection();
+		int totalData = dao.selectWordingCount(conn, userId);
+		close(conn);
+		return totalData;
+	}
 	
 	
 	
