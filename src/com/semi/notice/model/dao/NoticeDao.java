@@ -82,6 +82,7 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Notice n = null;
+		NoticeComment nc=null;
 		try {
 			pstmt = conn.prepareStatement(prop.getProperty("selectNoticeOne"));
 			pstmt.setInt(1, no);
@@ -95,7 +96,9 @@ public class NoticeDao {
 				n.setNoticeDate(rs.getDate("notice_date"));
 				n.setFilepath(rs.getString("filepath"));
 				n.setMemberNo(rs.getInt("member_no"));
-
+				/*
+				 * n.setNoticeViews(rs.getInt("notice_views"));
+				 */
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,7 +127,7 @@ public class NoticeDao {
 		}
 		return result;
 	}
-
+	
 	public int updateNotice(Connection conn, Notice n) {
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -157,23 +160,33 @@ public class NoticeDao {
 		return result;
 
 	}
-	public int insertNoticeComment(Connection conn, NoticeComment nc) {
-		PreparedStatement pstmt= null;
-		int result=0;
-		try {
-			pstmt=conn.prepareStatement(prop.getProperty("insertNoticeComment"));
-			pstmt.setString(1, nc.getCommentlevle());
-			pstmt.setString(2, nc.getComment());
-			pstmt.setInt(3, nc.getMemberNo());
-			pstmt.setInt(4, nc.getNoitcNo());
-			result=pstmt.executeUpdate();
-		}catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		return result;
-		
-	}
-
+	/*
+	 * public int insertNoticeComment(Connection conn, NoticeComment nc) {
+	 * PreparedStatement pstmt= null; int result=0; try {
+	 * pstmt=conn.prepareStatement(prop.getProperty("insertNoticeComment"));
+	 * pstmt.setString(1, nc.getCommentLevle()); pstmt.setString(2,
+	 * nc.getCommentContent()); pstmt.setInt(3, nc.getMemberNo()); pstmt.setInt(4,
+	 * nc.getNoitcNo()); result=pstmt.executeUpdate(); }catch (SQLException e) {
+	 * e.printStackTrace(); }finally { close(pstmt); } return result; }
+	 */
+	/*
+	 * public int updateReadCount(Connection conn, int no) { PreparedStatement
+	 * pstmt=null; int result=0; try {
+	 * pstmt=conn.prepareStatement(prop.getProperty("updateReadCount"));
+	 * pstmt.setInt(1, no); result=pstmt.executeUpdate(); }catch (SQLException e) {
+	 * e.printStackTrace(); }finally { close(pstmt); }return result; }
+	 */
+	/*
+	 * public List<NoticeComment> selectNoticeCommentList(Connection conn, int no){
+	 * PreparedStatement pstmt=null; ResultSet rs=null; List<NoticeComment> list=new
+	 * ArrayList(); try {
+	 * pstmt=conn.prepareStatement(prop.getProperty("selectNoticeCommentList"));
+	 * pstmt.setInt(1, no); rs=pstmt.executeQuery(); while(rs.next()) {
+	 * NoticeComment nc= new NoticeComment(); nc.setNoticeCommentNo(rs.getInt(1));
+	 * nc.setComentNo(rs.getInt(2)); nc.setCommentLevle(rs.getString(3));
+	 * nc.setCommentContent(rs.getNString(4)); nc.setCommentDate(rs.getDate(5));
+	 * nc.setMemberNo(rs.getInt(6)); nc.setNoitcNo(rs.getInt(7)); list.add(nc); }
+	 * }catch (SQLException e) { e.printStackTrace(); }finally { close(rs);
+	 * close(pstmt); }return list; }
+	 */
 }

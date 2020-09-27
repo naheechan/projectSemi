@@ -5,8 +5,8 @@ import java.sql.Date;
 public class NoticeComment {
 	private int noticeCommentNo;
 	private int ComentNo;
-	private String Commentlevle;
-	private String Comment;
+	private String CommentLevle;
+	private String CommentContent;
 	private Date CommentDate;
 	private int noitcNo;
 	private int MemberNo;
@@ -14,13 +14,13 @@ public class NoticeComment {
 	public NoticeComment() {
 	}
 
-	public NoticeComment(int noticeCommentNo, int comentNo, String commentlevle, String comment, Date commentDate,
-			int noitcNo, int memberNo) {
+	public NoticeComment(int noticeCommentNo, int comentNo, String commentLevle, String commentContent,
+			Date commentDate, int noitcNo, int memberNo) {
 		super();
 		this.noticeCommentNo = noticeCommentNo;
 		ComentNo = comentNo;
-		Commentlevle = commentlevle;
-		Comment = comment;
+		CommentLevle = commentLevle;
+		CommentContent = commentContent;
 		CommentDate = commentDate;
 		this.noitcNo = noitcNo;
 		MemberNo = memberNo;
@@ -42,20 +42,20 @@ public class NoticeComment {
 		ComentNo = comentNo;
 	}
 
-	public String getCommentlevle() {
-		return Commentlevle;
+	public String getCommentLevle() {
+		return CommentLevle;
 	}
 
-	public void setCommentlevle(String commentlevle) {
-		Commentlevle = commentlevle;
+	public void setCommentLevle(String commentLevle) {
+		CommentLevle = commentLevle;
 	}
 
-	public String getComment() {
-		return Comment;
+	public String getCommentContent() {
+		return CommentContent;
 	}
 
-	public void setComment(String comment) {
-		Comment = comment;
+	public void setCommentContent(String commentContent) {
+		CommentContent = commentContent;
 	}
 
 	public Date getCommentDate() {
@@ -84,9 +84,10 @@ public class NoticeComment {
 
 	@Override
 	public String toString() {
-		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", ComentNo=" + ComentNo + ", Commentlevle="
-				+ Commentlevle + ", Comment=" + Comment + ", CommentDate=" + CommentDate + ", noitcNo=" + noitcNo
-				+ ", MemberNo=" + MemberNo + "]";
+		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", ComentNo=" + ComentNo + ", CommentLevle="
+				+ CommentLevle + ", CommentContent=" + CommentContent + ", CommentDate=" + CommentDate + ", noitcNo="
+				+ noitcNo + ", MemberNo=" + MemberNo + "]";
 	}
+
 
 }

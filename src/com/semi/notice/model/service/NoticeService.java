@@ -47,28 +47,36 @@ public class NoticeService {
 		close(conn);
 		return result;
 	}
+
 	public int noticeUpdate(Notice n) {
-		Connection conn=getConnection();
-		int result=dao.updateNotice(conn, n);
-		if(result>0) commit(conn);
-		else rollback(conn);
+		Connection conn = getConnection();
+		int result = dao.updateNotice(conn, n);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
 		close(conn);
 		return result;
 	}
+
 	public int deleteNotice(int NoticeNo) {
-		Connection conn=getConnection();
-		int result=dao.deleteNotice(conn, NoticeNo);
-		if(result>0) commit(conn);
-		else rollback(conn);
+		Connection conn = getConnection();
+		int result = dao.deleteNotice(conn, NoticeNo);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
 		close(conn);
 		return result;
 	}
-	public int insertNoticeComment(NoticeComment nc) {
-		Connection conn=getConnection();
-		int result=dao.insertNoticeComment(conn,nc);
-		if(result>0) commit(conn);
-		else rollback(conn);
-		close(conn);
-		return result;
-	}
+	/*
+	 * public int insertNoticeComment(NoticeComment nc) { Connection
+	 * conn=getConnection(); int result=dao.insertNoticeComment(conn,nc);
+	 * if(result>0) commit(conn); else rollback(conn); close(conn); return result; }
+	 */
+	/*
+	 * public List<NoticeComment> selectNoticeCommentList(int no){ Connection
+	 * conn=getConnection(); List<NoticeComment>
+	 * list=dao.selectNoticeCommentList(conn,no); close(conn); return list; }
+	 */
 }
