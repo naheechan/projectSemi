@@ -18,7 +18,7 @@ const one = (ele) => document.querySelector(ele);
 	  setInterval(() => {
 	    pos = (pos + 1) % len; // 장면 선택
 	    target.style.marginTop = `${-pos * height}px`;
-	  }, 1500); // 1500 = 1500ms = 1.5sec. 즉, 1.5초 마다 실행
+	  }, 3000); // 1500 = 1500ms = 1.5sec. 즉, 1.5초 마다 실행
 	};
 	window.onload = function () {
 	  slidet();
