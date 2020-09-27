@@ -20,6 +20,7 @@
 	border: 2px solid black;
 	width: 960px;
 	padding:20px;
+	
 }
 
 
@@ -69,7 +70,8 @@
 #button-box {
 	display: flex;
 	justify-content: flex-end;
-	margin-bottom:100px;
+	margin-top:50px;
+	margin-bottom:50px;
 }
 
 #headerfont {
@@ -94,13 +96,13 @@
 		margin-bottom:4px;
     }
     textarea{
-    width: 360px;
+    	width: 360px;
         border: 1px solid rgb(216,211,205);
         border-radius: 5px;
         text-align: center;
         font-size: 15px;
-		height: 30px;
 		margin-top:4px;
+		height: 30px;
 		margin-bottom:4px;
     }
 
