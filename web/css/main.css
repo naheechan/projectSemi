@@ -7,7 +7,7 @@ body {
 
 }
 #main_container{
-	 min-height: 150%;
+	 min-height: 100%;
 	 position: relative;
 	 max-height:auto;
 }
@@ -160,7 +160,7 @@ input[type="text"] {
   margin: 0 auto;
 }
 #footer_container {
-position: absolute;
+/* position: absolute; */
   bottom: 0;
   width: 100%;
   height: auto;
@@ -184,7 +184,7 @@ position: absolute;
 	height: 2.5rem;
 }
 #section_text {
-  height: 30vh;
+  margin-bottom:10px;
   /* background-color: #f7f2e7; */
   background-color: #ffffff;
 }
