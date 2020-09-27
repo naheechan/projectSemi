@@ -207,7 +207,7 @@ position: absolute;
   height: 300px;
   overflow: hidden;
   top: 30px;
-  border: 1px solid #767676;
+
 }
 
 .slides {
@@ -218,7 +218,7 @@ position: absolute;
 }
 .slides li:not(:last-child) {
   float: left;
-  margin-right: 30px;
+  margin-right: 50px;
 }
 .controls {
   text-align: center;
@@ -248,8 +248,16 @@ position: absolute;
 }
 
 .slide {
-  height: 150px;
+  height: 100px;
   overflow: hidden;
+  display:flex;
+  justify-content: center;
+
+}
+.slide li img{
+	
+	margin:0 auto;
+	
 }
 
 .slide ul {
@@ -260,7 +268,7 @@ position: absolute;
   height: 100%;
 }
 
-.slide li:nth-child(1) {
+/* .slide li:nth-child(1) {
   background: #faa;
 }
 
@@ -275,3 +283,4 @@ position: absolute;
 .slide li:nth-child(4) {
   background: #faf;
 }
+ */
