@@ -46,7 +46,7 @@ public class StudyroomOrderlistServlet extends HttpServlet {
 					numPerPage=Integer.parseInt(request.getParameter("numPerPage"));
 				
 				}catch (NumberFormatException e) {
-					numPerPage=3;
+					numPerPage=6;
 				}
 				int pageBarSize=5;
 				int totalData=new MyinfoService().selectStudyroomCount(memberNo);
