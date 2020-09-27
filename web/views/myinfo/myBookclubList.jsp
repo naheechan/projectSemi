@@ -31,8 +31,10 @@
         font-weight: bold;
     }
     .p2{
-    	font-size: 15px;
+    	font-size: 16px;
         font-weight: bold;
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
     .myinfo{
     	margin-top: 20px;
@@ -169,7 +171,7 @@
                 <form id="memberForm" action="" method="post">
                     <div id="buylist">
 						<table>
-							<p class="p2">북클럽 관리</p>
+							<p class="p2">북클럽 관리 (북클럽 조장)</p>
 							<tr>
 								<th><p class="p2">북클럽명</p></th>
 								<th><p class="p2">북클럽이미지</p></th>
@@ -198,7 +200,7 @@
 								</div>
 						</div>
 						<table>
-							<p class="p2">북클럽 참여</p>
+							<p class="p2">북클럽 참여 (북클럽 조원)</p>
 							<tr>
 								<th><p class="p2">북클럽명</p></th>
 								<th><p class="p2">북클럽이미지</p></th>
