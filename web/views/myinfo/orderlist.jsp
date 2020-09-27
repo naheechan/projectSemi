@@ -136,6 +136,21 @@
         justify-content: center;
         margin-top: 20px;
     }
+    #pageBar {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	/*flex안에 자식들의 텍스트의 높이를 똑같이 지정해준다.*/
+	align-items:baseline;
+	/* border:1px solid #bfd4df; */
+	border-radius:5px;
+	
+	
+	
+}
 </style>
 
 <section class="sectionInfo">
@@ -189,6 +204,35 @@
 							</div>
 						</div>
 					</div>
+					<style>
+					span.page-btn {
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px 0px 0px 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>a:nth-child(1) {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>span:last-child {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 0px 5px 5px 0px;
+	padding: 3px;
+	background-color:#bbdefb; 
+}
+
+.pageno {
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+					</style>
                      <!-- 
                      <input type="reset" class="infobtn1" value="취소">
                      <input type="submit" class="infobtn2" onclick="checkData();'" value="확인"> 
