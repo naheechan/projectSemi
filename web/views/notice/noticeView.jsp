@@ -125,6 +125,9 @@ table#tbl-comment button.btn-insert2 {
 	top: -5px;
 	left: 10px;
 }
+#noticeCommentContent{
+	margin-left:200px;
+}
 </style>
 	<div id="notice-container">
 		<h2>상세화면</h2>
@@ -184,7 +187,7 @@ table#tbl-comment button.btn-insert2 {
 					value="<%=logginedMember != null ? logginedMember.getMemberId() : ""%>">
 				<input type="hidden" name="noticeCommentLevel" value="1"> <input
 					type="hidden" name="noticeCommentRef" value="0">
-				<textarea name="noticeCommentContent" cols="55" rows="3"></textarea>
+				<textarea id="noticeCommentContent" name="noticeCommentContent" cols="55" rows="3"></textarea>
 				<button type="submit" id="btn-insert">등록</button>
 			</form>
 		</div>
