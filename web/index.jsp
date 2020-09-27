@@ -8,19 +8,21 @@
 	<div id="mainimage">
 		<div class="slideshow-container">
 			<div class="mySlides fade">
-
+	<a href="">
 				<img src="<%=request.getContextPath()%>/image/main/main1.jpg"
-					style="width: 100%" height="600px"/>
+					style="width: 100%" height="600px"/></a>
 
 			</div>
 			<div class="mySlides fade">
-				<img src="<%=request.getContextPath()%>/image/main/main2.jpg"
-					style="width: 100%" height="600px"/>
+				<a href="<%=request.getContextPath()%>/seatMove"><img src="<%=request.getContextPath()%>/image/main/main2.jpg"
+					style="width: 100%" height="600px"/></a>
 
 			</div>
 			<div class="mySlides fade">
+			<a href="<%=request.getContextPath()%>/wording/wordingList">
 				<img src="<%=request.getContextPath()%>/image/main/main3.jpg"
 					style="width: 100%" height="600px"/>
+					</a>
 
 			</div>
 			<div style="text-align: center">
@@ -109,16 +111,17 @@ to {
 </style>
 	</div>
 	<!--깃허브 브런치 테스트  -->
+	<style>
+
+	</style>
 	<div class="slides_wrapper">
 		<ul class="slides">
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
-			<li><img src="http://placehold.it/300x300" alt=""></li>
+			<li><a href="<%=request.getContextPath()%>/product/productDetail?no=100"><img src="<%=request.getContextPath()%>/image/best/best1.JPG" alt=""></a></li>
+			<li><a href="<%=request.getContextPath()%>/product/productDetail?no=114"><img src="<%=request.getContextPath()%>/image/best/best2.JPG" alt=""></a></li>
+			<li><a href="<%=request.getContextPath()%>/product/productDetail?no=129"><img src="<%=request.getContextPath()%>/image/best/best3.JPG" alt=""></a></li>
+			<li><a href="<%=request.getContextPath()%>/product/productDetail?no=126"><img src="<%=request.getContextPath()%>/image/best/best4.JPG" alt=""></a></li>
+			<li><a href="<%=request.getContextPath()%>/product/productDetail?no=136"><img src="<%=request.getContextPath()%>/image/best/best5.JPG" alt=""></a></li>
+					<li><img  alt=""></li>
 		</ul>
 	</div>
 	<p class="controls">
@@ -128,10 +131,11 @@ to {
 	<article id="section_text">
 		<div class="slide">
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li><img  align="middle"width=1280px src="<%=request.getContextPath()%>/image/live/live1.JPG"></li>
+				<li><img  align="middle" width=1280px src="<%=request.getContextPath()%>/image/live/live2.JPG"></li>
+				<li><img   align="middle"width=1280px src="<%=request.getContextPath()%>/image/live/live3.JPG"></li>
+				<li><img  align="middle" width=1280px src="<%=request.getContextPath()%>/image/live/live4.JPG"></li>
+				<li><img  align="middle" width=1280px src="<%=request.getContextPath()%>/image/live/live5.JPG"></li>			
 			</ul>
 		</div>
 	</article>
@@ -148,7 +152,7 @@ to {
 	slides.style.width = (slideWidth + slideMargin) * slideCount - slideMargin
 			+ "px";
 	function moveSlide(num) {
-		slides.style.left = -num * 330 + "px";
+		slides.style.left = -num * 300 + "px";
 		currentIdx = num;
 	}
 	function perBtn() {
@@ -184,7 +188,7 @@ to {
 		}
 		slides2[slideIndex - 1].style.display = "block";
 		dots[slideIndex - 1].className += " active";
-		setTimeout(showSlides, 4000); //
+		setTimeout(showSlides, 5000); //
 	}
 </script>
 
