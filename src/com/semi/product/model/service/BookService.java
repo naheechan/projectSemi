@@ -1,13 +1,20 @@
 package com.semi.product.model.service;
 
+import static com.semi.common.JDBCTemplate.close;
+import static com.semi.common.JDBCTemplate.commit;
+import static com.semi.common.JDBCTemplate.getConnection;
+import static com.semi.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
-import static com.semi.common.JDBCTemplate.getConnection;
-import static com.semi.common.JDBCTemplate.close;
 
 import com.semi.product.model.dao.BookDao;
+import com.semi.product.model.vo.BookComView;
+import com.semi.product.model.vo.BookDetailView;
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BuyerView;
 import com.semi.product.model.vo.Category;
+import com.semi.product.model.vo.StarView;
 
 public class BookService {
 	private BookDao dao=new BookDao();
@@ -72,9 +79,77 @@ public class BookService {
 		return count;
 	}
 
+	public BookDetailView selectBookDetail(int no) {
+		Connection conn = getConnection();
+		BookDetailView bv = dao.selectBookDetail(conn, no);
+		close(conn);
+		return bv;
+	}
 	
+	public StarView selectStarView(int no) {
+		Connection conn = getConnection();
+		StarView star = dao.selectStarView(conn, no);
+		close(conn);
+		return star;
+	}
 	
+	public List<BuyerView> selectBuyerView(int no) {
+		Connection conn = getConnection();
+		List<BuyerView> buyerList = dao.selectBuyerView(conn, no);
+		close(conn);
+		return buyerList;
+	}
 
+	
+	public List<BookComView> selectBookComment(int no) {
+		Connection conn = getConnection();
+		List<BookComView> comList = dao.selectBookComment(conn, no);
+		close(conn);
+		return comList;
+	}
+	
+	public int insertStarAndCom(int mNo, int bNo, int score, String com) {
+		Connection conn = getConnection();
+		int result = dao.insertStar(conn, mNo, bNo, score);
+		if(result>0) {
+			result = dao.insertBookCom(conn, mNo, bNo, com);
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	public int updateStarAndCom(int mNo, int bNo, int score, String com) {
+		Connection conn = getConnection();
+		int result = dao.updateStar(conn, mNo, bNo, score);
+		if(result>0) {
+			result = dao.updateBookCom(conn, mNo, bNo, com);
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	
+	
+	public int deleteStarAndCom(int mNo, int bNo) {
+		Connection conn = getConnection();
+		int result = dao.deleteStar(conn, mNo, bNo);
+		if(result>0) {
+			result = dao.deleteBookCom(conn, mNo, bNo);
+			if(result>0) commit(conn);
+			else rollback(conn);
+		}else rollback(conn);
+		close(conn);
+		return result;
+	}
+	
+	
+	
+	
+	
 	
 
 }

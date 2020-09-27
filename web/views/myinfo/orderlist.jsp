@@ -127,8 +127,8 @@
     #buylist{
     	display : flex;
         justify-content: center;
-        flex-direction: column;
-        flex-wrap: nowrap;
+        flex-flow:column nowrap;
+     
     }
 
     .pageBar-div{

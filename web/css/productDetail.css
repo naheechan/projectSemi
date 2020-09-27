@@ -21,6 +21,10 @@ hr{
     /* background-color: wheat; */
     float: left;
 }
+#bookImg img{
+    width: 500px;
+    height: 750px;
+}
 #bookText{
     height: 700px;
     padding-top: 5%;
@@ -229,7 +233,10 @@ hr{
     /* background-color: palegoldenrod; */
 
 }
-.bookComments-container .starRev{
+.bookComments-container .starRevReview{
+    margin-bottom: 20px;
+}
+.bookComments-container .starRevPer{
     margin-bottom: 20px;
 }
 .writeComments div{
@@ -249,7 +256,9 @@ hr{
     
      
 }
-
+.writeComments {
+	margin-bottom: 10%;
+}
 .writeComments hr{
     margin-top: 100px;
     margin-left: 0%;
@@ -257,3 +266,37 @@ hr{
     /* background-color: red; */
     /* height: 20px; */
 }
+
+.comment-area{
+	display: flex;
+	flex-direction: column;
+	/* background-color: red; */
+}
+.commentHeader{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #FAEBFF;
+	border-radius: 2%;
+	align-items: center;
+}
+.commentBody{
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 10%;
+	padding-top: 3%;
+}
+.commentEdit{
+	display: flex;
+	justify-content: flex-end;
+}
+.editBtn{
+	background-color: navy;
+}
+.deleteBtn{
+	background-color: red;
+}
+.editEndBtn{
+	background-color: yellow;
+}
+
