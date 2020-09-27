@@ -1,4 +1,4 @@
-package com.semi.bookclub.controller;
+package com.semi.product.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.semi.product.model.service.BookService;
+
 /**
- * Servlet implementation class BookclubWriteServlet
+ * Servlet implementation class ProductDeleteCommentServlet
  */
-@WebServlet("/bookclub/bookclubWrite")
-public class BookclubWriteServlet extends HttpServlet {
+@WebServlet("/product/productDeleteCom")
+public class ProductDeleteCommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookclubWriteServlet() {
+    public ProductDeleteCommentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,19 @@ public class BookclubWriteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("/views/bookclubBoard/bookclubWrite.jsp").forward(request, response);
+		int mNo = Integer.parseInt(request.getParameter("mNo"));
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		
+		int result = new BookService().deleteStarAndCom(mNo,bNo);
+		
+		if(result>0) {
+			response.sendRedirect(request.getContextPath()+"/product/productDetail?no="+bNo);
+		}else {
+			request.setAttribute("msg", "한줄평 삭제에 실패하였습니다");
+			request.setAttribute("loc", "/product/productDetail?no="+bNo);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		}
+		
 	}
 
 	/**

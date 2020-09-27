@@ -234,7 +234,7 @@ a {
 						<a href=""><%=bk.getTitle()%></a>
 					</dt>
 					<dd class="img" name="img">
-						<a href=""><img id="img" width="200" height="250"
+						<a href="<%=request.getContextPath()%>/product/productDetail?no=<%=bk.getBookNo()%>"><img id="img" width="200" height="250"
 							src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"
 							alt="" /></a>
 					</dd>

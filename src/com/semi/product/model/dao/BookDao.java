@@ -1,6 +1,8 @@
 package com.semi.product.model.dao;
 
 
+import static com.semi.common.JDBCTemplate.close;
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,11 +12,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import static com.semi.common.JDBCTemplate.close;
 
-
+import com.semi.product.model.vo.BookComView;
+import com.semi.product.model.vo.BookDetailView;
 import com.semi.product.model.vo.Books;
+import com.semi.product.model.vo.BuyerView;
 import com.semi.product.model.vo.Category;
+import com.semi.product.model.vo.StarView;
 
 
 
@@ -251,6 +255,234 @@ public class BookDao {
 		
 		return result;
 	}
+	
+	
+	public BookDetailView selectBookDetail(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		BookDetailView bv = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectBookDetail"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				bv = new BookDetailView();
+				bv.setBookNo(rs.getInt("book_no"));
+				bv.setBookTitle(rs.getString("book_title"));
+				bv.setBookAuthor(rs.getString("book_author"));
+				bv.setBookPrice(rs.getInt("book_price"));
+				bv.setBookImg(rs.getString("book_img"));
+				bv.setBookPublisher(rs.getString("book_publisher"));
+				bv.setBookPublicationdate(rs.getDate("book_publicationdate"));
+				bv.setCategoryNo(rs.getInt("category_no"));
+				bv.setBookintro(rs.getString("bookintro"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return bv;
+	}
+	
+	public StarView selectStarView(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StarView star = null;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectStarView"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				star = new StarView();
+				star.setOneStar(rs.getInt("one_star"));
+				star.setTwoStar(rs.getInt("two_star"));
+				star.setThreeStar(rs.getInt("three_star"));
+				star.setFourStar(rs.getInt("four_star"));
+				star.setFiveStar(rs.getInt("five_star"));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return star;
+	}
+	
+	
+	public List<BuyerView> selectBuyerView(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BuyerView> buyerList = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectBuyerView"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BuyerView b = new BuyerView();
+				b.setGender(rs.getString("gender"));
+				b.setAge(rs.getInt("age"));
+				buyerList.add(b);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return buyerList;
+	}
+	
+	
+	public List<BookComView> selectBookComment(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<BookComView> comList = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("selectBookComment"));
+			pstmt.setInt(1, no);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BookComView com = new BookComView();
+				com.setBookNo(rs.getInt("book_no"));
+				com.setMemberNo(rs.getInt("member_no"));
+				com.setCom(rs.getString("com"));
+				com.setComDate(rs.getDate("com_date"));
+				com.setMemberId(rs.getString("member_id"));
+				com.setScore(rs.getInt("score"));
+				comList.add(com);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return comList;
+	}
+	
+	public int insertStar(Connection conn, int mNo, int bNo, int score) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertStar"));
+			pstmt.setInt(1, bNo);
+			pstmt.setInt(2, mNo);
+			pstmt.setInt(3, score);
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertBookCom(Connection conn, int mNo, int bNo, String com) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("insertBookCom"));
+			pstmt.setInt(1, bNo);
+			pstmt.setInt(2, mNo);
+			pstmt.setString(3, com);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateStar(Connection conn, int mNo, int bNo, int score) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateStar"));
+			pstmt.setInt(1, score);
+			pstmt.setInt(2, bNo);
+			pstmt.setInt(3, mNo);
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int updateBookCom(Connection conn, int mNo, int bNo, String com) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("updateBookCom"));
+			pstmt.setString(1, com);
+			pstmt.setInt(2, bNo);
+			pstmt.setInt(3, mNo);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	public int deleteStar(Connection conn, int mNo, int bNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteStar"));
+			pstmt.setInt(1, bNo);
+			pstmt.setInt(2, mNo);
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	public int deleteBookCom(Connection conn, int mNo, int bNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("deleteBookCom"));
+			pstmt.setInt(1, bNo);
+			pstmt.setInt(2, mNo);
+			result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }

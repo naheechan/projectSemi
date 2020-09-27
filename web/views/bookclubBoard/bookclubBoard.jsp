@@ -6,6 +6,10 @@
 	List<BookclubView> list = (List)request.getAttribute("list");
 	List<BookclubPartiView> listParti = (List)request.getAttribute("listParti");
 	Map<Integer,Integer> mapPartiCnt = (Map)request.getAttribute("mapPartiCnt");
+	
+	for(BookclubView v : list) {
+		System.out.println(v);
+	}
 %>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bookclubBoard.css">
 <script src="<%=request.getContextPath()%>/js/bookclubBoard.js"></script>

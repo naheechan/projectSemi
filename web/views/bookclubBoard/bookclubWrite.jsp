@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
+<%
+	String bNo = request.getParameter("bNo");
+	String bTitle = (String)request.getParameter("bTitle");
+	String bImg = (String)request.getParameter("bImg");
+	
+%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bookclubWrite.css">
 <section>
 
@@ -25,9 +31,9 @@
 				<tr>
 					<td>주제책 검색</td>
 					<td>
-						<input type="search" id="searchBook" name="searchBook" list="bookList" placeholder="책이름을 검색해주세요" style="width:165px">
-						<input type="hidden" id="searchBookImgName" name="searchBookImgName">
-						<input type="hidden" id="searchBookNo" name="searchBookNo">					
+						<input type="search" id="searchBook" name="searchBook" list="bookList" placeholder="책이름을 검색해주세요" style="width:165px" value="<%=bTitle!=null?bTitle:""%>">
+						<input type="hidden" id="searchBookImgName" name="searchBookImgName" value="<%=bImg!=null?bImg:""%>">
+						<input type="hidden" id="searchBookNo" name="searchBookNo" value="<%=bNo!=null?bNo:""%>">					
 					</td>
 					<datalist id="bookList">
 					</datalist>
@@ -97,7 +103,9 @@
 		});
 		
 		
-		
+		if(<%=bImg!=null%>) {
+			$(".searchBook-area").find("img").attr("src","<%=request.getContextPath()%>/image/book/<%=bImg%>");
+		}
 		
 		
 		
