@@ -10,14 +10,11 @@ public class NoticeComment {
 	private Date noticeCommentDate;
 	private int noticeRef;
 	private int noticeCommentRef;
-	private int memberNo;
-	private int noticeNo;
 	public NoticeComment() {
 		
 	}
 	public NoticeComment(int noticeCommentNo, int noticeCommentLevel, String noticeCommentWriter,
-			String noticeCommentContent, Date noticeCommentDate, int noticeRef, int noticeCommentRef, int memberNo,
-			int noticeNo) {
+			String noticeCommentContent, Date noticeCommentDate, int noticeRef, int noticeCommentRef) {
 		super();
 		this.noticeCommentNo = noticeCommentNo;
 		this.noticeCommentLevel = noticeCommentLevel;
@@ -26,8 +23,6 @@ public class NoticeComment {
 		this.noticeCommentDate = noticeCommentDate;
 		this.noticeRef = noticeRef;
 		this.noticeCommentRef = noticeCommentRef;
-		this.memberNo = memberNo;
-		this.noticeNo = noticeNo;
 	}
 	public int getNoticeCommentNo() {
 		return noticeCommentNo;
@@ -71,24 +66,12 @@ public class NoticeComment {
 	public void setNoticeCommentRef(int noticeCommentRef) {
 		this.noticeCommentRef = noticeCommentRef;
 	}
-	public int getMemberNo() {
-		return memberNo;
-	}
-	public void setMemberNo(int memberNo) {
-		this.memberNo = memberNo;
-	}
-	public int getNoticeNo() {
-		return noticeNo;
-	}
-	public void setNoticeNo(int noticeNo) {
-		this.noticeNo = noticeNo;
-	}
 	@Override
 	public String toString() {
 		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", noticeCommentLevel=" + noticeCommentLevel
 				+ ", noticeCommentWriter=" + noticeCommentWriter + ", noticeCommentContent=" + noticeCommentContent
 				+ ", noticeCommentDate=" + noticeCommentDate + ", noticeRef=" + noticeRef + ", noticeCommentRef="
-				+ noticeCommentRef + ", memberNo=" + memberNo + ", noticeNo=" + noticeNo + "]";
+				+ noticeCommentRef + "]";
 	}
 	
 

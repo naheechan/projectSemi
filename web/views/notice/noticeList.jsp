@@ -54,14 +54,14 @@ h2+button {
 			<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=n.getNoticeNo()%>">
 					<%=n.getNoticeTitle()%>
 			</a></td>
-			<td><%=n.getNoticeContent()%></td>
+			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
 			<td><%=n.getNoticeViews()%></td>
 			<td>
 				<%
 					if (n.getFilepath() != null) {
 				%> <img
-				src="<%=request.getContextPath()%>/images/file.png" width="20"
+				src="<%=request.getServletContext().getRealPath("/image/file.png")%> width="20"
 				height="20"> <%
  	}
  %>

@@ -30,7 +30,20 @@ public class NoticeUpdeteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/views/notice/noticeUpdate.jsp").forward(request, response);
+		Notice n= new Notice();
+		n.setNoticeTitle(request.getParameter("noticeTitle"));
+		n.setNoticeWriter(request.getParameter("noticeWriter"));
+		n.setFilepath(request.getParameter("filepath"));
+		n.setNoticeContent(request.getParameter("noticeContent"));
+		int result=new NoticeService().noticeUpdate(n);
+		String msg="";
+		String lod="/";
+		if(result>0) {
+			msg="성공적으로 수정되었습니다.";
+		}else{
+			msg="수정에 실패하였습니다";
+		}
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		 
 	}
 

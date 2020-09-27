@@ -1,20 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="com.semi.notice.model.vo.*"%>
+<%@ page import="com.semi.notice.model.vo.*,java.util.List"%>
 <%
-	Notice n = (Notice) request.getAttribute("notice");
+	Notice n = (Notice) request.getAttribute("n");
 List<NoticeComment> list = (List) request.getAttribute("list");
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
-<style>
-section#notice-container {
+	<style>
+section>div#notice-container {
 	width: 600px;
 	margin: 0 auto;
 	text-align: center;
 }
 
-section#notice-container h2 {
+section>div#notice-container h2 {
 	margin: 10px 0;
 }
 
@@ -39,6 +39,15 @@ table#tbl-notice td {
 	text-align: left;
 }
 
+div#comment-container button#btn-insert {
+	width: 60px;
+	height: 50px;
+	color: white;
+	background-color: #3300FF;
+	position: relative;
+	top: -20px;
+}
+/*댓글테이블*/
 table#tbl-comment {
 	width: 580px;
 	margin: 0 auto;
@@ -111,7 +120,7 @@ table#tbl-comment tr.level2 sub.comment-date {
 	color: #ff9c8a;
 	font-size: 10px
 }
-
+/*답글관련*/
 table#tbl-comment textarea {
 	margin: 4px 0 0 0;
 }
@@ -126,11 +135,16 @@ table#tbl-comment button.btn-insert2 {
 	left: 10px;
 }
 </style>
+
 	<div id="notice-container">
-		<h2>상세화면</h2>
+		<h2>공지사항</h2>
 		<table id="tbl-notice">
 			<tr>
-				<th>제목</th>
+				<th>번호</th>
+				<td><%=n.getNoticeNo()%></td>
+			</tr>
+			<tr>
+				<th>제 목</th>
 				<td><%=n.getNoticeTitle()%></td>
 			</tr>
 			<tr>
@@ -138,20 +152,17 @@ table#tbl-comment button.btn-insert2 {
 				<td><%=n.getNoticeWriter()%></td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td><%=n.getNoticeContent()%></td>
-			</tr>
-			<tr>
 				<th>조회수</th>
-				<td><%=n.getNoticeViews()%>
+				<td><%=n.getNoticeViews()%></td>
+			</tr>
 			<tr>
 				<th>첨부파일</th>
 				<td>
 					<%
 						if (n.getFilepath() != null) {
 					%> <a
-					href="<%=request.getContextPath()%>/notice/Noticefiledown?fname=<%=n.getFilepath()%>">
-						<img src="<%=request.getContextPath()%>/images/file.png"
+					href="<%=request.getContextPath()%>/notice/noticefiledown?fname=<%=n.getFilepath()%>">
+						<img src="<%=request.getContextPath()%>/image/file.png"
 						width="20" height="20">
 				</a> <%
  	}
@@ -159,80 +170,90 @@ table#tbl-comment button.btn-insert2 {
 				</td>
 			</tr>
 			<tr>
+				<th>내 용</th>
+				<td><%=n.getNoticeContent()%></td>
+			</tr>
+			<%--글작성자/관리자인경우 수정삭제 가능 --%>
+			<tr>
 				<th colspan="2">
 					<%
 						if (logginedMember != null
 							&& (logginedMember.getMemberId().equals(n.getNoticeWriter()) || logginedMember.getMemberId().equals("admin"))) {
 					%> <input
 					type="button" value="수정하기"
-					onclick="location.assign('<%=request.getContextPath()%>/notice/noticeUpdeteEnd?noticeNo=<%=n.getNoticeNo()%>">
+					onclick="location.replace('<%=request.getContextPath()%>/notice/noticeUpdete?noticeNo=<%=n.getNoticeNo()%>')">
+
 					<input type="button" value="삭제하기"
-					onclick="location.assign('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>">
+					onclick="location.replace('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>')">
 					<%
 						}
 					%>
-					<button type="button" onclick="location.replace"('<%=request.getContextPath()%>/notice/noticeList')">목록으로</button>
+					<button type="button"
+						onclick="location.replace('<%=request.getContextPath()%>/notice/noticeList')">목록으로</button>
 				</th>
 			</tr>
 		</table>
 		<div id="comment-container">
-			<form
-				action="<%=request.getContextPath()%>/notice/noticeCommentInsert"
-				method="post">
-				<input type="hidden" name="noticeRef" value="<%=n.getNoticeNo()%>">
-				<input type="hidden" name="noticeCommentWriter"
-					value="<%=logginedMember != null ? logginedMember.getMemberId() : ""%>">
-				<input type="hidden" name="noticeCommentLevel" value="1"> <input
-					type="hidden" name="noticeCommentRef" value="0">
-				<textarea name="noticeCommentContent" cols="55" rows="3"></textarea>
-				<button type="submit" id="btn-insert">등록</button>
-			</form>
+			<div class="comment-editor">
+				<form
+					action="<%=request.getContextPath()%>/notice/noticeCommentInsert"
+					method="post">
+					<input type="hidden" name="noticeRef" value="<%=n.getNoticeNo()%>">
+					<input type="hidden" name="noticeCommentWriter"
+						value="<%=logginedMember != null ? logginedMember.getMemberId() : ""%>">
+					<input type="hidden" name="noticeCommentLevel" value="1"> <input
+						type="hidden" name="noticeCommentRef" value="0">
+					<textarea name="noticeCommentContent" cols="55" rows="3"></textarea>
+					<button type="submit" id="btn-insert">등록</button>
+				</form>
+			</div>
 		</div>
-	</div>
- <%-- <table id="tbl-comment">
-	    	<%for(NoticeComment nc : list) {
-	    		if(nc.getNoticeCommentLevel()==1){
-	    	%>
-		    	<tr class="level1">
-		    		<td>
-		    			<sub class="comment-writer"><%=nc.getNoticeCommentWriter() %></sub>
-		    			<sub class="comment-date"><%=nc.getNoticeCommentDate() %></sub>
-		    			<br>
-		    			<%=nc.getNoticeCommentContent() %>
-		    		</td>
-		    		<td>
-		    			<button class="btn-reply" value="<%=nc.getNoticeCommentNo()%>">답글</button>
-		    			<%if(logginedMember.getMemberId().equals(nc.getNoticeCommentWriter())
-		    					||logginedMember.getMemberId().equals("admin")){ %>
-		    				<button class="btn-delete" value="<%=nc.getNoticeCommentNo()%>">삭제</button>
-		    			<%} %>
-		    		</td>
-		    	</tr>
-	    	<%}else { %>
-	    		<tr class="level2">
-		    		<td>
-		    			<sub><%=nc.getNoticeCommentWriter() %></sub>
-		    			<sub><%=nc.getNoticeCommentDate() %></sub>
-		    			<br>
-		    			<%=nc.getNoticeCommentContent() %>
-		    		</td>
-		    		<td></td>
-		    	</tr>
-	    	<%}
-	    	} %>
-	    </table> --%>
-	        
-	<%--     <script>
+		<table id="tbl-comment">
+			<%
+				for (NoticeComment nc : list) {
+				if (nc.getNoticeCommentLevel() == 1) {
+			%>
+			<tr class="level1">
+				<td><sub class="comment-writer"><%=nc.getNoticeCommentWriter()%></sub>
+					<sub class="comment-date"><%=nc.getNoticeCommentDate()%></sub> <br>
+					<%=nc.getNoticeCommentContent()%></td>
+				<td>
+					<button class="btn-reply" value="<%=nc.getNoticeCommentNo()%>">답글</button>
+					<%
+						if (logginedMember.getMemberId().equals(nc.getNoticeCommentWriter()) || logginedMember.getMemberId().equals("admin")) {
+					%>
+					<button class="btn-delete" value="<%=nc.getNoticeCommentNo()%>">삭제</button>
+					<%
+						}
+					%>
+				</td>
+			</tr>
+			<%
+				} else {
+			%>
+			<tr class="level2">
+				<td><sub><%=nc.getNoticeCommentWriter()%></sub> <sub><%=nc.getNoticeCommentDate()%></sub>
+					<br> <%=nc.getNoticeCommentContent()%></td>
+				<td></td>
+			</tr>
+			<%
+				}
+			}
+			%>
+		</table>
+
+		<%-- <script>
 	    	$(function(){
-	    		$("[name=noticeCommentContent]").focus(e => {
-	    			if(<%=logginedMember==null%>){
+	    		//로그인이 안된사람이 댓글을 창을 클릭했을때 로그인하라는 메세지 띄워주기
+	    		$("[name=boardCommentContent]").focus(e => {
+	    			if(<%=logginedMember == null%>){
 	    				alert("로그인 후 이용해주세요!");
-	    				$("#MemberId").focus();
+	    				$("#userId").focus();
 	    			}
 	    		})
-	    		
+	    		//답글에 대한 클릭이벤트설정
 	    		$(".btn-reply").click(e => { 
-	    			<%if(logginedMember!=null){%>
+	    			<%if (logginedMember != null) {%>
 	    				let tr=$("<tr>");
 	    				let form=$(".comment-editor>form").clone();
 	    				form.find("textarea").attr("rows","1");
@@ -244,11 +265,32 @@ table#tbl-comment button.btn-insert2 {
 	    				tr.append(td.append(form));
 	    			
 						tr.insertAfter($(e.target).parents("tr")).children("td").slideDown(800);
-						$(e.target).off("click");
+						$(e.target).off("click");//이벤트제거
 	    			<%}%>
 	    		})
 	    		
 	    	});
 	    </script> --%>
+	</div>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

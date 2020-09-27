@@ -97,9 +97,7 @@ public class NoticeDao {
 				n.setNoticeDate(rs.getDate("notice_date"));
 				n.setFilepath(rs.getString("filepath"));
 				n.setMemberNo(rs.getInt("member_no"));
-				/*
-				 * n.setNoticeViews(rs.getInt("notice_views"));
-				 */
+				n.setNoticeViews(rs.getInt("notice_views"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -132,7 +130,6 @@ public class NoticeDao {
 			pstmt.setString(2, n.getNoticeWriter());
 			pstmt.setString(3, n.getNoticeContent());
 			pstmt.setString(4, n.getFilepath());
-		    
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -179,16 +176,11 @@ public class NoticeDao {
     	int result=0;
     	try {
     		pstmt=conn.prepareStatement(prop.getProperty("insertNoticeComment"));
-			pstmt.setInt(1, nc.getNoticeCommentNo()); 
-    		pstmt.setInt(2, nc.getNoticeCommentLevel());
-    		pstmt.setNString(3,nc.getNoticeCommentWriter());
-    		pstmt.setString(4, nc.getNoticeCommentContent());
-			/* pstmt.setDate(5, nc.getNoticeCommentDate()); */
-    		pstmt.setInt(5, nc.getNoticeRef());
-    		pstmt.setString(6, nc.getNoticeCommentRef()==0?null:String.valueOf(nc.getNoticeCommentRef()));
-			/*
-			 * pstmt.setInt(8, nc.getMemberNo()); pstmt.setInt(9, nc.getNoticeNo());
-			 */
+    		pstmt.setInt(1, nc.getNoticeCommentLevel());
+    		pstmt.setNString(2,nc.getNoticeCommentWriter());
+    		pstmt.setNString(3, nc.getNoticeCommentContent());
+    		pstmt.setInt(4, nc.getNoticeRef());
+    		pstmt.setString(5, nc.getNoticeCommentRef()==0?null:String.valueOf(nc.getNoticeCommentRef()));
     		result=pstmt.executeUpdate();
     	}catch (SQLException e) {
 			e.printStackTrace();
@@ -206,15 +198,13 @@ public class NoticeDao {
     		rs=pstmt.executeQuery();
     		while(rs.next()) {
     			NoticeComment nc= new NoticeComment();
-    			nc.setNoticeCommentNo(rs.getInt(1));
-    			nc.setNoticeCommentLevel(rs.getInt(2));
-    			nc.setNoticeCommentWriter(rs.getNString(3));
-    			nc.setNoticeCommentContent(rs.getNString(4));
-    			nc.setNoticeCommentDate(rs.getDate(5));
-    			nc.setNoticeRef(rs.getInt(6));
-    			nc.setNoticeCommentRef(rs.getInt(7));
-    			nc.setMemberNo(rs.getInt(8));
-    			nc.setNoticeNo(rs.getInt(9));
+    			nc.setNoticeCommentNo(rs.getInt("notice_comment_no"));
+    			nc.setNoticeCommentLevel(rs.getInt("notice_comment_level"));
+    			nc.setNoticeCommentWriter(rs.getNString("notice_comment_writer"));
+    			nc.setNoticeCommentContent(rs.getNString("notice_comment_content"));
+    			nc.setNoticeCommentDate(rs.getDate("notice_comment_date"));
+    			nc.setNoticeRef(rs.getInt("notice_ref"));
+    			nc.setNoticeCommentRef(rs.getInt("notice_comment_ref"));
     			list.add(nc);
     		}
     	}catch (SQLException e) {

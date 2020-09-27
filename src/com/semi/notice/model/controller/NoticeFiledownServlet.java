@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NoticeFiledownServlet
  */
-@WebServlet("/notice/Noticefiledown")
+@WebServlet("/notice/noticefiledown")
 public class NoticeFiledownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,6 @@ public class NoticeFiledownServlet extends HttpServlet {
 		BufferedOutputStream bos=new BufferedOutputStream(sos);
 		String fileRename="";
 		String header=request.getHeader("user-agent");
-		
 		boolean isMSIE=header.indexOf("MSIE") != -1 || header.indexOf("Trident") != -1;
 		if(isMSIE) {
 			fileRename=URLEncoder.encode(file,"UTF-8").replaceAll("\\+", "%20");

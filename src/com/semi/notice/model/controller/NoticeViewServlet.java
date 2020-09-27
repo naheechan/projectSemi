@@ -9,7 +9,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.semi.notice.model.service.NoticeService;
 import com.semi.notice.model.vo.Notice;
 import com.semi.notice.model.vo.NoticeComment;
@@ -35,71 +34,46 @@ public class NoticeViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		/*Cookie[] cookies = request.getCookies();
-		String noticeHistrory = "";
-		boolean hasRead = false;
+		int no = Integer.parseInt(request.getParameter("no"));
+		// 새로고침시 조회수가 증가하는 것 방지하기
+		// 쿠키에 조회한 내용을 기록(저장)관리하여 한번 조회하면 그뒤에는 조회수가 올라가지 않게 설정
+		// 1. 쿠키에 조회한 이력이 있는지 조회
+		Cookie[] cookies = request.getCookies();
+		String noticeHistory ="";// 이력을 저장하는 변수
+		boolean hasRead = false;// 읽은 글이면 true, 안읽었으면 false표현 기준!
 		if (cookies != null) {
 			for (Cookie c : cookies) {
 				String name = c.getName();
 				String value = c.getValue();
+				// boardHistory인 쿠키값을 찾기
 				if ("noticeHistory".equals(name)) {
-					noticeHistrory = value;
+					noticeHistory = value;// 현재저장된 값 대입
 					if (value.contains("|" + no + "|")) {
+						// 읽은 게시글
 						hasRead = true;
 						break;
 					}
+
 				}
 			}
 		}
+		// 읽지않은 게시글이면 cookie에 기록을 해야함.
 		if (!hasRead) {
-			Cookie c = new Cookie("noticeHistory", noticeHistrory + "|" + no + "|");
-			c.setMaxAge(-1);
+			Cookie c = new Cookie("noticeHistory", noticeHistory + "|" + no + "|");
+			c.setMaxAge(-1);// 브라우저 종료시 삭제
 			response.addCookie(c);
 		}
 
 		Notice n = new NoticeService().selectNoticeOne(no, hasRead);
-		request.setAttribute("n", n);
-		request.getRequestDispatcher("/views/notice/noticeList.jsp").forward(request, response);
-	}*/
-		/*
-		 * List<NoticeComment> list=new NoticeService().selectNoticeCommentList(no);
-		 * request.setAttribute("list", list);
-		 * request.getRequestDispatcher("/views/noitc/noticeView.jsp").forward(request,
-		 * response);
-		 */
 
-	/*	Notice n1 = new NoticeService().selectNoticeOne(no);
-		String view = "";
-		if (n1 == null) {
-			// 선택한 자료가 없을때
-			// 자료가 없다는 메세지출력 후 리스트 화면으로 이동
-			request.setAttribute("msg", "조회된 공지사항이 없습니다.");
-			request.setAttribute("loc", "/notice/noticeList");
-			view = "/views/common/msg.jsp";
-		} else {
-			// 선택된 공지사항으로 이동
-			request.setAttribute("notice", n);
-			view = "/views/notice/noticeView.jsp";
-		}
-		request.getRequestDispatcher(view).forward(request, response);
-	}*/
-		int no=Integer.parseInt(request.getParameter("no"));
-		Notice n=new NoticeService().selectNoticeOne(no);
-		String view="";
-		if(n==null) {
-			//선택한 자료가 없을때
-			//자료가 없다는 메세지출력 후 리스트 화면으로 이동
-			request.setAttribute("msg", "조회된 공지사항이 없습니다.");
-			request.setAttribute("loc", "/notice/noticeList");
-			view="/views/common/msg.jsp";
-		}else {
-			//선택된 공지사항으로 이동
-			request.setAttribute("notice",n);
-			view="/views/notice/noticeView.jsp";
-		}
-		request.getRequestDispatcher(view).forward(request,response);
+		request.setAttribute("n", n);
+
+		// 댓글리스트 추가
+		List<NoticeComment> list = new NoticeService().selectBoardCommentList(no);
+		request.setAttribute("list", list);
+		request.getRequestDispatcher("/views/notice/noticeView.jsp").forward(request, response);
 	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
