@@ -136,6 +136,21 @@
         justify-content: center;
         margin-top: 20px;
     }
+    #pageBar {
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	display: flex;
+	justify-content: space-between;
+	/*flex안에 자식들의 텍스트의 높이를 똑같이 지정해준다.*/
+	align-items:baseline;
+	/* border:1px solid #bfd4df; */
+	border-radius:5px;
+	
+	
+	
+}
 </style>
 
 <section class="sectionInfo">
@@ -147,9 +162,8 @@
             <div class="mypages" id="mypages2" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/passwordUpdate?userId=<%=logginedMember.getMemberId()%>">비밀번호 변경</a></div>
             <div class="mypages" id="mypages3" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/buylist?userno=<%=logginedMember.getMemberNo()%>">주문내역</a></div>
             <div class="mypages" id="mypages4" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/studyroomOrderlist?userNo=<%=logginedMember.getMemberNo()%>">스터디룸</a></div>
-            <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a class="a" href="">도서글귀</a></div>
-            <div class="mypages" id="mypages6" onclick="choiceBtn(event)"><a class="a" href="">좋아요</a></div>
-            <div class="mypages" id="mypages7" onclick="choiceBtn(event)"><a class="a" href="">북클럽</a></div>
+            <div class="mypages" id="mypages5" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/myWordingList?userId=<%=logginedMember.getMemberId()%>">도서글귀</a></div>
+            <div class="mypages" id="mypages7" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/myBookclubList?userId=<%=logginedMember.getMemberId()%>">북클럽</a></div>
             <div class="mypages" id="mypages8" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/cart/cartmove?userno=<%=logginedMember.getMemberNo()%>">장바구니</a></div>
             <div class="mypages" id="mypages9" onclick="choiceBtn(event)"><a class="a" href="<%=request.getContextPath()%>/myinfo/point?userId=<%=logginedMember.getMemberId()%>">포인트</a></div>
         </div>
@@ -190,6 +204,35 @@
 							</div>
 						</div>
 					</div>
+					<style>
+					span.page-btn {
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px 0px 0px 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>a:nth-child(1) {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+
+#pageBar>span:last-child {
+/* 	border: 1px solid #bfd4df; */
+	border-radius: 0px 5px 5px 0px;
+	padding: 3px;
+	background-color:#bbdefb; 
+}
+
+.pageno {
+	/* border: 1px solid #bfd4df; */
+	border-radius: 5px;
+	padding: 3px;
+ 	background-color:#bbdefb; 
+}
+					</style>
                      <!-- 
                      <input type="reset" class="infobtn1" value="취소">
                      <input type="submit" class="infobtn2" onclick="checkData();'" value="확인"> 

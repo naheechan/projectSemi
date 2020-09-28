@@ -23,15 +23,15 @@
       type="text/javascript"
       src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
     ></script>
-<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
+<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
 <title>Main</title>
 </head>
 <body>
 		<div id="main_container">
 			<header id="main_logo"> <!--  <span id="header_img"><img src="/image/logo.png" height="40" /></span> -->
 			<span id="header_logo"><a
-				href="<%=request.getContextPath()%>/index.jsp">GP BOOK STORE</a></span> </header>
+				href="<%=request.getContextPath()%>/index.jsp"><img  src="<%=request.getContextPath()%>/image/main/main.JPG"></a></span> </header>
 			<nav id="search_menu">
 			<div id="search_container">
 				<%

@@ -34,7 +34,7 @@ public class OrderDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("주문삭제 눌림");
+		
 		String msg="";
 		String loc="";
 		String[]scheck=request.getParameterValues("dele");

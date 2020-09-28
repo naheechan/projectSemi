@@ -19,6 +19,7 @@ import com.semi.bookclub.model.vo.BookclubParti;
 import com.semi.bookclub.model.vo.BookclubPartiView;
 import com.semi.bookclub.model.vo.BookclubView;
 import com.semi.wording.model.dao.WordingDao;
+import com.semi.myinfo.model.vo.MyBookclub;
 
 public class BookclubDao {
 	
@@ -261,11 +262,102 @@ public class BookclubDao {
 		}	
 		return result;
 	}
+	//마이페이지
+	public int selectBookclubCount(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int totalData = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myselectBookclubCount"));
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalData = rs.getInt(1);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}	
+		return totalData;
+	}
 	
+	//마이페이지
 	
+	public List<MyBookclub> MyBookclubList(Connection conn, int cPage, int numPerPage, String memberId){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyBookclub> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myBookclubList"));
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MyBookclub mbc=new MyBookclub();
+				mbc.setPartiId(rs.getString("parti_id"));
+				mbc.setBookclubNo(rs.getInt("bookclub_no"));
+				mbc.setBookclubTitle(rs.getNString("bookclub_title"));
+				mbc.setBookclubImg(rs.getString("bookclub_img"));
+				mbc.setMaxPerson(rs.getInt("max_person"));
+				mbc.setBookclubDate(rs.getDate("bookclub_date"));
+				mbc.setDeleteBookclub(rs.getInt("delete_bookclub"));
+				mbc.setWriter(rs.getString("writer"));
+				mbc.setMemberNo(rs.getInt("member_no"));
+				mbc.setBookNo(rs.getInt("book_no"));
+				mbc.setBookTitle(rs.getString("book_title"));
+				mbc.setBookAuthor(rs.getNString("book_author"));
+				list.add(mbc);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}	
+		System.out.println(list);
+		return list;
+	}
 	
-	
-	
-	
-	
+	//마이페이지
+	public List<MyBookclub> MyBookclubListParti(Connection conn, int cPage, int numPerPage, String memberId){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyBookclub> list = new ArrayList();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("MyBookclubListParti"));
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				MyBookclub mbc=new MyBookclub();
+				mbc.setPartiId(rs.getString("parti_id"));
+				mbc.setBookclubNo(rs.getInt("bookclub_no"));
+				mbc.setBookclubTitle(rs.getNString("bookclub_title"));
+				mbc.setBookclubImg(rs.getString("bookclub_img"));
+				mbc.setMaxPerson(rs.getInt("max_person"));
+				mbc.setBookclubDate(rs.getDate("bookclub_date"));
+				mbc.setDeleteBookclub(rs.getInt("delete_bookclub"));
+				mbc.setWriter(rs.getString("writer"));
+				mbc.setMemberNo(rs.getInt("member_no"));
+				mbc.setBookNo(rs.getInt("book_no"));
+				mbc.setBookTitle(rs.getString("book_title"));
+				mbc.setBookAuthor(rs.getNString("book_author"));
+				list.add(mbc);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}	
+		System.out.println(list);
+		return list;
+	}
 }

@@ -1,6 +1,7 @@
 package com.semi.bookclub.model.service;
 
 import static com.semi.common.JDBCTemplate.close;
+
 import static com.semi.common.JDBCTemplate.commit;
 import static com.semi.common.JDBCTemplate.getConnection;
 import static com.semi.common.JDBCTemplate.rollback;
@@ -14,6 +15,7 @@ import com.semi.bookclub.model.vo.Bookclub;
 import com.semi.bookclub.model.vo.BookclubParti;
 import com.semi.bookclub.model.vo.BookclubPartiView;
 import com.semi.bookclub.model.vo.BookclubView;
+import com.semi.myinfo.model.vo.MyBookclub;
 
 public class BookclubService {
 	
@@ -103,8 +105,27 @@ public class BookclubService {
 		return result;
 	}
 	
+	//마이페이지
+	public int selectBookclubCount(String memberId) {
+		Connection conn = getConnection();
+		int totalData = dao.selectBookclubCount(conn, memberId);
+		close(conn);
+		return totalData;
+	}
 	
+	//마이페이지
+	public List<MyBookclub> MyBookclubList(int cPage, int numPerPage, String memberId){
+		Connection conn = getConnection();
+		List<MyBookclub> list = dao.MyBookclubList(conn, cPage, numPerPage, memberId);
+		close(conn);
+		return list;
+	}
 	
-	
-	
+	//마이페이지
+		public List<MyBookclub> MyBookclubListParti(int cPage, int numPerPage, String memberId){
+			Connection conn = getConnection();
+			List<MyBookclub> list = dao.MyBookclubListParti(conn, cPage, numPerPage, memberId);
+			close(conn);
+			return list;
+		}
 }

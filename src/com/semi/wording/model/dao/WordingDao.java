@@ -623,7 +623,57 @@ public class WordingDao {
 		return listCom;
 	}
 	
+	//마이페이지용
+	public List<Wording> selectWordingBoardList(Connection conn, int cPage, int numPerPage, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Wording> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myselectWordingBoardList"));
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, (cPage-1)*numPerPage+1);
+			pstmt.setInt(3, cPage*numPerPage);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				list.add(inputData(rs));
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println("dao : "+list);
+		return list;
+	}
+	//마이페이지용
+	public List<WordingPic> selectWordingPicList(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<WordingPic> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myselectWordingPicList"));
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				WordingPic pic = new WordingPic();
+				pic.setWordingNo(rs.getInt("wording_no"));
+				pic.setWordingPicName(rs.getString("wording_pic_name"));
+				pic.setWordingPicBright(rs.getInt("wording_pic_bright"));
+				list.add(pic);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+
 	
 	public int deleteManyWordingLike(Connection conn, int no) {
 		PreparedStatement pstmt = null;
@@ -743,4 +793,56 @@ public class WordingDao {
 	
 	
 	
+	//마이페이지용
+	
+	public List<WordingText> selectWordingTextList(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<WordingText> list = new ArrayList<>();
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myselectWordingTextList"));
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				WordingText t = new WordingText();
+				t.setWordingNo(rs.getInt("wording_no"));
+				t.setWordingTextSize(rs.getInt("wording_text_size"));
+				t.setWordingTextColor(rs.getString("wording_text_color"));
+				t.setWordingTextX(rs.getInt("wording_text_x"));
+				t.setWordingTextY(rs.getInt("wording_text_y"));
+				list.add(t);
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
+	//마이페이지용
+	
+	public int selectWordingCount(Connection conn, String userId) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int totalData = 0;
+		try {
+			pstmt = conn.prepareStatement(prop.getProperty("myselectWordingCount"));
+			pstmt.setString(1, userId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalData = rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		return totalData;
+		
+	}
+
 }

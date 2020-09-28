@@ -3,12 +3,8 @@
 
   
    <footer id="footer_container">
-   <p>Copyright @2020 GP Book Store</p><br/>
-   <p>공동책임자:임동욱,나희찬,이승환,유혜지</p>
-   
+   <img width=100% src="<%=request.getContextPath()%>/image/main/footer.JPG">
    </footer>
   </div>
-  
- 
 </body>
 </html>

@@ -43,7 +43,7 @@ h2+button {
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
-			<th>내용</th>
+			<th>작성자</th>
 			<th>작성일</th>
 			<th>조회수</th>
 			<th>첨부파일</th>
@@ -54,14 +54,14 @@ h2+button {
 			<td><a href="<%=request.getContextPath()%>/notice/noticeView?no=<%=n.getNoticeNo()%>">
 					<%=n.getNoticeTitle()%>
 			</a></td>
-			<td><%=n.getNoticeContent()%></td>
+			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
 			<td><%=n.getNoticeViews()%></td>
 			<td>
 				<%
 					if (n.getFilepath() != null) {
 				%> <img
-				src="<%=request.getContextPath()%>/images/file.png" width="20"
+				src="<%=request.getServletContext().getRealPath("/image/file.png")%> width="20"
 				height="20"> <%
  	}
  %>

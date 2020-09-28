@@ -4,89 +4,75 @@ import java.sql.Date;
 
 public class NoticeComment {
 	private int noticeCommentNo;
-	private int ComentNo;
-	private String Commentlevle;
-	private String Comment;
-	private Date CommentDate;
-	private int noitcNo;
-	private int MemberNo;
-
+	private int noticeCommentLevel;
+	private String noticeCommentWriter;
+	private String noticeCommentContent;
+	private Date noticeCommentDate;
+	private int noticeRef;
+	private int noticeCommentRef;
 	public NoticeComment() {
+		
 	}
-
-	public NoticeComment(int noticeCommentNo, int comentNo, String commentlevle, String comment, Date commentDate,
-			int noitcNo, int memberNo) {
+	public NoticeComment(int noticeCommentNo, int noticeCommentLevel, String noticeCommentWriter,
+			String noticeCommentContent, Date noticeCommentDate, int noticeRef, int noticeCommentRef) {
 		super();
 		this.noticeCommentNo = noticeCommentNo;
-		ComentNo = comentNo;
-		Commentlevle = commentlevle;
-		Comment = comment;
-		CommentDate = commentDate;
-		this.noitcNo = noitcNo;
-		MemberNo = memberNo;
+		this.noticeCommentLevel = noticeCommentLevel;
+		this.noticeCommentWriter = noticeCommentWriter;
+		this.noticeCommentContent = noticeCommentContent;
+		this.noticeCommentDate = noticeCommentDate;
+		this.noticeRef = noticeRef;
+		this.noticeCommentRef = noticeCommentRef;
 	}
-
 	public int getNoticeCommentNo() {
 		return noticeCommentNo;
 	}
-
 	public void setNoticeCommentNo(int noticeCommentNo) {
 		this.noticeCommentNo = noticeCommentNo;
 	}
-
-	public int getComentNo() {
-		return ComentNo;
+	public int getNoticeCommentLevel() {
+		return noticeCommentLevel;
 	}
-
-	public void setComentNo(int comentNo) {
-		ComentNo = comentNo;
+	public void setNoticeCommentLevel(int noticeCommentLevel) {
+		this.noticeCommentLevel = noticeCommentLevel;
 	}
-
-	public String getCommentlevle() {
-		return Commentlevle;
+	public String getNoticeCommentWriter() {
+		return noticeCommentWriter;
 	}
-
-	public void setCommentlevle(String commentlevle) {
-		Commentlevle = commentlevle;
+	public void setNoticeCommentWriter(String noticeCommentWriter) {
+		this.noticeCommentWriter = noticeCommentWriter;
 	}
-
-	public String getComment() {
-		return Comment;
+	public String getNoticeCommentContent() {
+		return noticeCommentContent;
 	}
-
-	public void setComment(String comment) {
-		Comment = comment;
+	public void setNoticeCommentContent(String noticeCommentContent) {
+		this.noticeCommentContent = noticeCommentContent;
 	}
-
-	public Date getCommentDate() {
-		return CommentDate;
+	public Date getNoticeCommentDate() {
+		return noticeCommentDate;
 	}
-
-	public void setCommentDate(Date commentDate) {
-		CommentDate = commentDate;
+	public void setNoticeCommentDate(Date noticeCommentDate) {
+		this.noticeCommentDate = noticeCommentDate;
 	}
-
-	public int getNoitcNo() {
-		return noitcNo;
+	public int getNoticeRef() {
+		return noticeRef;
 	}
-
-	public void setNoitcNo(int noitcNo) {
-		this.noitcNo = noitcNo;
+	public void setNoticeRef(int noticeRef) {
+		this.noticeRef = noticeRef;
 	}
-
-	public int getMemberNo() {
-		return MemberNo;
+	public int getNoticeCommentRef() {
+		return noticeCommentRef;
 	}
-
-	public void setMemberNo(int memberNo) {
-		MemberNo = memberNo;
+	public void setNoticeCommentRef(int noticeCommentRef) {
+		this.noticeCommentRef = noticeCommentRef;
 	}
-
 	@Override
 	public String toString() {
-		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", ComentNo=" + ComentNo + ", Commentlevle="
-				+ Commentlevle + ", Comment=" + Comment + ", CommentDate=" + CommentDate + ", noitcNo=" + noitcNo
-				+ ", MemberNo=" + MemberNo + "]";
+		return "NoticeComment [noticeCommentNo=" + noticeCommentNo + ", noticeCommentLevel=" + noticeCommentLevel
+				+ ", noticeCommentWriter=" + noticeCommentWriter + ", noticeCommentContent=" + noticeCommentContent
+				+ ", noticeCommentDate=" + noticeCommentDate + ", noticeRef=" + noticeRef + ", noticeCommentRef="
+				+ noticeCommentRef + "]";
 	}
+	
 
 }

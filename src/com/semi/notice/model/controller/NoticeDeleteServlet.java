@@ -40,6 +40,8 @@ public class NoticeDeleteServlet extends HttpServlet {
 			msg="삭제실패하였습니다,";
 			loc="/notice/noticeView?noticeNo="+noticeNo;
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 
