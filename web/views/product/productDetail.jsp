@@ -125,13 +125,17 @@
                         </td>
                     </tr>
                     <tr>
+                     <form action="<%=request.getContextPath()%>/product/checkcart" id="detailfrm">
                         <td>수량</td>
-                        <td><input type="number" name="bookCnt" id="bookCnt" value="1"></td>
+                        <td><input type="number" name="count" id="bookCnt" value="1"></td>
+                        <input type="hidden" name="cproductno" value="<%=bookdetail.getBookNo()%>">
+                        <input type="hidden" name="memberno" value="<%=logginedMember.getMemberNo()%>">
+                      </form>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <button id="buyBtn" class="btn">바로 구매</button>
-                            <button id="basketBtn" class="btn">장바구니</button>
+                            <button id="basketBtn" class="btn" onclick="movecart()">장바구니</button>
                             <!-- <button id="rentBtn" class="btn">대여하기</button> -->
                         </td>
                     </tr>
@@ -503,6 +507,12 @@
 	    
 	    
     });
+    function movecart() {
+    	console.log("클릭");
+    	let frm=document.querySelector("#detailfrm");
+    	frm.submit();
+	}
+   
 </script>
 
 <%@ include file="/views/common/footer.jsp" %>

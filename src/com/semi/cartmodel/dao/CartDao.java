@@ -131,8 +131,7 @@ public class CartDao {
 				bk.setCartno(rs.getInt("cart_no"));
 				bk.setBookno(rs.getInt("book_no"));
 				bk.setMemberno(rs.getInt("member_no"));
-				bk.setCount(count);
-				
+				bk.setCount(rs.getInt("count"));
 				list.add(bk);
 			}
 		} catch (SQLException e) {

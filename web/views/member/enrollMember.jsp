@@ -194,7 +194,7 @@
                 <button id="btnId" type="button" onclick="checkId();">중복확인</button>
     
                 <h3 class="join_title">비밀번호</h3>
-                <input id="pw" name="pw" type="password" maxlength="20" placeholder="6글자 이상"><br>
+                <input id="pw" name="pw" type="password" maxlength="20" placeholder="6글자 이상 숫자+문자+특수문자"><br>
                 
                 <h3 class="join_title">비밀번호 재확인</h3>
                 <input id="pwck" name="pwck" type="password" maxlength="20"><span id="result"></span><br>
@@ -408,9 +408,9 @@
                 return false;
             }
 
-        	var re2= /^[A-za-z0-9]{6,15}/g;
+        	var re2= /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
             if(!re2.test(pw.value)){
-                 alert("6~15자리 이내 숫자, 문자만 가능합니다.");
+                 alert("6~15자리 이내 숫자, 문자, 특수문자를 포함해야합니다.");
                  return false;
             }
         	

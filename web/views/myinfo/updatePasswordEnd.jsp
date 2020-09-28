@@ -192,7 +192,7 @@
                         </tr>
                     </table>
                      <input type="reset" class="infobtn1" value="취소">
-                     <input type="submit" class="infobtn2" onclick="checkData();'" value="확인">
+                     <input type="submit" class="infobtn2" onclick="return checkData();" value="확인">
                 </form>
             </div>
         </div>
@@ -232,9 +232,9 @@
                 return false;
             }
 
-        	var re2= /^[A-za-z0-9]{6,15}/g;
+        	var re2= /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
             if(!re2.test(pw.value)){
-                 alert("6~15자리 이내 숫자, 문자만 가능합니다.");
+                 alert("6~15자리 이내 숫자,문자,특수문자를 포함해야합니다.");
                  return false;
             }
 

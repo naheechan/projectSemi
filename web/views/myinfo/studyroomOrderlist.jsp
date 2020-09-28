@@ -198,10 +198,10 @@
 							<%for(SeatOrder so: studyroomOrderlist){ %>
 							<tr>
 								<td><%=so.getSeatDate()%></td>
-								<td><%=so.getSeatTime()%></td>
-								<td><%=so.getUseTime()%></td>
+								<td><%=so.getSeatTime()%>시</td>
+								<td><%=so.getUseTime()%>시간</td>
 								<td><%=so.getSeatNo()%></td>
-								<td><%=so.getMemberCount()%></td>
+								<td><%=so.getMemberCount()%>인</td>
 								<td><%=so.getSeatPrice()%>원</td>
 								<td><%=so.getSeatOrderDate()%></td>
 							</tr>
@@ -222,7 +222,6 @@
         </div>
     </div>
 </div>
-
 </section>
-    
+
 <%@ include file="/views/common/footer.jsp" %>

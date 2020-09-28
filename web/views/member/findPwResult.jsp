@@ -71,6 +71,25 @@
         <hr>
     </header>
     <section>
+          <script>
+		function checkData(){
+
+            let pw=document.getElementById("pw");
+
+            if(pw.value.length<5){
+                alert("비밀번호를 6글자 이상로 입력하세요.");
+                return false;
+            }
+
+        	var re2= /^.*(?=^.{6,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+            if(!re2.test(pw.value)){
+                 alert("6~15자리 이내 숫자,문자,특수문자를 포함해야합니다.");
+                 return false;
+            }
+
+            return true;
+        }
+            </script>
       <%  if(result==0){%>
       <form action="<%=request.getContextPath()%>/updatePw" method="post">
         <fieldset>
@@ -99,7 +118,7 @@
        	</fieldset>
        	<br>
        	<div>
-       	<input id="close" name="close" type="submit" value="변경" >
+       	<input id="close" name="close" type="submit" onclick="return checkData();" value="변경" >
        	</div>
       </form>
       <%} else{%>
