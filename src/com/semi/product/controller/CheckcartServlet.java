@@ -43,15 +43,19 @@ public class CheckcartServlet extends HttpServlet {
 		int no=Integer.parseInt(request.getParameter("cproductno"));
 		int userno=Integer.parseInt(request.getParameter("memberno"));
 		int count=0;
+		HttpSession session=request.getSession();
 		if(request.getParameter("count")!=null) {
 		 count=Integer.parseInt(request.getParameter("count"));
 		 int result=new CartService().insertnumber(no,userno,count);
 			//책번호 유저번호와 수량을 받아서 cart테이블에 값을 넣는다
 			//값을 생성 유저번호를 통해서 어떤 책이 들어있는지 확인
 			List<BooksJoin>booklist=new CartService().selectbook(userno,count);
-			HttpSession session=request.getSession();
+			for(BooksJoin bk:booklist) {
+				System.out.println(bk);
+			}
 			if(result>0) {
 				session.setAttribute("booklist", booklist);
+				
 				request.setAttribute("userno", userno);
 				request.getRequestDispatcher("/views/cart/cart.jsp").forward(request, response);
 			}
@@ -62,7 +66,9 @@ public class CheckcartServlet extends HttpServlet {
 			//책번호 유저번호와 수량을 받아서 cart테이블에 값을 넣는다
 			//값을 생성 유저번호를 통해서 어떤 책이 들어있는지 확인
 			List<BooksJoin>booklist=new CartService().selectbook(userno,count);
-			HttpSession session=request.getSession();
+			for(BooksJoin bk:booklist) {
+				System.out.println(bk);
+			}
 			if(result>0) {
 				session.setAttribute("booklist", booklist);
 				request.setAttribute("userno", userno);
