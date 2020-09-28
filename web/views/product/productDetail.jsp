@@ -508,13 +508,13 @@
 	    
     });
     function moveorder() {
-    	console.log("클릭");
+    	
     	let frm=document.querySelector("#detailfrm");
     	frm.action='<%=request.getContextPath()%>/product/buyimmediately';
     	frm.submit();
 	}
     function movecart() {
-    	console.log("클릭");
+    
     	let frm=document.querySelector("#detailfrm");
     	frm.action='<%=request.getContextPath()%>/product/checkcart';
     	frm.submit();

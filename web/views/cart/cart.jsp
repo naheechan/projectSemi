@@ -62,8 +62,12 @@ td {
 }
 
 #price-box {
-	border:1px solid black;
+	
 	margin: 0 auto;
+	margin-top:50px;
+	margin-bottom:50px;
+	width:960px;
+	box-shadow:1px 1px 1px 1px
 }
 
 #totaltxt {
@@ -71,7 +75,9 @@ td {
 	margin-bottom: 50px;
 	font-size:20px;
 	display:flex;
-	justify-content:center;
+	justify-content:flex-end;
+	padding-right:20px;
+	
 }
 th {
 	flex-basis: 250px;
@@ -122,6 +128,17 @@ button:before, button:after {
 	background: #8fa3ad;
 	transition: 400ms ease all;
 }
+#zero{
+width:960px;
+font-size:20px;
+margin:0 auto;
+}
+#tdimg{
+float:left
+}
+#tdtitle{
+padding-top:70px;
+}
 
 button:after {
 	right: inherit;
@@ -136,7 +153,8 @@ button:hover:before, button:hover:after {
 }
 </style>
 <section>
-	<p id="headerfont">Cart</p>
+
+	<p id="headerfont"><i class="fas fa-cart-plus"></i>Cart</p>
 	<hr>
 	<div id="cartcontainer">
 		<form action="<%=request.getContextPath()%>/cart/orderdel" id="delfrm">
@@ -157,8 +175,7 @@ button:hover:before, button:hover:after {
 				<tr>
 					<!--이미지와  책제목 flex로 묶어주기-->
 					<td colspan="2" class="carttd"><img height=150px
-						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>">
-						<div><%=bk.getTitle()%></div></td>
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"id="tdimg"><div id="tdtitle"><%=bk.getTitle()%></div></td>
 					<td><%=bk.getPrice()%>원</td>
 					<td><%=bk.getCount()%> <input type="hidden" name="quantity"
 						value="<%=bk.getCount()%>" /></td>
@@ -170,6 +187,8 @@ button:hover:before, button:hover:after {
 					}
 				%>
 			</table>
+			<%} else{%>
+			<div id="zero">장바구니가 비여있습니다</div>
 			<%} %>
 		
 			<div id="price-box">
