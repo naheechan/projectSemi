@@ -23,8 +23,8 @@
       type="text/javascript"
       src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
     ></script>
-<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/main.css" />
+<link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
 <title>Main</title>
 </head>
 <body>

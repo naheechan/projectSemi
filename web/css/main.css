@@ -143,7 +143,6 @@ input[type="text"] {
 
 /* input[type="submit"] */ 
 #search{
-	
   font-family: FontAwesome;
   border: none;
   background-color: white;
@@ -160,20 +159,11 @@ input[type="text"] {
   margin: 0 auto;
 }
 #footer_container {
-/* position: absolute; */
   bottom: 0;
   width: 100%;
   height: auto;
-
   text-align: center;
   display:inline-block;
-  
-
-  /* footer바닥에 고정 */
-  /* position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem; */
 }
 #footer_container >p {
 	padding-bottom:15px;
@@ -268,19 +258,3 @@ input[type="text"] {
   height: 100%;
 }
 
-/* .slide li:nth-child(1) {
-  background: #faa;
-}
-
-.slide li:nth-child(2) {
-  background: #afa;
-}
-
-.slide li:nth-child(3) {
-  background: #aaf;
-}
-
-.slide li:nth-child(4) {
-  background: #faf;
-}
- */

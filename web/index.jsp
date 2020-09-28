@@ -108,7 +108,8 @@ to {
 	opacity: 1;
 }
 }
-</style>
+
+	</style>
 	</div>
 	<!--깃허브 브런치 테스트  -->
 	<style>
