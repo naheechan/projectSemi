@@ -5,17 +5,17 @@
 <%
 	List<BooksJoin> list = (List) session.getAttribute("booklist");
 	Books bs=(Books)session.getAttribute("books");
-	int count=(int)session.getAttribute("count");
+	int count=(int)session.getAttribute("count"); 
 	int totalprice = 0;
-	if(bs==null){
+	/* if(bs==null){ */
 		if (!list.isEmpty()) {
 			for (BooksJoin bk : list) {
 				totalprice += (bk.getPrice() * bk.getCount());
-				session.removeAttribute("books");
-				session.removeAttribute("count");
+				/* session.removeAttribute("books");
+				session.removeAttribute("count"); */
 			}
 		}	
-	}
+	/* } */
 	
 	
 
@@ -23,17 +23,96 @@
 <%@ include file="/views/common/header.jsp"%>
 <section>
 	<style>
-#carttable {
+.carttable {
 	height: auto;
 	margin: 0 auto;
-	border: 2px solid black;
 	width: 960px;
-	padding:20px;
-	
+}
+.addcarttable{
+height: auto;
+	margin: 0 auto;
+}
+
+#button-box {
+	display: flex;
+	justify-content: space-around;
+	padding-bottom: 3rem;
+	margin-top:10px;
+}
+
+#headerfont {
+	font-size: 25px;
+	width: 960px;
+	margin: 0 auto;
+	padding-top: 50px;
 }
 
 
-#button-box>button {
+
+.carttable>td>img{
+border:1px solid black;
+}
+
+
+
+.carttable td {
+
+	
+	text-align:center;
+}
+
+hr {
+	margin-bottom: 50px;
+}
+
+#cartcontainer {
+	height: auto;
+	padding-bottom: 2.5em;
+}
+
+td {
+	width: auto;
+	
+}
+
+#price-box {
+	
+	margin: 0 auto;
+	margin-top:50px;
+	margin-bottom:50px;
+	width:960px;
+	box-shadow:1px 1px 1px 1px
+}
+
+#totaltxt {
+	margin:0 auto;
+	margin-top:50px;
+	margin-bottom: 50px;
+	font-size:20px;
+	display:flex;
+	justify-content:flex-end;
+	padding:20px;
+	padding-right:20px;
+	width:960px;
+	box-shadow:1px 1px 1px 1px
+	
+}
+th {
+	flex-basis: 250px;
+	height: 30px;
+	border: 1px solid rgb(216, 211, 205);
+	vertical-align: middle;
+	background-color: rgb(239, 241, 243);
+}
+
+td {
+	flex-basis: 250px;
+	border: 1px solid rgb(216, 211, 205);
+	text-align: center;
+	vertical-align: middle;
+}
+
+button {
 	background: #8fa3ad;
 	color: #fff;
 	border: none;
@@ -46,14 +125,22 @@
 	outline: none;
 }
 
-#button-box>button:hover {
+button:hover {
 	background: #fff;
 	color: #8fa3ad;
 }
+#flextable{
+display:flex;
+flex-flow:column;
+
+}
+#radiodiv{
+width:960px;
+margin:0 auto;
+}
 
 
-
-#button-box>button:before, button:after {
+button:before, button:after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -63,121 +150,28 @@
 	background: #8fa3ad;
 	transition: 400ms ease all;
 }
+#zero{
+width:960px;
+font-size:20px;
+margin:0 auto;
+}
+#tdimg{
+float:left
+}
+#tdtitle{
+padding-top:70px;
+}
 
-#button-box>button:after {
+button:after {
 	right: inherit;
 	top: inherit;
 	left: 0;
 	bottom: 0;
 }
 
-#button-box>button:hover:before, button:hover:after {
+button:hover:before, button:hover:after {
 	width: 100%;
 	transition: 800ms ease all;
-}
-
-#button-box {
-	display: flex;
-	justify-content: flex-end;
-	margin-top:50px;
-	margin-bottom:50px;
-}
-
-#headerfont {
-	font-size: 25px;
-	width: 960px;
-	margin: 0 auto;
-	padding-top:25px;
-}
-
-#carttable th {
-	  width: 250px;
-      border: 1px solid rgb(216,211,205);
-}
- input{
-        width: 360px;
-        border: 1px solid rgb(216,211,205);
-        border-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-		height: 30px;
-		margin-top:4px;
-		margin-bottom:4px;
-    }
-    textarea{
-    	width: 360px;
-        border: 1px solid rgb(216,211,205);
-        border-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-		margin-top:4px;
-		height: 30px;
-		margin-bottom:4px;
-    }
-
-#carttable td {
-	  border: 1px solid rgb(216,211,205);
-      text-align: center;
-}
-
-hr {
-	margin-bottom: 50px;
-}
-
-#cartcontainer {
-	height: auto;
-	padding-bottom: 2.5em;
-	/*footer의 높이 만큼 컨테이너값에 패딩바텀을 #totaltxt 추가해준다  */
-}
-#pricetext{
-	font-size:50px;
-}
-
-td {
-	width: auto;
-}
-
-#price-box {
-	width: 960px;
-	margin: 0 auto;
-}
-
-#totaltxt {
-	margin-bottom: 50px;
-	border:1px solid black;
-	padding:25px;
-	
-}
-
-#addresstxt {
-	width: 960px;
-	margin:0 auto;
-}
-#addresstxt>table{
-width:960px;
-border:1px solid black;
-margin:auto;
-
-}
-
-.carttable>th {
-	flex-basis: 250px;
-	height: 30px;
-	border: 1px solid rgb(216, 211, 205);
-	vertical-align: middle;
-	background-color: rgb(239, 241, 243);
-}
-
-.carttable>th>td {
-	flex-basis: 250px;
-	height: 40px;
-	border: 1px solid rgb(216, 211, 205);
-	text-align: center;
-	vertical-align: middle;
-}
-
-#pricetext{
-font-size:20px;
 }
 
 </style>
@@ -187,13 +181,24 @@ font-size:20px;
 		<div id="cartcontainer">
 			<form action=""
 				method="post" id="buyfrm">
-				<table id="carttable">
+				<table class="carttable">
 					<tr>
 						<th colspan="2">상품명</th>
 						<th class="price">가격</th>
 						<th class="count">수량</th>
 					</tr>
-					<%if(!list.isEmpty()){
+					<%if(bs!=null){ %>
+					<tr>
+						<input type="hidden" name="bookno" value="<%=bs.getBookNo()%>">
+						<td><img height=150px name="img"
+							src="<%=request.getContextPath()%>/image/book/<%=bs.getBookimg()%>"></td>
+						<td><%=bs.getTitle()%></td>
+						<td><%=bs.getPrice()%>원</td>
+						<td><input type="hidden" name="count"
+							value="<%=count%>"> <%=count%></td>
+					</tr>
+					<%}else{%>
+					<%
 						for (BooksJoin bk : list) {
 							
 					%>
@@ -206,53 +211,74 @@ font-size:20px;
 						<td><input type="hidden" name="count"
 							value="<%=bk.getCount()%>"> <%=bk.getCount()%></td>
 					</tr>
-					</table>
-				<hr>
-				<div id="addresstxt">
-				<style>
-				
-				</style>
-					<div id="totaltxt"> 
-						<input type="hidden" name="totalprice" id="totalprice"
-							value="<%=totalprice%>" /><p id="pricetext">총금 액 :<%=totalprice%>원</p>
-					</div>
-
-					<%}
-						}else{%>
-					<tr>
-						<input type="hidden" name="bookno" value="<%=bs.getBookNo()%>">
-						<td><img height=150px name="img"
-							src="<%=request.getContextPath()%>/image/book/<%=bs.getBookimg()%>"></td>
-						<td><%=bs.getTitle()%></td>
-						<td><%=bs.getPrice()%>원</td>
-						<td><input type="hidden" name="count"
-							value="<%=count%>"><%=count%></td>
-					</tr>
-					</table>
-				<hr>
-				<div id="addresstxt">
-					<div id="totaltxt">
-						<input type="hidden" name="totalprice" id="totalprice"
-							value="<%=(bs.getPrice()*count)%>" /><p id="pricetext">총금 액 :<%=(bs.getPrice()*count)%>원</p>
-					</div>
 					
-					
+					<%}%>
 					<%} %>
-				
-					<table>
+					</table>
+						<hr>
+						<div id="totaltxt"> 
+						<%if(bs!=null){%>
+						<input type="hidden" name="totalprice" id="totalprice"
+							value="<%=bs.getPrice()*count%>" /><p id="pricetext">총결제금액 :<%=bs.getPrice()*count%>원</p>
+						<%}else{ %>
+						<input type="hidden" name="totalprice" id="totalprice"
+							value="<%=totalprice%>" /><p id="pricetext">총결제금액 :<%=totalprice%>원</p>
+						<%} %>
+						</div>
+						<div id="radiodiv">
+						<input type="radio" class="inputadd" checked="checked" name="inputadd" value="1" id="ra1"><label for="ra1">기존 주소지</label>
+						<input type="radio" class="inputadd" name="inputadd"value="2" id="ra2"><label for="ra2">새로운 주소지</label>
+						</div>
+						<div id="addresstxt">
+					<table class="addcarttable" id="table1">
 						<tr>
-							<td>주문인</td>
+							<th>주문인</th>
 							<input type="hidden" name="userno"
 								value="<%=logginedMember.getMemberNo()%>">
 							<td id="username"><%=logginedMember.getMemberName()%></td>
 
 						</tr>
 						<tr>
-							<td>받는사람</td>
+							<th>받는사람</th>
 							<td><input type="text" name="Recipient" /></td>
 						</tr>
 						<tr>
-							<td>주소</td>
+							<th>주소</th>
+							<td><input type="text" id="sample6_postcode" value="<%=logginedMember.getPostcode()%>" name="postcode"
+								/> <input type="button"
+								onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
+								<input type="text" name="address" id="sample6_address"
+								value="<%=logginedMember.getAddress()%>" /><br /> <input type="text"
+								name="extraaddress" id="sample6_detailAddress"
+								value="<%=logginedMember.getExtraAddress()%>" /><br /> <input type="text"
+								name="detailaddress" id="sample6_extraAddress"
+								value="<%=logginedMember.getDetailAddress()%>" /></td>
+						</tr>
+						<tr>
+							<th>휴대폰 번호</th>
+							<td><input type="tel" name="tel" id="tel"
+								placeholder="-없이 입력해주세요" /></td>
+						</tr>
+						<tr>
+							<th>배송시 요청사항</th>
+							<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
+						</tr>
+						
+					</table>
+					<table class="addcarttable" id="table2" style=display:none >
+						<tr>
+							<th>주문인</th>
+							<input type="hidden" name="userno"
+								value="<%=logginedMember.getMemberNo()%>">
+							<td id="username"><%=logginedMember.getMemberName()%></td>
+
+						</tr>
+						<tr>
+							<th>받는사람</th>
+							<td><input type="text" name="Recipient" /></td>
+						</tr>
+						<tr>
+							<th>주소</th>
 							<td><input type="text" id="sample6_postcode" name="postcode"
 								placeholder="우편번호" /> <input type="button"
 								onclick="sample6_execDaumPostcode()" value="우편번호 찾기" /><br />
@@ -264,12 +290,12 @@ font-size:20px;
 								placeholder="참고항목" /></td>
 						</tr>
 						<tr>
-							<td>휴대폰 번호</td>
+							<th>휴대폰 번호</th>
 							<td><input type="tel" name="tel" id="tel"
 								placeholder="-없이 입력해주세요" /></td>
 						</tr>
 						<tr>
-							<td>배송시 요청사항</td>
+							<th>배송시 요청사항</th>
 							<td><textarea name="request" id="" cols="30" rows="6"></textarea><br /></td>
 						</tr>
 						
@@ -284,6 +310,25 @@ font-size:20px;
 
 
 		<script>
+	  	$('.inputadd').on('click',function(){
+	   		$('.inputadd:checked').prop('checked',true);
+	   		let radio=$('input[name="inputadd"]:checked').val();
+	   		if(radio==1){
+	   			$("#table2").css("display","none");
+	   			$("#table1").css({display:"block",
+	   			"margin-left": "565px"
+	   			});
+	   		}else{
+	   			$("#table1").css("display","none");
+	   			$("#table2").css({display:"block",
+		   			"margin-left":" 565px"
+		   			});
+	   		}
+	   		
+	  
+	   		
+	   		//라디오버튼을 눌렀을때 해당 라디오버튼의 값을 가져온다
+	   	});
 		
 		
 			function sample6_execDaumPostcode() {
@@ -343,6 +388,12 @@ font-size:20px;
 							},
 						}).open();
 			}
+			 
+			//*
+					<%-- name+="<%=bs.getTitle()%>"; --%>
+					<%-- frm.action='<%=request.getContextPath()%>/cart/orderbuy'; --%>
+				
+				 
 			function buy() {
 				let name=[];
 				let frm=document.querySelector("#buyfrm")
@@ -351,11 +402,8 @@ font-size:20px;
 				for (BooksJoin bk : list) {%>
 				name+=["<%=bk.getTitle()%>"]
 				frm.action='<%=request.getContextPath()%>/cart/orderend';
-				<%}
-				}else{%>
-					name+="<%=bs.getTitle()%>";
-					frm.action='<%=request.getContextPath()%>/cart/orderbuy';
-				<%}%>
+				<%}}%>
+				
 			     let price = document.querySelector("#totalprice").value;
 				 let username = document.querySelector("#username").innerText;
 			     

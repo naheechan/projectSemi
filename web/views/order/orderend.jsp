@@ -16,7 +16,10 @@ width:960px;
 margin-top:25px;
 }
 .maintext{
+text-shadow: 0px 1px #ffffff, 4px 4px 0px #dad7d7;
+
 margin-top:25px;
+margin-bottom:25px;
 height:500px;
 border:1px solid black;
 display:flex;
