@@ -33,22 +33,18 @@
 	padding-top: 50px;
 }
 
-#carttable th {
 
-}
 
 #carttable>td>img{
 border:1px solid black;
 }
 
 
-#carttable td>span{
-margin-left:100px;
-}
 
 #carttable td {
+
 	
-	text-align:-webkit-match-parent
+	text-align:center;
 }
 
 hr {
@@ -62,19 +58,20 @@ hr {
 
 td {
 	width: auto;
+	
 }
 
 #price-box {
-	
+	border:1px solid black;
 	margin: 0 auto;
 }
 
 #totaltxt {
-	margin-bottom: 100px;
+	margin-top:50px;
+	margin-bottom: 50px;
 	font-size:20px;
-	border:1px solid black;
 	display:flex;
-	justify-content:flex-end;
+	justify-content:center;
 }
 th {
 	flex-basis: 250px;
@@ -86,7 +83,6 @@ th {
 
 td {
 	flex-basis: 250px;
-	height: 40px;
 	border: 1px solid rgb(216, 211, 205);
 	text-align: center;
 	vertical-align: middle;
@@ -162,7 +158,7 @@ button:hover:before, button:hover:after {
 					<!--이미지와  책제목 flex로 묶어주기-->
 					<td colspan="2" class="carttd"><img height=150px
 						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>">
-						<span><%=bk.getTitle()%></span></td>
+						<div><%=bk.getTitle()%></div></td>
 					<td><%=bk.getPrice()%>원</td>
 					<td><%=bk.getCount()%> <input type="hidden" name="quantity"
 						value="<%=bk.getCount()%>" /></td>
