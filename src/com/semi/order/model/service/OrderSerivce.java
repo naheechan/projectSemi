@@ -32,6 +32,16 @@ public class OrderSerivce {
 		
 	}
 
+	public int insertborder(Buylist bu) {
+		// TODO Auto-generated method stub
+		Connection conn=getConnection();
+		int result=dao.insertorder(conn, bu);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
+
 	
 
 }

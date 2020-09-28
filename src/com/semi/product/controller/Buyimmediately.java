@@ -38,8 +38,9 @@ public class Buyimmediately extends HttpServlet {
 		int userno=Integer.parseInt(request.getParameter("memberno"));
 		int count=Integer.parseInt(request.getParameter("count"));
 		Books bk=new BookService().selectbook(no);
-		request.setAttribute("books", bk);
-		request.setAttribute("count", count);
+		HttpSession session=request.getSession();
+		session.setAttribute("books", bk);
+		session.setAttribute("count", count);
 		request.getRequestDispatcher("/views/order/order.jsp").forward(request, response);
 		
 	}
