@@ -32,9 +32,9 @@ public class NoticeUpdeteServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		Notice n= new Notice();
 		n.setNoticeTitle(request.getParameter("noticeTitle"));
-		n.setNoticeWriter(request.getParameter("noticeWriter"));
 		n.setFilepath(request.getParameter("filepath"));
 		n.setNoticeContent(request.getParameter("noticeContent"));
+		n.setNoticeNo(Integer.parseInt(request.getParameter("noticeNo")));
 		int result=new NoticeService().noticeUpdate(n);
 		String msg="";
 		String loc="/";
@@ -43,7 +43,6 @@ public class NoticeUpdeteServlet extends HttpServlet {
 			loc="/notice/noticeList=";
 		}else{
 			msg="수정에 실패하였습니다";
-			
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);

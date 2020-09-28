@@ -150,7 +150,7 @@ table#tbl-comment button.btn-insert2 {
 			</tr>
 			<tr>
 				<th>제 목</th>
-				<td><%=n.getNoticeTitle()%></td>
+				<td><input id="title" name="title" type="text" mexlength="10" value="<%=n.getNoticeTitle()%>"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -176,7 +176,8 @@ table#tbl-comment button.btn-insert2 {
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td><%=n.getNoticeContent()%></td>
+				<td>
+				 <input id="content" name="content" type="text" maxlength="500" value="<%=n.getNoticeContent()%>"></td>
 			</tr>
 			<%--글작성자/관리자인경우 수정삭제 가능 --%>
 			<tr>
@@ -184,7 +185,7 @@ table#tbl-comment button.btn-insert2 {
 					<%
 						if (logginedMember != null
 							&& (logginedMember.getMemberId().equals(n.getNoticeWriter()) || logginedMember.getMemberId().equals("admin"))) {
-					%> <input type="button" value="수정하기" onclick="fn_update_click">
+					%> <input type="button"  value="수정하기" onclick="fn_update_click();">
 
 					<input type="button" value="삭제하기"
 					onclick="location.replace('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>')">
