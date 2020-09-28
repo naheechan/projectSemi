@@ -246,10 +246,7 @@
         
         	function seatInfoFunction(event){
         	
-        	<%for(Seat s : list) {%>
-        	if(event.target.id=="<%=s.getSeatNo()%>"){
-        		alert("예약이 된 좌석입니다. 다시 선택하세요");
-        	}else{
+        	
 	        	document.getElementById('seatInfo').value=event.target.value;
 	        	if(event.target.id=="Room1"||event.target.id=="Room2"||event.target.id=="Room3"||event.target.id=="Room4"){
 	        		let UseTime=document.getElementById('useTime').value
@@ -260,8 +257,7 @@
 	        		let memberCount=document.getElementById('memberCount').value
 	        		document.getElementById('seatPrice').value=1000*UseTime;
 	        	}
-        	}
-        	<%}%>
+
         	}
         
           	function goindex(){
