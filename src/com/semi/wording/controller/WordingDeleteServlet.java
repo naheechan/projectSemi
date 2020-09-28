@@ -1,4 +1,4 @@
-package com.semi.bookclub.controller;
+package com.semi.wording.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.semi.bookclub.model.service.BookclubService;
-import com.semi.bookclub.model.vo.Bookclub;
+import com.semi.wording.model.service.WordingService;
 
 /**
- * Servlet implementation class BookclubWriteEndServlet
+ * Servlet implementation class WordingDeleteServlet
  */
-@WebServlet("/bookclub/bookclubWriteEnd")
-public class BookclubWriteEndServlet extends HttpServlet {
+@WebServlet("/wording/wordingDelete")
+public class WordingDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BookclubWriteEndServlet() {
+    public WordingDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,25 +29,23 @@ public class BookclubWriteEndServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Bookclub bc = new Bookclub();
-		bc.setBookclubTitle(request.getParameter("title"));
-		bc.setBookclubImg(request.getParameter("searchBookImgName"));
-		bc.setMaxPerson(Integer.parseInt(request.getParameter("maxPerson")));
-		bc.setWriter(request.getParameter("writer"));
-		bc.setMemberNo(Integer.parseInt(request.getParameter("memberNo")));
-		bc.setBookNo(Integer.parseInt(request.getParameter("searchBookNo")));
+		int no = Integer.parseInt(request.getParameter("wordingNo"));
+		System.out.println("no: "+no);
 		
-		int result = new BookclubService().insertBookclub(bc);
+		int result = new WordingService().deleteWording(no);
+		System.out.println("최종 result : "+result);
+		
 		String msg = "";
-		String loc = "/bookclub/bookclubList";
+		String loc = "/wording/wordingList";
 		if(result>0) {
-			msg = "북클럽이 새로 등록되었습니다.";
+			msg = "글귀가 삭제되었습니다.";
 		}else {
-			msg = "북클럽 등록에 실패하였습니다.";
+			msg = "글귀 삭제에 실패하였습니다.";
 		}
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+		
 		
 	}
 

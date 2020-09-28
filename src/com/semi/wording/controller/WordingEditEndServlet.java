@@ -79,7 +79,7 @@ public class WordingEditEndServlet extends HttpServlet {
 		
 		System.out.println("update최종결과 : "+result);
 		String msg = "";
-		String loc = "/";
+		String loc = "/wording/wordingDetail?wordingNo="+no;
 		if(result>0) {
 			msg = "글귀가 수정되었습니다";
 		}else {

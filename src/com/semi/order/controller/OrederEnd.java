@@ -74,7 +74,7 @@ public class OrederEnd extends HttpServlet {
 			int cleancart=new CartService().cleancart(userno);
 			if(cleancart>0) {
 				session.removeAttribute("booklist");
-				request.getRequestDispatcher("/views/order/orderback.jsp").forward(request, response);
+				request.getRequestDispatcher("/views/order/orderend.jsp").forward(request, response);
 			}
 			
 		}

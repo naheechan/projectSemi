@@ -93,11 +93,10 @@ section{
 	margin-left:50px;
 	margin-top: 30%;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-end;
+	margin-bottom: 10px;
 }
-.editDiv button{
-	background-color: navy;
-}
+
 .wordingDate{
 	/* float: right; */
 /* 	display: flex;
@@ -246,6 +245,17 @@ hr{
     cursor: pointer;
     font-weight: bolder;
   }
+.editDiv .editBtn{
+	background-color: navy;
+	padding: 10px 20px;
+	font-size: 20px;
+	margin-right: 10px;
+}
+.editDiv .deleteBtn{
+	background-color: red;
+	padding: 10px 20px;
+	font-size: 20px;
+}  
 .writeComments .writeComBtn{
     background-color: blue;
     font-size: 15px;
@@ -294,6 +304,11 @@ hr{
     text-decoration: none;
     cursor: pointer;
     font-weight: bolder;
+}
+.deleteComBtn{
+	padding: 5px 8px;
+	font-size: 13px;
+	background-color:red;
 }
 .commentContent{
 	padding-top: 10px;

@@ -88,20 +88,27 @@ public class WordingListServlet extends HttpServlet {
 		//Map<wording_no, 해당글귀의 좋아요 count(*)>
 		Map<Integer,Integer> mapLike = new WordingService().selectLikeCountList(listNo);
 
-//		for(Integer i : mapLike.keySet()){ //저장된 key값 확인
-//		    System.out.println("[Key]:" + i + " [Value]:" + mapLike.get(i));
-//		}
+		for(Integer i : mapLike.keySet()){ //저장된 key값 확인
+		    System.out.println("[Key]:" + i + " [Value]:" + mapLike.get(i));
+		}
 		
 		//좋아요순위 1~3위
 		List<Wording> listRanking = new WordingService().selectWordingRanking();
+		//wording_no의 리스트
+		List<Integer> listRankingNo = new ArrayList<>();
+		for(Wording word : listRanking) {
+			listRankingNo.add(word.getWordingNo());
+		}
+		//Map<wording_no, 해당글귀의 좋아요 count(*)>
+		Map<Integer,Integer> mapRankingLike = new WordingService().selectLikeCountList(listRankingNo);
 		
 		if(list.size()>0 && listPic.size()>0 && listText.size()>0 && mapLike.size()>0 && listRanking.size()>0) {
-			
 			request.setAttribute("list", list);
 			request.setAttribute("listPic", listPic);
 			request.setAttribute("listText", listText);
 			request.setAttribute("mapLike", mapLike);
 			request.setAttribute("listRanking", listRanking);
+			request.setAttribute("mapRankingLike", mapRankingLike);
 		}
 		request.getRequestDispatcher("/views/wordingBoard/wordingBoard.jsp").forward(request, response);
 		
