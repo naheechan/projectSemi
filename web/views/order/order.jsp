@@ -4,18 +4,18 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<BooksJoin> list = (List) session.getAttribute("booklist");
-	Books bs=(Books)session.getAttribute("books");
-	int count=(int)session.getAttribute("count"); 
+	/* int count=(int)session.getAttribute("count"); 
+	Books bs=(Books)session.getAttribute("books"); */
 	int totalprice = 0;
-	/* if(bs==null){ */
 		if (!list.isEmpty()) {
 			for (BooksJoin bk : list) {
 				totalprice += (bk.getPrice() * bk.getCount());
-				/* session.removeAttribute("books");
-				session.removeAttribute("count"); */
 			}
-		}	
-	/* } */
+			
+		}
+			
+		
+	
 	
 	
 
@@ -187,7 +187,7 @@ button:hover:before, button:hover:after {
 						<th class="price">가격</th>
 						<th class="count">수량</th>
 					</tr>
-					<%if(bs!=null){ %>
+					<%-- <%if(bs!=null){ %>
 					<tr>
 						<input type="hidden" name="bookno" value="<%=bs.getBookNo()%>">
 						<td><img height=150px name="img"
@@ -197,7 +197,7 @@ button:hover:before, button:hover:after {
 						<td><input type="hidden" name="count"
 							value="<%=count%>"> <%=count%></td>
 					</tr>
-					<%}else{%>
+					<%} --%>
 					<%
 						for (BooksJoin bk : list) {
 							
@@ -213,17 +213,18 @@ button:hover:before, button:hover:after {
 					</tr>
 					
 					<%}%>
-					<%} %>
+				
 					</table>
 						<hr>
 						<div id="totaltxt"> 
-						<%if(bs!=null){%>
+						<%-- <%if(bs!=null){%>
+						
 						<input type="hidden" name="totalprice" id="totalprice"
 							value="<%=bs.getPrice()*count%>" /><p id="pricetext">총결제금액 :<%=bs.getPrice()*count%>원</p>
-						<%}else{ %>
+						<%}else{ %> --%>
 						<input type="hidden" name="totalprice" id="totalprice"
 							value="<%=totalprice%>" /><p id="pricetext">총결제금액 :<%=totalprice%>원</p>
-						<%} %>
+					<%-- 	<%} %> --%>
 						</div>
 						<div id="radiodiv">
 						<input type="radio" class="inputadd" checked="checked" name="inputadd" value="1" id="ra1"><label for="ra1">기존 주소지</label>

@@ -4,6 +4,7 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<BooksJoin> list = (List) session.getAttribute("booklist");
+	
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
