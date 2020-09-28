@@ -188,30 +188,21 @@ public class NoticeDao {
 			close(pstmt);
 		}return result;
     }
-    public List<NoticeComment> selectNoticeCommentList(Connection conn, int no){
-    	PreparedStatement pstmt=null;
-    	ResultSet rs=null;
-    	List<NoticeComment> list=new ArrayList();
-    	try {
-    		pstmt=conn.prepareStatement(prop.getProperty("selectNoticeCommentList"));
-    		pstmt.setInt(1, no);
-    		rs=pstmt.executeQuery();
-    		while(rs.next()) {
-    			NoticeComment nc= new NoticeComment();
-    			nc.setNoticeCommentNo(rs.getInt("notice_comment_no"));
-    			nc.setNoticeCommentLevel(rs.getInt("notice_comment_level"));
-    			nc.setNoticeCommentWriter(rs.getNString("notice_comment_writer"));
-    			nc.setNoticeCommentContent(rs.getNString("notice_comment_content"));
-    			nc.setNoticeCommentDate(rs.getDate("notice_comment_date"));
-    			nc.setNoticeRef(rs.getInt("notice_ref"));
-    			nc.setNoticeCommentRef(rs.getInt("notice_comment_ref"));
-    			list.add(nc);
-    		}
-    	}catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			close(rs);
-			close(pstmt);
-		}return list;
-    }
+	
+	  public List<NoticeComment> selectNoticeCommentList(Connection conn, int no){
+	  PreparedStatement pstmt=null; ResultSet rs=null; List<NoticeComment> list=new
+	  ArrayList(); try {
+	  pstmt=conn.prepareStatement(prop.getProperty("selectNoticeCommentList"));
+	  pstmt.setInt(1, no); rs=pstmt.executeQuery(); while(rs.next()) {
+	  NoticeComment nc= new NoticeComment();
+	  nc.setNoticeCommentNo(rs.getInt("notice_comment_no"));
+	  nc.setNoticeCommentLevel(rs.getInt("notice_comment_level"));
+	  nc.setNoticeCommentWriter(rs.getNString("notice_comment_writer"));
+	  nc.setNoticeCommentContent(rs.getNString("notice_comment_content"));
+	  nc.setNoticeCommentDate(rs.getDate("notice_comment_date"));
+	  nc.setNoticeRef(rs.getInt("notice_ref"));
+	  nc.setNoticeCommentRef(rs.getInt("notice_comment_ref")); list.add(nc); }
+	  }catch (SQLException e) { e.printStackTrace(); }finally { close(rs);
+	  close(pstmt); }return list; }
+	 
 }

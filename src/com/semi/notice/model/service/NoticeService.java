@@ -96,11 +96,10 @@ public class NoticeService {
 		return result;
 	}
 
-	public List<NoticeComment> selectBoardCommentList(int no) {
-		Connection conn = getConnection();
-		List<NoticeComment> list = dao.selectNoticeCommentList(conn, no);
-		close(conn);
-		return list;
-	}
+	
+	  public List<NoticeComment> selectBoardCommentList(int no) { Connection conn =
+	  getConnection(); List<NoticeComment> list = dao.selectNoticeCommentList(conn,
+	  no); close(conn); return list; }
+	 
 
 }

@@ -134,12 +134,14 @@ table#tbl-comment button.btn-insert2 {
 	top: -5px;
 	left: 10px;
 }
-#noticeCommentContent{
-	margin-left:200px;
+
+#noticeCommentContent {
+	margin-left: 200px;
 }
 </style>
 
 	<div id="notice-container">
+	<form id="noitceFrm" action="" method="post">
 		<h2>공지사항</h2>
 		<table id="tbl-notice">
 			<tr>
@@ -165,8 +167,8 @@ table#tbl-comment button.btn-insert2 {
 						if (n.getFilepath() != null) {
 					%> <a
 					href="<%=request.getContextPath()%>/notice/noticefiledown?fname=<%=n.getFilepath()%>">
-						<img src="<%=request.getContextPath()%>/image/file.png"
-						width="20" height="20">
+						<img src="<%=request.getContextPath()%>/image/file.png" width="20"
+						height="20">
 				</a> <%
  	}
  %>
@@ -182,9 +184,7 @@ table#tbl-comment button.btn-insert2 {
 					<%
 						if (logginedMember != null
 							&& (logginedMember.getMemberId().equals(n.getNoticeWriter()) || logginedMember.getMemberId().equals("admin"))) {
-					%> <input
-					type="button" value="수정하기"
-					onclick="location.replace('<%=request.getContextPath()%>/notice/noticeUpdete?noticeNo=<%=n.getNoticeNo()%>')">
+					%> <input type="button" value="수정하기" onclick="fn_update_click">
 
 					<input type="button" value="삭제하기"
 					onclick="location.replace('<%=request.getContextPath()%>/notice/noticeDelete?noticeNo=<%=n.getNoticeNo()%>')">
@@ -196,6 +196,7 @@ table#tbl-comment button.btn-insert2 {
 				</th>
 			</tr>
 		</table>
+		</form>
 		<div id="comment-container">
 			<div class="comment-editor">
 				<form
@@ -210,7 +211,7 @@ table#tbl-comment button.btn-insert2 {
 					<button type="submit" id="btn-insert">등록</button>
 				</form>
 			</div>
-		<%-- 	<form
+			<%-- 	<form
 				action="<%=request.getContextPath()%>/notice/noticeCommentInsert"
 				method="post">
 				<input type="hidden" name="noticeRef" value="<%=n.getNoticeNo()%>">
@@ -255,6 +256,17 @@ table#tbl-comment button.btn-insert2 {
 			}
 			%>
 		</table>
+		<script>
+		function fn_update_click() {
+			const frm=$("#noitceFrm");
+			const url="<%=request.getContextPath()%>/notice/noticeUpdete";
+			frm.attr({
+				"action":url,
+				"method":"post",
+			});
+			frm.submit();
+		}
+		</script>
 
 		<%-- <script>
 	    	$(function(){

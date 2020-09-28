@@ -37,12 +37,16 @@ public class NoticeUpdeteServlet extends HttpServlet {
 		n.setNoticeContent(request.getParameter("noticeContent"));
 		int result=new NoticeService().noticeUpdate(n);
 		String msg="";
-		String lod="/";
+		String loc="/";
 		if(result>0) {
 			msg="성공적으로 수정되었습니다.";
+			loc="/notice/noticeList=";
 		}else{
 			msg="수정에 실패하였습니다";
+			
 		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		 
 	}

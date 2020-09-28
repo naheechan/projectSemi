@@ -45,7 +45,6 @@ public class NoticeViewServlet extends HttpServlet {
 			for (Cookie c : cookies) {
 				String name = c.getName();
 				String value = c.getValue();
-				// boardHistory인 쿠키값을 찾기
 				if ("noticeHistory".equals(name)) {
 					noticeHistory = value;// 현재저장된 값 대입
 					if (value.contains("|" + no + "|")) {
