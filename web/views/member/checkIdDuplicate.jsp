@@ -34,11 +34,11 @@
 	<div id="checkId-container">
 		<fieldset>
 				<%if(m==null) {%>
-					[<span id="checkId"><%=request.getParameter("id") %></span>]는 사용가능합니다.	
+					<span id="checkId"><%=request.getParameter("id") %></span>는 사용가능합니다.	
 					<br><br>
 					<button type="button" class="button" onclick="setMemberId();">닫기</button>
 				<%} else{%>
-					[<span id="duplicated"><%=m.getMemberId() %></span>]는 사용중입니다.
+					<span id="duplicated"><%=m.getMemberId() %></span>는 사용중입니다.
 					<br><br>
 					<!-- 아이디 재입력창 구성 -->
 					<form action="<%=request.getContextPath() %>/checkIdDuplicate" method="post">
