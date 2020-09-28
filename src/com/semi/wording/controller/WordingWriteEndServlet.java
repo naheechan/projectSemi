@@ -46,7 +46,7 @@ public class WordingWriteEndServlet extends HttpServlet {
 			return;
 		}
 		String path = getServletContext().getRealPath("/") + "image/wordingBoard";
-		System.out.println(path);
+		//System.out.println(path);
 		int maxSize = 1024 * 1024 * 10;
 		String encode = "UTF-8";
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new DefaultFileRenamePolicy());
@@ -74,7 +74,7 @@ public class WordingWriteEndServlet extends HttpServlet {
 		text.setWordingTextY(Integer.parseInt(mr.getParameter("textY")));
 	
 		int result = new WordingService().insertWording(w, pic, text);
-		System.out.println(w);
+		//System.out.println(w);
 		String msg = "";
 		String loc = "/wording/wordingList";
 		if(result>0) {

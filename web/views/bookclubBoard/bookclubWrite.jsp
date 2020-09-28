@@ -47,7 +47,7 @@
 				</tr>
 				<tr>
 					<td colspan="2">
-						<button type="submit" class="btn writeSubmitBtn">북클럽 만들기</button>
+						<button type="submit" class="btn writeSubmitBtn" onclick="return writeChk();">북클럽 만들기</button>
 						<button type="button" class="btn cancelBtn">취소(목록으로)</button>
 					</td>
 				</tr>
@@ -62,6 +62,12 @@
 
 <script>
 	$(function(){
+		
+		function writeChk() {
+			return false;
+		};
+		
+		
 		$("#maxPerson").on('input',function(e) {
 			$(this).next().html($(this).val()+"명");
 		});

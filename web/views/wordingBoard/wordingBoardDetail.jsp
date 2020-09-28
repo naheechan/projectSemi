@@ -10,7 +10,6 @@
 	WordingText te = (WordingText) request.getAttribute("te");
 	int likeCount = (Integer) request.getAttribute("likeCount");
 	List<WordingComment> listCom = (List) request.getAttribute("listCom");
-	boolean chkLevTwo = false;
 %>
 <section>
 	<div class="wordingDetail-container">
@@ -163,7 +162,6 @@
 				</div>
 				<%
 					} else {
-						chkLevTwo = true;
 				%>
 				<div class="level2Comment">
 					<div class="commentNo" style="display: none"><%=co.getWordingComNo()%></div>
@@ -185,19 +183,7 @@
 				<%
 					}
 				%>
-				<%if(chkLevTwo==false) { %>
-					<div class="level2Comment">
-						<div class="commentNo" style="display: none"></div>
-						<div class="commentHeader">
-							<div class="commentWriter"></div>
-							<div class="commentRight">
-								<button class="btn deleteComBtn">삭제</button>
-								<div class="commentDate"></div>
-							</div>
-						</div>
-						<div class="commentContent"></div>
-					</div>
-				<%} %>
+				
 			</div>
 		</div>
 	</div>
@@ -246,7 +232,7 @@
 					},
 					dataType:"text",
 					success:function(data){
-						console.log(data);
+						//console.log(data);
 						let datas = data.split(",");
 						$(".likeCnt").html(datas[0]);
 						if(datas[1]==0) {
@@ -284,7 +270,7 @@
 				dataType:"json",
 				success:function(data){
 					console.log("ajax갔다왔음")
-					console.log(data);
+					//console.log(data);
 					if(data!=null) {
 						let com = $(".level1Comment").first().clone(true);
 						com.find(".commentHeader").css("background-color","#EAEAEA");
@@ -329,8 +315,8 @@
 		$(".replyWriteBtn").click(function(e) {
 			
 			let parentCom = $(".reply").prev();
-			console.log(parentCom);
-			console.log(parentCom.nextAll(".level1Comment").first());
+			//console.log(parentCom);
+			//console.log(parentCom.nextAll(".level1Comment").first());
 
 			$.ajax({
 				url:"<%=request.getContextPath()%>/wording/writeComent",
@@ -347,7 +333,7 @@
 										dataType : "json",
 										success : function(data) {
 											console.log("ajax갔다왔음(reply)");
-											console.log(data);
+											//console.log(data);
 											if (data != null) {
 												let re = $(".level2Comment")
 														.first().clone();
@@ -384,7 +370,7 @@
 					
 		//댓글삭제
 		$(".deleteComBtn").click(function(e) {
-			console.log($(this).closest(".commentHeader").prev().html());
+			//console.log($(this).closest(".commentHeader").prev().html());
 			location.href="<%=request.getContextPath()%>/wording/wordingComDelete?comNo="+$(this).closest(".commentHeader").prev().html()+"&wordingNo=<%=w.getWordingNo()%>";                  
 		});
 		

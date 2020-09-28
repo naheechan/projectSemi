@@ -42,7 +42,7 @@ public class WordingEditEndServlet extends HttpServlet {
 			return;
 		}
 		String path = getServletContext().getRealPath("/") + "image/wordingBoard";
-		System.out.println(path);
+		//System.out.println(path);
 		int maxSize = 1024 * 1024 * 10;
 		String encode = "UTF-8";
 		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encode, new DefaultFileRenamePolicy());
@@ -77,7 +77,7 @@ public class WordingEditEndServlet extends HttpServlet {
 		
 		int result = new WordingService().updateWording(w, pic, text, no);
 		
-		System.out.println("update최종결과 : "+result);
+		//System.out.println("update최종결과 : "+result);
 		String msg = "";
 		String loc = "/wording/wordingDetail?wordingNo="+no;
 		if(result>0) {

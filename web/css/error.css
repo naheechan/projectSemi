@@ -1,0 +1,23 @@
+.errorDiv{
+	min-height:500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.headerErrorMsg{
+	font-size: 30px;
+	font-weight: bolder;
+	margin-top: 10px;
+}
+.bodyErrorMsg{
+	font-size: 17px;
+	font-weight: bold;
+	margin-top: 20px;
+	text-align: center;
+}
+.ErrorMsg {
+	font-size: 15px;
+	margin-top: 20px;
+}

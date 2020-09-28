@@ -44,7 +44,7 @@ public class WordingDao {
 			pstmt.setInt(3, w.getMemberNo());
 			pstmt.setString(4, w.getWriter());
 			result = pstmt.executeUpdate();
-			System.out.println("insertWording result : "+result);
+			//System.out.println("insertWording result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -64,7 +64,7 @@ public class WordingDao {
 			if(rs.next()) {
 				no = rs.getInt(1);
 			}
-			System.out.println("selectWordingNo no : "+no);
+			//System.out.println("selectWordingNo no : "+no);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class WordingDao {
 			pstmt.setString(2, pic.getWordingPicName());
 			pstmt.setInt(3, pic.getWordingPicBright());
 			result = pstmt.executeUpdate();
-			System.out.println("insertWordingPic result : "+result);
+			//System.out.println("insertWordingPic result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -105,7 +105,7 @@ public class WordingDao {
 			pstmt.setInt(5, text.getWordingTextY());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("insertWordingText result : "+result);
+			//System.out.println("insertWordingText result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -299,7 +299,7 @@ public class WordingDao {
 			pstmt.setString(2, w.getWordingContent());
 			pstmt.setInt(3, no);
 			result = pstmt.executeUpdate();
-			System.out.println("updateWording result : "+result);
+			//System.out.println("updateWording result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -324,7 +324,7 @@ public class WordingDao {
 			pstmt.setInt(1, pic.getWordingPicBright());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("updateWordingPic result : "+result);
+			//System.out.println("updateWordingPic result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -349,7 +349,7 @@ public class WordingDao {
 			pstmt.setInt(5, no);
 			
 			result = pstmt.executeUpdate();
-			System.out.println("updateWordingText result : "+result);
+			//System.out.println("updateWordingText result : "+result);
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -644,7 +644,7 @@ public class WordingDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println("dao : "+list);
+		//System.out.println("dao : "+list);
 		return list;
 	}
 	//마이페이지용

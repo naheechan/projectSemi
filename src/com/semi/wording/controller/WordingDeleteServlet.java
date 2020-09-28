@@ -30,10 +30,10 @@ public class WordingDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int no = Integer.parseInt(request.getParameter("wordingNo"));
-		System.out.println("no: "+no);
+		//System.out.println("no: "+no);
 		
 		int result = new WordingService().deleteWording(no);
-		System.out.println("최종 result : "+result);
+		//System.out.println("최종 result : "+result);
 		
 		String msg = "";
 		String loc = "/wording/wordingList";

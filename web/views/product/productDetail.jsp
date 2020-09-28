@@ -435,7 +435,7 @@
     	//댓글수정
     	$(".editBtn").click(function(e) {
     		let myCom = $(this).closest(".comPer");
-    		console.log(myCom);
+    		//console.log(myCom);
     		$(this).next().before('<button class="btn editEndBtn">수정완료</button>');
     		$(this).next().next().remove();
     		$(this).remove();

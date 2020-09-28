@@ -47,8 +47,8 @@ public class WordingListServlet extends HttpServlet {
 		int pageBarSize = 5;
 		int totalData = new WordingService().selectWordingCount();
 		int totalPage = (int)(Math.ceil((double)totalData/numPerPage));
-		System.out.println("totalData : "+totalData);
-		System.out.println("totalPage : "+totalPage);
+		//System.out.println("totalData : "+totalData);
+		//System.out.println("totalPage : "+totalPage);
 		int pageNo = ((cPage-1)/pageBarSize)*pageBarSize+1;
 		int pageEnd = pageNo+pageBarSize-1;
 		String pageBar = "";
@@ -88,9 +88,9 @@ public class WordingListServlet extends HttpServlet {
 		//Map<wording_no, 해당글귀의 좋아요 count(*)>
 		Map<Integer,Integer> mapLike = new WordingService().selectLikeCountList(listNo);
 
-		for(Integer i : mapLike.keySet()){ //저장된 key값 확인
-		    System.out.println("[Key]:" + i + " [Value]:" + mapLike.get(i));
-		}
+//		for(Integer i : mapLike.keySet()){ //저장된 key값 확인
+//		    System.out.println("[Key]:" + i + " [Value]:" + mapLike.get(i));
+//		}
 		
 		//좋아요순위 1~3위
 		List<Wording> listRanking = new WordingService().selectWordingRanking();

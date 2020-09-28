@@ -17,7 +17,7 @@ import com.semi.member.model.vo.Member;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(urlPatterns = {"/bookclub/*", "/wording/*"})
+@WebFilter(urlPatterns = {"/bookclub/*", "/wording/*", "/product/*", "/seatMove", "/notice/*", "/views/cart/cart.jsp"})
 public class LoginFilter implements Filter {
 
     /**

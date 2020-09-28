@@ -19,8 +19,8 @@
 
 	<!-- 순위 div -->
      <div id="wordingRanking">
-         <div class="ranktitle">인기 글귀</div>
-         <hr>
+         <div class="ranktitle">글귀 게시판</div>
+         <!-- <hr> -->
 
 		<div class="rankImg">
              <!-- <span class="rankText">2등</span>
@@ -33,7 +33,7 @@
         
         <!-- 2등 -->
         <div class="rankedWording">
-            <div class="wordingArticle">
+            <div class="wordingArticle wordingArticleTop">
 	            <div class="wordingArticleImg"> <!--글귀 사진-->
 
 					<img src="" alt="<%=listRanking.get(1).getWordingNo()%>">             															
@@ -61,7 +61,7 @@
         
 
         <!-- 1등 -->
-            <div class="wordingArticle">
+            <div class="wordingArticle wordingArticleTop">
 	            <div class="wordingArticleImg"> <!--글귀 사진-->
 
 					<img src="" alt="<%=listRanking.get(0).getWordingNo()%>">             															
@@ -89,7 +89,7 @@
         
 
         <!-- 3등 -->
-	        <div class="wordingArticle">
+	        <div class="wordingArticle wordingArticleTop">
 	            <div class="wordingArticleImg"> <!--글귀 사진-->
 
 					<img src="" alt="<%=listRanking.get(2).getWordingNo()%>">             															
@@ -141,7 +141,7 @@
 		<div></div>
 	</div>
 
-    <hr class="hr2">
+    <hr class="hr2" style="visibility: hidden">
     <!-- 게시글 div -->
      <div id="wordingList">
 
@@ -225,7 +225,7 @@
 	});
 	
 	$(".wordingArticle").click(function(e) {
-		console.log($(this));
+		//console.log($(this));
 		location.href="<%=request.getContextPath()%>/wording/wordingDetail?wordingNo="+$(this).children('.wordingArticleImg').children('img').attr('alt');
 	});
 

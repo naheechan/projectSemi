@@ -319,7 +319,7 @@ public class BookclubDao {
 			close(rs);
 			close(pstmt);
 		}	
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 	
@@ -357,7 +357,7 @@ public class BookclubDao {
 			close(rs);
 			close(pstmt);
 		}	
-		System.out.println(list);
+		//System.out.println(list);
 		return list;
 	}
 }
