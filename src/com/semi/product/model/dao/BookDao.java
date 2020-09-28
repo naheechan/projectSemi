@@ -135,9 +135,7 @@ public class BookDao {
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
 				bk.setCategoryno(rs.getInt("category_no"));
 				list.add(bk);
-				for(Books bs:list) {
-					System.out.println(bs);
-				}
+				
 				
 			}
 		}catch(SQLException e) {
@@ -193,10 +191,7 @@ public class BookDao {
 				bk.setPublicationdate(rs.getDate("book_publicationdate"));
 				bk.setCategoryno(rs.getInt("category_no"));
 				list.add(bk);
-				System.out.println("값이 왜 리스트에 안들어가지");
-				for(Books bs:list) {
-					System.out.println(bs);
-				}
+				
 			}
 			
 		}catch(SQLException e) {
@@ -476,6 +471,33 @@ public class BookDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	public Books selectBookbuy(Connection conn, int no) {
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	Books bk=null;
+	try {
+		pstmt=conn.prepareStatement(prop.getProperty("selectbuynow"));
+		pstmt.setInt(1, no);
+		rs=pstmt.executeQuery();
+		if(rs.next()) {
+			bk=new Books();
+			bk.setBookNo(rs.getInt("book_no"));
+			bk.setTitle(rs.getString("book_title"));
+			bk.setAuthor(rs.getString("book_author"));
+			bk.setPrice(rs.getInt("book_price"));
+			bk.setBookimg(rs.getString("book_img"));
+			bk.setPublisher(rs.getString("book_publisher"));
+			bk.setPublicationdate(rs.getDate("book_publicationdate"));
+			bk.setCategoryno(rs.getInt("category_no"));
+		}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+		close(rs);
+	}
+		return bk;
 	}
 	
 	

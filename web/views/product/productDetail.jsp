@@ -125,7 +125,7 @@
                         </td>
                     </tr>
                     <tr>
-                     <form action="<%=request.getContextPath()%>/product/checkcart" id="detailfrm">
+                     <form action="" id="detailfrm">
                         <td>수량</td>
                         <td><input type="number" name="count" id="bookCnt" value="1"></td>
                         <input type="hidden" name="cproductno" value="<%=bookdetail.getBookNo()%>">
@@ -134,7 +134,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <button id="buyBtn" class="btn">바로 구매</button>
+                            <button id="buyBtn" class="btn" onclick="moveorder()">바로 구매</button>
                             <button id="basketBtn" class="btn" onclick="movecart()">장바구니</button>
                             <!-- <button id="rentBtn" class="btn">대여하기</button> -->
                         </td>
@@ -507,9 +507,16 @@
 	    
 	    
     });
+    function moveorder() {
+    	console.log("클릭");
+    	let frm=document.querySelector("#detailfrm");
+    	frm.action='<%=request.getContextPath()%>/product/buyimmediately';
+    	frm.submit();
+	}
     function movecart() {
     	console.log("클릭");
     	let frm=document.querySelector("#detailfrm");
+    	frm.action='<%=request.getContextPath()%>/product/checkcart';
     	frm.submit();
 	}
    

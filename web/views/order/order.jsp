@@ -4,12 +4,19 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<BooksJoin> list = (List) session.getAttribute("booklist");
+	Books bs=(Books)session.getAttribute("books");
+	int count=(int)session.getAttribute("count");
 	int totalprice = 0;
-	if (!list.isEmpty()) {
-		for (BooksJoin bk : list) {
-			totalprice += (bk.getPrice() * bk.getCount());
-		}
+	if(bs==null){
+		if (!list.isEmpty()) {
+			for (BooksJoin bk : list) {
+				totalprice += (bk.getPrice() * bk.getCount());
+			}
+		}	
 	}
+	
+	
+
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -169,7 +176,7 @@ margin:auto;
 		<p id="headerfont">Order</p>
 		<hr>
 		<div id="cartcontainer">
-			<form action="<%=request.getContextPath()%>/cart/orderend"
+			<form action=""
 				method="post" id="buyfrm">
 				<table id="carttable">
 					<tr>
@@ -177,7 +184,7 @@ margin:auto;
 						<th class="price">가격</th>
 						<th class="count">수량</th>
 					</tr>
-					<%
+					<%if(!list.isEmpty()){
 						for (BooksJoin bk : list) {
 					%>
 					<tr>
@@ -189,18 +196,36 @@ margin:auto;
 						<td><input type="hidden" name="count"
 							value="<%=bk.getCount()%>"> <%=bk.getCount()%></td>
 					</tr>
-
-					<%
-						}
-					%>
-				</table>
+					</table>
 				<hr>
 				<div id="addresstxt">
 					<div id="totaltxt">
 						<input type="hidden" name="totalprice" id="totalprice"
 							value="<%=totalprice%>" /> 총금 액 :<%=totalprice%>원
 					</div>
-					<table >
+
+					<%}
+						}else{%>
+					<tr>
+						<input type="hidden" name="bookno" value="<%=bs.getBookNo()%>">
+						<td><img height=150px name="img"
+							src="<%=request.getContextPath()%>/image/book/<%=bs.getBookimg()%>"></td>
+						<td><%=bs.getTitle()%></td>
+						<td><%=bs.getPrice()%>원</td>
+						<td><input type="hidden" name="count"
+							value="<%=count%>"> <%=count%></td>
+					</tr>
+					</table>
+				<hr>
+				<div id="addresstxt">
+					<div id="totaltxt">
+						<input type="hidden" name="totalprice" id="totalprice"
+							value="<%=(bs.getPrice()*count)%>" /> 총금 액 :<%=(bs.getPrice()*count)%>원
+					</div>
+					
+					<%} %>
+				
+					<table>
 						<tr>
 							<td>주문인</td>
 							<input type="hidden" name="userno"
@@ -305,12 +330,18 @@ margin:auto;
 						}).open();
 			}
 			function buy() {
-				let name=[]
-				<%for (BooksJoin bk : list) {%>
-				name+=["<%=bk.getTitle()%>"]
-				<%}%>
-				console.log(name);
+				let name=[];
 				let frm=document.querySelector("#buyfrm")
+				<%
+				if(!list.isEmpty()){
+				for (BooksJoin bk : list) {%>
+				name+=["<%=bk.getTitle()%>"]
+				frm.action='<%=request.getContextPath()%>/cart/orderend';
+				<%}
+				}else{%>
+					name+="<%=bs.getTitle()%>";
+					frm.action='<%=request.getContextPath()%>/cart/orderbuy';
+				<%}%>
 			     let price = document.querySelector("#totalprice").value;
 				 let username = document.querySelector("#username").innerText;
 			     
