@@ -7,11 +7,12 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoard.css">
 <script src="<%=request.getContextPath()%>/js/wordingBoard.js"></script>
 <%
-	List<Wording> list = (List)request.getAttribute("list");
+ 	List<Wording> list = (List)request.getAttribute("list");
 	List<WordingPic> listPic = (List)request.getAttribute("listPic");
 	List<WordingText> listText = (List)request.getAttribute("listText");
 	Map<Integer,Integer> mapLike = (Map)request.getAttribute("mapLike");
 	List<Wording> listRanking = (List)request.getAttribute("listRanking");
+	Map<Integer,Integer> mapRankingLike = (Map)request.getAttribute("mapRankingLike"); 
 %>
 <section>
 	
@@ -45,7 +46,7 @@
 	                </div>
 	                <div class="likeCnt"> <!-- 좋아요수 -->
 	                	<img src="<%=request.getContextPath()%>/image/wordingBoard/like.png" witdh="20px" height="20px">
-	                	<span><%=mapLike.get(listRanking.get(1).getWordingNo())%></span>
+	                	<span><%=mapRankingLike.get(listRanking.get(1).getWordingNo())%></span>
 	                </div>
 	                <div class="wordingArticleWriter">
 	                    <div class="wordingArticleWriterId"> <!--작성자 아이디-->
@@ -73,7 +74,7 @@
 	                </div>
 	                <div class="likeCnt"> <!-- 좋아요수 -->
 	                	<img src="<%=request.getContextPath()%>/image/wordingBoard/like.png" witdh="20px" height="20px">
-	                	<span><%=mapLike.get(listRanking.get(0).getWordingNo())%></span>
+	                	<span><%=mapRankingLike.get(listRanking.get(0).getWordingNo())%></span>
 	                </div>
 	                <div class="wordingArticleWriter">
 	                    <div class="wordingArticleWriterId"> <!--작성자 아이디-->
@@ -101,7 +102,7 @@
 	                </div>
 	                <div class="likeCnt"> <!-- 좋아요수 -->
 	                	<img src="<%=request.getContextPath()%>/image/wordingBoard/like.png" witdh="20px" height="20px">
-	                	<span><%=mapLike.get(listRanking.get(2).getWordingNo())%></span>
+	                	<span><%=mapRankingLike.get(listRanking.get(2).getWordingNo())%></span>
 	                </div>
 	                <div class="wordingArticleWriter">
 	                    <div class="wordingArticleWriterId"> <!--작성자 아이디-->
@@ -130,7 +131,7 @@
                     </div>
                 </div>
             </div> --%>
-        </div>
+        </div> 
         
         
     </div>
@@ -142,7 +143,7 @@
 
     <hr class="hr2">
     <!-- 게시글 div -->
-    <div id="wordingList">
+     <div id="wordingList">
 
 		<%if(!list.isEmpty()) { %>
 			<%for(Wording w : list) { %>
@@ -178,14 +179,14 @@
 	
     </div>
     
-    <div class="pageBar">
+     <div class="pageBar">
     	<%=request.getAttribute("pageBar")%>
-    </div>
+    </div> 
     
 </section>
 
 <script>
-$(function(){
+ $(function(){
 
 	let s = "";
 	

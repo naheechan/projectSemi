@@ -16,11 +16,11 @@
 <section>
         <div class="clubList">
             <div class="clubSort">
-                <span>최근날짜 순</span>
+                <!-- <span>최근날짜 순</span>
                 <span>|</span>
                 <span>지난날짜 순</span>
                 <span>|</span>
-                <span>관심분야 순</span>
+                <span>관심분야 순</span> -->
             </div>
             <div class="makeclub">
                 <button class="btn makeclubBtn" onclick="location.href='<%=request.getContextPath()%>/bookclub/bookclubWrite'">책 모임 만들기</button>

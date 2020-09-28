@@ -108,6 +108,9 @@
 		}
 		
 		
+		$(".cancelBtn").click(function(e) {
+			location.href="<%=request.getContextPath()%>/bookclub/bookclubList";
+		});
 		
 		
 		

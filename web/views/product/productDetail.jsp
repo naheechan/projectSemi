@@ -132,7 +132,7 @@
                         <td colspan="2">
                             <button id="buyBtn" class="btn">바로 구매</button>
                             <button id="basketBtn" class="btn">장바구니</button>
-                            <button id="rentBtn" class="btn">대여하기</button>
+                            <!-- <button id="rentBtn" class="btn">대여하기</button> -->
                         </td>
                     </tr>
                     

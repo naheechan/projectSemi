@@ -69,7 +69,7 @@
                 <tr>
                     <td colspan="3">
                         <button type="submit" class="btn writeSubmitBtn" onclick="" ><%=isEdit?"수정하기":"등록하기"%></button>
-                        <button type="button" class="btn cancelBtn" onclick="" >취소(목록으로)</button>
+                        <button type="button" class="btn cancelBtn">취소(목록으로)</button>
                     </td>
                 </tr>
 
@@ -80,5 +80,16 @@
 
 </section>
 
+<script>
+$(function(){
+	
+	
+	$(".cancelBtn").click(function(e) {
+		location.href="<%=request.getContextPath()%>/wording/wordingList";
+	});
+
+
+})
+</script>
 
 <%@ include file="/views/common/footer.jsp"%>

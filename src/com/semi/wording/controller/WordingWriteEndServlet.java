@@ -76,7 +76,7 @@ public class WordingWriteEndServlet extends HttpServlet {
 		int result = new WordingService().insertWording(w, pic, text);
 		System.out.println(w);
 		String msg = "";
-		String loc = "/";
+		String loc = "/wording/wordingList";
 		if(result>0) {
 			msg = "글귀가 등록되었습니다";
 		}else {

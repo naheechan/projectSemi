@@ -195,6 +195,35 @@ public class WordingService {
 		return listCom;
 	}
 	
+	public int deleteWording(int no) {
+		Connection conn = getConnection();
+		int result = dao.deleteManyWordingLike(conn, no);
+		result = dao.deleteWordingCom(conn, no);
+		result = dao.deleteWordingPic(conn, no);
+		if(result>0) {
+			result = dao.deleteWordingText(conn, no);
+			if(result>0) {
+				result = dao.deleteWording(conn, no);
+				if(result>0) {
+					commit(conn);
+				}else rollback(conn);
+			}else rollback(conn);
+		}else rollback(conn);
+
+
+		close(conn);
+		return result;
+	}
+	
+	public int deleteWordingCom(int no) {
+		Connection conn = getConnection();
+		int result = dao.deleteWordingComLevTwo(conn, no);
+		result = dao.deleteWordingComLevOne(conn, no);
+		if(result>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
+	}
 	
 	
 	

@@ -10,6 +10,7 @@
 	WordingText te = (WordingText) request.getAttribute("te");
 	int likeCount = (Integer) request.getAttribute("likeCount");
 	List<WordingComment> listCom = (List) request.getAttribute("listCom");
+	boolean chkLevTwo = false;
 %>
 <section>
 	<div class="wordingDetail-container">
@@ -45,6 +46,7 @@
 						|| w.getWriter().equals(logginedMember.getMemberId()))) {
 			%>
 			<button type="button" class="btn editBtn">수정하기</button>
+			<button type="button" class="btn deleteBtn">삭제하기</button>
 			<%
 				}
 			%>
@@ -62,7 +64,7 @@
 		</div>
 		<hr class="wordingReferHr">
 		<!-- 책정보 -->
-		<div id="wordingRefer">
+		<%-- <div id="wordingRefer">
 			<div class="wordingReferTitle">책 정보</div>
 			<div class="referBookImg">
 				<!-- 책의 작은 사진 -->
@@ -74,7 +76,7 @@
 			</div>
 			<div class="referBookWriter">전홍진</div>
 
-		</div>
+		</div> --%>
 
 
 
@@ -129,6 +131,7 @@
 						<div class="commentWriter"></div>
 						<div class="commentRight" style="display: none">
 							<button class="btn replyBtn">답글 달기</button>
+							<button class="btn deleteComBtn">삭제</button>
 							<div class="commentDate"></div>
 						</div>
 					</div>
@@ -150,6 +153,9 @@
 						<div class="commentWriter"><%=co.getWriter()%></div>
 						<div class="commentRight">
 							<button class="btn replyBtn">답글 달기</button>
+							<%if(logginedMember.getMemberNo()==co.getMemberNo()) { %>
+								<button class="btn deleteComBtn">삭제</button>
+							<%} %>
 							<div class="commentDate"><%=co.getComDate()%></div>
 						</div>
 					</div>
@@ -157,11 +163,18 @@
 				</div>
 				<%
 					} else {
+						chkLevTwo = true;
 				%>
 				<div class="level2Comment">
+					<div class="commentNo" style="display: none"><%=co.getWordingComNo()%></div>
 					<div class="commentHeader">
 						<div class="commentWriter"><%=co.getWriter()%></div>
-						<div class="commentDate"><%=co.getComDate()%></div>
+						<div class="commentRight">
+							<%if(logginedMember.getMemberNo()==co.getMemberNo()) { %>
+								<button class="btn deleteComBtn">삭제</button>
+							<%} %>
+							<div class="commentDate"><%=co.getComDate()%></div>
+						</div>
 					</div>
 					<div class="commentContent"><%=co.getComContent()%></div>
 				</div>
@@ -172,6 +185,19 @@
 				<%
 					}
 				%>
+				<%if(chkLevTwo==false) { %>
+					<div class="level2Comment">
+						<div class="commentNo" style="display: none"></div>
+						<div class="commentHeader">
+							<div class="commentWriter"></div>
+							<div class="commentRight">
+								<button class="btn deleteComBtn">삭제</button>
+								<div class="commentDate"></div>
+							</div>
+						</div>
+						<div class="commentContent"></div>
+					</div>
+				<%} %>
 			</div>
 		</div>
 	</div>
@@ -192,10 +218,15 @@
 			"color":'<%=te.getWordingTextColor()%>'
 		});
 		
+		//수정
 		$(".editBtn").click(function(e) {
 			location.href="<%=request.getContextPath()%>/wording/wordingEdit?wordingNo=<%=w.getWordingNo()%>";
 		});
 		
+		//삭제
+		$(".deleteBtn").click(function(e) {
+			location.href="<%=request.getContextPath()%>/wording/wordingDelete?wordingNo=<%=w.getWordingNo()%>";
+		});
 		
 		//좋아요 ajax
 		$(".likeImg").children('img').click(function(e) {
@@ -235,7 +266,11 @@
 		
 		//댓글등록 ajax
 		$(".writeComBtn").click(function(e) {
-	
+			
+			if($("#comContent").val()=="") {
+				alert("댓글내용을 입력하세요");
+			}else {
+			
 			$.ajax({
 				url:"<%=request.getContextPath()%>/wording/writeComent",
 				type:"post",
@@ -267,6 +302,7 @@
 				
 			});
 			
+			}
 		});
 		
 		
@@ -304,8 +340,7 @@
 					comContent:$("#replyContent").val(),
 					writer:"<%=logginedMember.getMemberId()%>",
 					memberNo:"<%=logginedMember.getMemberNo()%>",
-					wordingNo:"<%=w.getWordingNo()%>
-	",
+					wordingNo:"<%=w.getWordingNo()%>",
 											refComNo : $(".reply").prev().find(
 													".commentNo").html()
 										},
@@ -346,7 +381,15 @@
 									});
 
 						});
-
+					
+		//댓글삭제
+		$(".deleteComBtn").click(function(e) {
+			console.log($(this).closest(".commentHeader").prev().html());
+			location.href="<%=request.getContextPath()%>/wording/wordingComDelete?comNo="+$(this).closest(".commentHeader").prev().html()+"&wordingNo=<%=w.getWordingNo()%>";                  
+		});
+		
+		
+		
 	})
 </script>
 
