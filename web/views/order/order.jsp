@@ -11,6 +11,8 @@
 		if (!list.isEmpty()) {
 			for (BooksJoin bk : list) {
 				totalprice += (bk.getPrice() * bk.getCount());
+				session.removeAttribute("books");
+				session.removeAttribute("count");
 			}
 		}	
 	}
@@ -186,6 +188,7 @@ margin:auto;
 					</tr>
 					<%if(!list.isEmpty()){
 						for (BooksJoin bk : list) {
+							
 					%>
 					<tr>
 						<input type="hidden" name="bookno" value="<%=bk.getBookno()%>">
