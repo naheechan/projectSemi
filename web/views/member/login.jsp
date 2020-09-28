@@ -9,7 +9,6 @@ pageEncoding="UTF-8"%> <%@ include file="/views/common/header.jsp"%>
         */
   body {
     background-color: rgb(247, 242, 231);
-    
   }
 
   #login_text {
@@ -74,50 +73,35 @@ pageEncoding="UTF-8"%> <%@ include file="/views/common/header.jsp"%>
 <section>
   <div>
     <article id="login_text">Customer Login</article>
-    <br />
-    <hr />
-    <br />
+    <br>
+    <hr>
+    <br>
     <form action="<%=request.getContextPath() %>/login" method="post" id="loginfrm">
-      <input
-        id="id"
-        name="userId"
-        type="text"
-        placeholder="아이디"
-        maxlength="10"
-      /><br />
-      <input
-        id="pw"
-        name="password"
-        type="password"
-        placeholder="비밀번호"
-        maxlength="20"
-      /><br />
-      <input
-        id="button"
-        type="button"
-        value="로그인"
-        onclick="return logincheck();"
-      />
+      <input id="id" name="userId" type="text" placeholder="아이디" maxlength="10"><br>
+      <input id="pw" name="password" type="password" placeholder="비밀번호" maxlength="20"><br>
+      <input id="button" type="button" value="로그인" onclick="return logincheck();">
     </form>
     <form id="find">
       <label class="find" onclick="findId();">아이디 찾기</label>
       <label class="find" onclick="findPw();">비밀번호 찾기</label>
       <label class="find" onclick="join();">회원가입</label>
     </form>
-    <br />
-    <br />
-    <br />
+    <br>
+    <br>
+    <br>
   </div>
 </section>
 <script>
 	function logincheck() {
 		let frm=document.querySelector("#loginfrm");
-		frm.submit();
-		
+		frm.submit();	
 	}
- 
-    
-    
+</script>
+<script type="text/javascript">
+	window.history.forward();
+	function noBack(){
+		window.history.foward();
+	}
 </script>
 
 <%@ include file="/views/common/footer.jsp"%>

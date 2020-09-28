@@ -107,6 +107,9 @@
         border: 1px solid rgb(216,211,205);
         text-align: center;
     }
+    #id, #name, #birth {
+    	border : none;
+    }
     input{
         width: 360px;
         border: 1px solid rgb(216,211,205);

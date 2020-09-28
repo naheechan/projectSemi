@@ -104,20 +104,15 @@ public class Radioproduct extends HttpServlet {
 		//분기처리 all이 선택되면 모든 책 정보 출력해주기
 		List<Books>list=new ArrayList<Books>();
 		if(ca.getCategoryno()==1) {
+			//카테고리가 all일경우
 			list=new BookService().categoryAlllist(cPage,numPerPage);
-			for(Books bk:list) {
-				System.out.println(bk);
-			}
-			System.out.println("값이 있음");
 			request.setAttribute("list", list);
 			request.setAttribute("pageBar", pageBar);
 			session.setAttribute("item", item);
 			request.getRequestDispatcher("/views/product/product.jsp").forward(request, response);
 		}else {
+			//카테고리가 존재할경우
 			list=new BookService().categorylist(cPage,numPerPage,ca);
-			if(list.isEmpty()) {
-				System.out.println("값이없음");
-			}
 			request.setAttribute("list", list);
 			request.setAttribute("pageBar", pageBar);
 			session.setAttribute("item", item);

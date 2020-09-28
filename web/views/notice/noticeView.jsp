@@ -134,6 +134,9 @@ table#tbl-comment button.btn-insert2 {
 	top: -5px;
 	left: 10px;
 }
+#noticeCommentContent{
+	margin-left:200px;
+}
 </style>
 
 	<div id="notice-container">
@@ -207,6 +210,17 @@ table#tbl-comment button.btn-insert2 {
 					<button type="submit" id="btn-insert">등록</button>
 				</form>
 			</div>
+		<%-- 	<form
+				action="<%=request.getContextPath()%>/notice/noticeCommentInsert"
+				method="post">
+				<input type="hidden" name="noticeRef" value="<%=n.getNoticeNo()%>">
+				<input type="hidden" name="noticeCommentWriter"
+					value="<%=logginedMember != null ? logginedMember.getMemberId() : ""%>">
+				<input type="hidden" name="noticeCommentLevel" value="1"> <input
+					type="hidden" name="noticeCommentRef" value="0">
+				<textarea id="noticeCommentContent" name="noticeCommentContent" cols="55" rows="3"></textarea>
+				<button type="submit" id="btn-insert">등록</button>
+			</form> --%>
 		</div>
 		<table id="tbl-comment">
 			<%

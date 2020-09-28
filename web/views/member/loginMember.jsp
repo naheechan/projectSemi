@@ -10,8 +10,18 @@
         #D8D3CD : 216,211,205 - 약간 짙은 베이지
         #797A7E : 121,122,126 - 짙은 그레이 
         */
-        body{background-color: rgb(247,242,231)}
-
+        body{background-color: white}
+        
+        #login-section{
+        	display: flex;
+			justify-content: center;
+			flex-direction: column;
+        }
+		#loginform{
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
         #login_text{
             font-size: 40px;
             font-weight: bold;
@@ -20,27 +30,28 @@
             margin-bottom: 20px;
             padding-top: 40px;
             }
-        #id{margin-left: 40%;
-            margin-top:10px;
-            background-color: white; 
+        #id{
+        	margin: 0 auto;
+            background-color: rgb(224,236,228); 
             border: 2px;
-            border-color: rgb(247,242,231); 
+            border-color: rgb(224,236,228); 
             border-radius: 10px;
             width: 400px;
             height: 50px;}
 
-        #pw{margin-left:40%;
-            margin-top:30px;
+        #pw{
+        	margin: 0 auto;
             border: 2px;
-            background-color: white; 
-            border-color: rgb(247,242,231); 
+            border-color: rgb(224,236,228); 
+            background-color: rgb(224,236,228); 
             border-radius: 10px;
             width: 400px;
             height: 50px;}
 
 
-        #submit{margin-left:40%;
-            margin-top:30px;
+        #submit{
+        	margin: 0 auto;
+            margin-top:15px;
             background-color:rgb(121,122,126); 
             color:white; 
             font :bolder;
@@ -55,20 +66,22 @@
             }
             .find { color: rgb(79, 80, 82); text-decoration: none;}
 
-            #find{margin-left: 42%; 
-                  margin-top: 30px;}
+            #find{
+	            display: flex;
+				justify-content: center;
+			}
             
-            label{margin:10px;}
+            label{margin:20px;}
 
     </style>
 
-      <section>
+      <section id="login-section">
         <div>
             <article id="login_text">Customer Login</article>
             <br>
             <hr>
             <br>
-             <form action="<%=request.getContextPath()%>/loginEnd" method="post">
+             <form id="loginform" action="<%=request.getContextPath()%>/loginEnd" method="post" >
                 <input id="id" name="id" type="text" placeholder="아이디" maxlength="10"><br>
                 <input id="pw" name="pw" type="password" placeholder="비밀번호" maxlength="20"><br>
                 <input id="submit" name="submit" type="submit" value="로그인" onclick="submitclick();">
@@ -78,9 +91,6 @@
                 <label class="find" onclick="findPw();">비밀번호 찾기</label>
                 <label class="find" onclick="join();">회원가입</label>
             </form>
-          <br>
-          <br>
-          <br>
     	</div>
     
     
@@ -120,5 +130,12 @@
           window.open("<%=request.getContextPath()%>/enrollMember","_self");
         }
         </script>
+        <script type="text/javascript">
+			window.history.forward();
+			function noBack(){
+				window.history.foward();
+				alert("로그인 하였습니다.");
+			}
+		</script>
         </section>
 <%@ include file="/views/common/footer.jsp" %>
