@@ -5,7 +5,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.semi.wording.model.vo.*, java.util.Map" %>    
 <%@ page import="com.semi.myinfo.model.vo.*" %>  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/wordingBoard.css">
 <script src="<%=request.getContextPath()%>/js/wordingBoard.js"></script>
 <%@ include file="/views/common/header.jsp" %>
 <%
@@ -22,6 +21,7 @@
 	.sectionInfo{
 		display : flex;
         justify-content: center;
+        min-height:130%;
 	}
 	.divInfo{
 		display: block;
