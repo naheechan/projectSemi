@@ -145,6 +145,14 @@ public class BookService {
 		close(conn);
 		return result;
 	}
+
+	public Books selectbook(int no) {
+	Connection conn =getConnection();
+	Books bk=dao.selectBookbuy(conn,no);
+	close(conn);
+	return bk;
+		
+	}
 	
 	
 	

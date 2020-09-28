@@ -82,6 +82,34 @@ public class OrderDao {
 		
 		return result;
 	}
+	public int insertorder(Connection conn, Buylist bu) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try{
+			pstmt=conn.prepareStatement(prop.getProperty("insertorder"));
+				pstmt.setInt(1,bu.getTotalprice());
+				pstmt.setString(2,bu.getAddress());
+				pstmt.setInt(3,bu.getPostcode());
+				pstmt.setString(4,bu.getExtraaddress());
+				pstmt.setString(5, bu.getDetailaddress());
+				pstmt.setString(6, bu.getRequest());
+				pstmt.setString(7, bu.getRecipient());
+				pstmt.setInt(8, bu.getMemberno());
+				pstmt.setInt(9, bu.getBookno());
+				pstmt.setInt(10, bu.getCount());
+				result=pstmt.executeUpdate();
+			
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			
+		}
+		
+		return result;
+	}
 	
 
 }
