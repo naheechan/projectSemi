@@ -72,6 +72,8 @@ public class OrederEnd extends HttpServlet {
 			//해당회원이 주문을 완료하면 장바구니를 비워주는 로직
 			int cleancart=new CartService().cleancart(userno);
 			if(cleancart>0) {
+				session.removeAttribute("books");
+				session.removeAttribute("count");
 				session.removeAttribute("booklist");
 				request.getRequestDispatcher("/views/order/orderend.jsp").forward(request, response);
 			}
