@@ -17,13 +17,12 @@
 #carttable {
 	height: auto;
 	margin: 0 auto;
-	border: 2px solid black;
 	width: 960px;
 }
 
 #button-box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding-bottom: 3rem;
 }
 
@@ -35,11 +34,21 @@
 }
 
 #carttable th {
-	border: 1px solid black;
+
+}
+
+#carttable>td>img{
+border:1px solid black;
+}
+
+
+#carttable td>span{
+margin-left:100px;
 }
 
 #carttable td {
-	border: 1px solid black;
+	
+	text-align:-webkit-match-parent
 }
 
 hr {
@@ -56,12 +65,16 @@ td {
 }
 
 #price-box {
-	width: 960px;
+	
 	margin: 0 auto;
 }
 
 #totaltxt {
 	margin-bottom: 100px;
+	font-size:20px;
+	border:1px solid black;
+	display:flex;
+	justify-content:flex-end;
 }
 th {
 	flex-basis: 250px;
@@ -96,7 +109,11 @@ button:hover {
 	background: #fff;
 	color: #8fa3ad;
 }
+#flextable{
+display:flex;
+flex-flow:column;
 
+}
 
 
 button:before, button:after {
@@ -129,6 +146,7 @@ button:hover:before, button:hover:after {
 		<form action="<%=request.getContextPath()%>/cart/orderdel" id="delfrm">
 		
 		<%if(!list.isEmpty()){ %>
+		<div id="flextable">
 			<table id="carttable">
 
 				<tr>
@@ -157,16 +175,18 @@ button:hover:before, button:hover:after {
 				%>
 			</table>
 			<%} %>
-			<hr>
+		
 			<div id="price-box">
 				<div id="totaltxt">
-					총금액 :<%=totalprice%>원
+					총 상품금액 :<%=totalprice%>원
+				</div>
+				</div>
 				</div>
 				<div id="button-box">
 					<button type="button" class="btn del" onclick="check()">선택상품삭제하기</button>
 					<button type="button" class="btn order" onclick="order()">주문하기</button>
 				</div>
-			</div>
+			
 		</form>
 
 	</div>

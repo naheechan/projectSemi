@@ -127,7 +127,10 @@ hr {
 #cartcontainer {
 	height: auto;
 	padding-bottom: 2.5em;
-	/*footer의 높이 만큼 컨테이너값에 패딩바텀을 추가해준다  */
+	/*footer의 높이 만큼 컨테이너값에 패딩바텀을 #totaltxt 추가해준다  */
+}
+#pricetext{
+	font-size:50px;
 }
 
 td {
@@ -143,6 +146,7 @@ td {
 	margin-bottom: 50px;
 	border:1px solid black;
 	padding:25px;
+	
 }
 
 #addresstxt {
@@ -172,6 +176,9 @@ margin:auto;
 	vertical-align: middle;
 }
 
+#pricetext{
+font-size:20px;
+}
 
 </style>
 	<section>
@@ -202,9 +209,12 @@ margin:auto;
 					</table>
 				<hr>
 				<div id="addresstxt">
-					<div id="totaltxt">
+				<style>
+				
+				</style>
+					<div id="totaltxt"> 
 						<input type="hidden" name="totalprice" id="totalprice"
-							value="<%=totalprice%>" /> 총금 액 :<%=totalprice%>원
+							value="<%=totalprice%>" /><p id="pricetext">총금 액 :<%=totalprice%>원</p>
 					</div>
 
 					<%}
@@ -216,15 +226,16 @@ margin:auto;
 						<td><%=bs.getTitle()%></td>
 						<td><%=bs.getPrice()%>원</td>
 						<td><input type="hidden" name="count"
-							value="<%=count%>"> <%=count%></td>
+							value="<%=count%>"><%=count%></td>
 					</tr>
 					</table>
 				<hr>
 				<div id="addresstxt">
 					<div id="totaltxt">
 						<input type="hidden" name="totalprice" id="totalprice"
-							value="<%=(bs.getPrice()*count)%>" /> 총금 액 :<%=(bs.getPrice()*count)%>원
+							value="<%=(bs.getPrice()*count)%>" /><p id="pricetext">총금 액 :<%=(bs.getPrice()*count)%>원</p>
 					</div>
+					
 					
 					<%} %>
 				
