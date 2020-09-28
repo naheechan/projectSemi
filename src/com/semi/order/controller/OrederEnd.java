@@ -43,7 +43,6 @@ public class OrederEnd extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
 		int userno=Integer.parseInt(request.getParameter("userno"));
 		//어떤 책을 구매했는지 cart테이블을 조회해서 가져온다
 		List<Cart>list=new OrderSerivce().selectproduct(userno);
