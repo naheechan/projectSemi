@@ -87,6 +87,11 @@ td {
 	text-align: center;
 	vertical-align: middle;
 }
+#flextable{
+display:flex;
+flex-flow:column;
+
+}
 
 button {
 	background: #8fa3ad;
@@ -105,11 +110,7 @@ button:hover {
 	background: #fff;
 	color: #8fa3ad;
 }
-#flextable{
-display:flex;
-flex-flow:column;
 
-}
 
 
 button:before, button:after {
