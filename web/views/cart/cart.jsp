@@ -4,6 +4,7 @@
 <%@page import="java.util.List,com.semi.product.model.vo.Books"%>
 <%
 	List<BooksJoin> list = (List) session.getAttribute("booklist");
+	
 	int totalprice = 0;
 	if (!list.isEmpty()) {
 		for (BooksJoin bk : list) {
@@ -17,13 +18,12 @@
 #carttable {
 	height: auto;
 	margin: 0 auto;
-	border: 2px solid black;
 	width: 960px;
 }
 
 #button-box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding-bottom: 3rem;
 }
 
@@ -34,12 +34,18 @@
 	padding-top: 50px;
 }
 
-#carttable th {
-	border: 1px solid black;
+
+
+#carttable>td>img{
+border:1px solid black;
 }
 
+
+
 #carttable td {
-	border: 1px solid black;
+
+	
+	text-align:center;
 }
 
 hr {
@@ -53,15 +59,26 @@ hr {
 
 td {
 	width: auto;
+	
 }
 
 #price-box {
-	width: 960px;
+	
 	margin: 0 auto;
+	margin-top:50px;
+	margin-bottom:50px;
+	width:960px;
+	box-shadow:1px 1px 1px 1px
 }
 
 #totaltxt {
-	margin-bottom: 100px;
+	margin-top:50px;
+	margin-bottom: 50px;
+	font-size:20px;
+	display:flex;
+	justify-content:flex-end;
+	padding-right:20px;
+	
 }
 th {
 	flex-basis: 250px;
@@ -73,10 +90,14 @@ th {
 
 td {
 	flex-basis: 250px;
-	height: 40px;
 	border: 1px solid rgb(216, 211, 205);
 	text-align: center;
 	vertical-align: middle;
+}
+#flextable{
+display:flex;
+flex-flow:column;
+
 }
 
 button {
@@ -109,6 +130,17 @@ button:before, button:after {
 	background: #8fa3ad;
 	transition: 400ms ease all;
 }
+#zero{
+width:960px;
+font-size:20px;
+margin:0 auto;
+}
+#tdimg{
+float:left
+}
+#tdtitle{
+padding-top:70px;
+}
 
 button:after {
 	right: inherit;
@@ -123,12 +155,14 @@ button:hover:before, button:hover:after {
 }
 </style>
 <section>
-	<p id="headerfont">Cart</p>
+
+	<p id="headerfont"><i class="fas fa-cart-plus"></i>Cart</p>
 	<hr>
 	<div id="cartcontainer">
 		<form action="<%=request.getContextPath()%>/cart/orderdel" id="delfrm">
 		
 		<%if(!list.isEmpty()){ %>
+		<div id="flextable">
 			<table id="carttable">
 
 				<tr>
@@ -143,8 +177,7 @@ button:hover:before, button:hover:after {
 				<tr>
 					<!--이미지와  책제목 flex로 묶어주기-->
 					<td colspan="2" class="carttd"><img height=150px
-						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>">
-						<span><%=bk.getTitle()%></span></td>
+						src="<%=request.getContextPath()%>/image/book/<%=bk.getBookimg()%>"id="tdimg"><div id="tdtitle"><%=bk.getTitle()%></div></td>
 					<td><%=bk.getPrice()%>원</td>
 					<td><%=bk.getCount()%> <input type="hidden" name="quantity"
 						value="<%=bk.getCount()%>" /></td>
@@ -156,17 +189,21 @@ button:hover:before, button:hover:after {
 					}
 				%>
 			</table>
+			<%} else{%>
+			<div id="zero">장바구니가 비여있습니다</div>
 			<%} %>
-			<hr>
+		
 			<div id="price-box">
 				<div id="totaltxt">
-					총금액 :<%=totalprice%>원
+					총 상품금액 :<%=totalprice%>원
+				</div>
+				</div>
 				</div>
 				<div id="button-box">
 					<button type="button" class="btn del" onclick="check()">선택상품삭제하기</button>
 					<button type="button" class="btn order" onclick="order()">주문하기</button>
 				</div>
-			</div>
+			
 		</form>
 
 	</div>

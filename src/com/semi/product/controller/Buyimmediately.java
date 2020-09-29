@@ -35,7 +35,6 @@ public class Buyimmediately extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int no=Integer.parseInt(request.getParameter("cproductno"));
-		int userno=Integer.parseInt(request.getParameter("memberno"));
 		int count=Integer.parseInt(request.getParameter("count"));
 		Books bk=new BookService().selectbook(no);
 		HttpSession session=request.getSession();
