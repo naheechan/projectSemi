@@ -26,11 +26,11 @@
 
 ## Contributors
 
-- [나희찬](https://github.com/naheechan/projectSemi)
+- [나희찬](https://github.com/naheechan)
   - 도서 상세 페이지
   - 북클럽 게시판
   - 도서글귀 게시판
-- [임동욱](https://github.com/DK2554)
+- 임동욱
   - 메인페이지
   - 도서 정보 페이지
   - 장바구니,아임포트 결제API
