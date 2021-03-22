@@ -1,7 +1,7 @@
 <!--
 아이디 qwer1234
 비밀번호 qwer1234!
--->
+-->  
 
 # GP BOOKSTORE
 
