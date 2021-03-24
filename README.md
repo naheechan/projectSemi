@@ -57,45 +57,45 @@
 ## Explanation
 
 - **도서 상세 페이지**
-(사진)
+![책상세1](https://user-images.githubusercontent.com/33804909/112339228-d355d200-8d02-11eb-8a65-661ad3caf205.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br><br>
 
 - **글귀 게시판**
-(사진)
+![글귀01](https://user-images.githubusercontent.com/33804909/112339278-dc46a380-8d02-11eb-8fcc-60ef6a125119.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br>
 
-(사진)
+![글귀02](https://user-images.githubusercontent.com/33804909/112339301-e1a3ee00-8d02-11eb-972b-792398be8142.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br>
 
-(사진)
+![글귀03](https://user-images.githubusercontent.com/33804909/112339320-e49ede80-8d02-11eb-9bab-51528a954bec.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br><br>
 
 - **북클럽 게시판**
-(사진)
+![북클럽01](https://user-images.githubusercontent.com/33804909/112339335-e8cafc00-8d02-11eb-9e36-c387c7808da2.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br>
 
-(사진)
+![북클럽02](https://user-images.githubusercontent.com/33804909/112339359-ecf71980-8d02-11eb-8d63-f3fae74d2d92.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br>
 
-(사진)
+![북클럽03](https://user-images.githubusercontent.com/33804909/112339373-eff20a00-8d02-11eb-99ed-472c3d90bdae.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br><br>
 
 - **에러 페이지**
-(사진)
+![에러01](https://user-images.githubusercontent.com/33804909/112339388-f3859100-8d02-11eb-81ac-666084eb1e11.PNG)
 
 -ㅇㅇㅇ
 -ㅇㅇㅇ<br><br><br><br>
