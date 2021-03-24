@@ -1,4 +1,3 @@
-![책1-down](https://user-images.githubusercontent.com/33804909/112317078-0e4e0a80-8cef-11eb-93bc-40b6a363a6ac.PNG)
 <!--
 유저아이디 qwer
 유저비밀번호 qwerqwer
@@ -53,10 +52,10 @@
   - 스터디 그룹 예약 시스템/예매 아임포트API
   - 마이페이지
 
+## E
 
+- **글귀 게시판**
 
-
-![책01](https://user-images.githubusercontent.com/33804909/112316556-8ec03b80-8cee-11eb-88fa-8d0bf8005c03.PNG)
 
 
 
