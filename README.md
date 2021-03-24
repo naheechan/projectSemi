@@ -1,6 +1,9 @@
 <!--
-아이디 qwer1234
-비밀번호 qwer1234!
+유저아이디 qwer
+유저비밀번호 qwerqwer
+
+유저아이디 qwer1234
+유저비밀번호 qwer1234!
 -->  
 
 # GP BOOKSTORE
